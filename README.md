@@ -8,7 +8,7 @@ if any of your invariants fail.</p>
 
 ###High Level Info
 There are three functions that are exposed from the library.
-1. instance() - Create a testing suite around a single object and run a single or multiple tests one the same object.
+1. instance() - Create a testing suite passing in a single object.  Run a single, or multiple tests on the passed in object.
 2. constructor() - Get the constructor function so you can extend the Preconditions library (see below for example).
 3. singleton() - Get a singleton to verify a single value.
 
@@ -33,12 +33,12 @@ There are three functions that are exposed from the library.
 4. "String Representation" - Means using dot notation (i.e. "foo.deep.stringValue").
 5. Looking at the object in the first code example, foo.deep.stringValue = "FOO"
 
-###Examples
-Create and build the preconditions validator.
+###Examples Using Instances (.instance())
 
+Create and build the preconditions validator.
 <pre>
     <code>
-        var preconditions = require("preconditions").build({
+        var preconditions = require("preconditions").instance({
           foo: {
             deep: {
               stringValue: "FOO",
@@ -67,7 +67,7 @@ Create and build the preconditions validator.
 We can chain calls too.
 <pre>
     <code>
-        var preconditions = require("preconditions").build(this);
+        var preconditions = require("preconditions").instance(this);
         
         preconditions.shouldBeDefined("foo.deep.stringValue")
             .shouldBeDefined("foo.deep.emptyArray")
@@ -76,10 +76,24 @@ We can chain calls too.
    </code>
 </pre>
 
+You can use the default error messages or you can pass in your own error message.  If you do not pass in an error message, then the default will be thrown.
+<pre>
+    <code>
+        var preconditions = require("preconditions").instance(this);
+                
+        preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
+            .shouldBeDefined("foo.deep.emptyArray")
+            .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
+            .shouldBeFunction("foo.deep.functionValue");
+   </code>
+</pre>
+
+###Examples Using The Constructor (.constructor())
+
 The Preconditions object itself is exposed so that you can extend the Preconditions class.
 <pre>
     <code>
-        var Preconditions = builder.getClass();
+        var Preconditions = builder.constructor();
         
         function ChildClass(someObjectToTest) {
           Preconditions.call(this, someObjectToTest);
@@ -94,25 +108,23 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
   
         this.ShouldBeTrue = "ShouldBeTrue";
         this.childSut = new ChildClass(this.out);
+        
+        this.childSut.shouldNotBeFalsey(stringValue)
+              .shouldBeDefined(stringValue)
+              .shouldBeString(stringValue)
+              .shouldNotBeFalsey(numberValue)
+              .shouldBeDefined(numberValue)
+              .shouldBeNumber(numberValue)
+              .shouldBeTrue(false, "Value should be true (I am a custom error message).");
    </code>
 </pre>
 
-You can use the default error messages or you can pass in your own error message.  If you do not pass in an error message, then the default will be thrown.
-<pre>
-    <code>
-        var preconditions = require("preconditions").build(this);
-                
-        preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
-            .shouldBeDefined("foo.deep.emptyArray")
-            .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
-            .shouldBeFunction("foo.deep.functionValue");
-   </code>
-</pre>
+###Examples Using the Singleton (.singleton())
 
 You can use a static instance to verify a single value.
 <pre>
     <code>
-        var preconditions = require("preconditions").validator();
+        var preconditions = require("preconditions").singleton();
                 
         preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.")
             .shouldBeDefined(someObj.valueTwo)
