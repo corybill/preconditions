@@ -6,6 +6,12 @@ Ensuring all invariants are true at an initial point of contact will help you en
 This Preconditions library will assist you in doing just that by immediately throwing an Error
 if any of your invariants fail.</p>
 
+###High Level Info
+There are three functions that are exposed from the library.
+1. instance() - Create a testing suite around a single object and run a single or multiple tests one the same object.
+2. constructor() - Get the constructor function so you can extend the Preconditions library (see below for example).
+3. singleton() - Get a singleton to verify a single value.
+
 ###Install
 <pre>
     <code>
@@ -67,6 +73,51 @@ We can chain calls too.
             .shouldBeDefined("foo.deep.emptyArray")
             .shouldBeUndefined("foo.deep.someValue")
             .shouldBeFunction("foo.deep.functionValue");
+   </code>
+</pre>
+
+The Preconditions object itself is exposed so that you can extend the Preconditions class.
+<pre>
+    <code>
+        var Preconditions = builder.getClass();
+        
+        function ChildClass(someObjectToTest) {
+          Preconditions.call(this, someObjectToTest);
+        }
+        ChildClass.prototype = Object.create(Preconditions.prototype);
+        ChildClass.prototype.shouldBeTrue = function (value, message) {
+          var msg = message || this.ShouldBeTrue;
+          if (value !== true) {
+            throw new Error(msg);
+          }
+        };
+  
+        this.ShouldBeTrue = "ShouldBeTrue";
+        this.childSut = new ChildClass(this.out);
+   </code>
+</pre>
+
+You can use the default error messages or you can pass in your own error message.  If you do not pass in an error message, then the default will be thrown.
+<pre>
+    <code>
+        var preconditions = require("preconditions").build(this);
+                
+        preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
+            .shouldBeDefined("foo.deep.emptyArray")
+            .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
+            .shouldBeFunction("foo.deep.functionValue");
+   </code>
+</pre>
+
+You can use a static instance to verify a single value.
+<pre>
+    <code>
+        var preconditions = require("preconditions").validator();
+                
+        preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.")
+            .shouldBeDefined(someObj.valueTwo)
+            .shouldBeUndefined(someObj.valueThree, "Custom error message.")
+            .shouldBeFunction(someObj.valueOne);
    </code>
 </pre>
 

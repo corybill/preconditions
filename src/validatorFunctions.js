@@ -4,139 +4,185 @@ var constants = require("./constants");
 var _ = require("underscore");
 
 var validatorFunctions = {
-  getFilePathInfo: function (configPath) {
-    return " {" + configPath + "}";
-  },
-  shouldBeDefined: function (val, configPath) {
+  shouldBeDefined: function (val, message) {
     if(_.isUndefined(val)) {
-      throw new Error(constants.ShouldBeDefined + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeDefined;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldBeUndefined: function (val, configPath) {
+  shouldBeUndefined: function (val, message) {
     if(!_.isUndefined(val)) {
-      throw new Error(constants.ShouldBeUndefined + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeUndefined;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeArray: function (val, configPath) {
+  shouldBeArray: function (val, message) {
     if(!_.isArray(val)) {
-      throw new Error(constants.ShouldBeArray + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeArray;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeArray: function (val, configPath) {
+  shouldNotBeArray: function (val, message) {
     if(_.isArray(val)) {
-      throw new Error(constants.ShouldNotBeArray + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeArray;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeObject: function (val, configPath) {
+  shouldBeObject: function (val, message) {
     if(!_.isObject(val)) {
-      throw new Error(constants.ShouldBeObject + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeObject;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeObject: function (val, configPath) {
+  shouldNotBeObject: function (val, message) {
     if(_.isObject(val)) {
-      throw new Error(constants.ShouldNotBeObject + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeObject;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeEmpty: function (val, configPath) {
+  shouldBeEmpty: function (val, message) {
     if(!_.isEmpty(val)) {
-      throw new Error(constants.ShouldBeEmpty + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeEmpty;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeEmpty: function (val, configPath) {
+  shouldNotBeEmpty: function (val, message) {
     if(_.isEmpty(val)) {
-      throw new Error(constants.ShouldNotBeEmpty + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeEmpty;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeFunction: function (val, configPath) {
+  shouldBeFunction: function (val, message) {
     if(!_.isFunction(val)) {
-      throw new Error(constants.ShouldBeFunction + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeFunction;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeFunction: function (val, configPath) {
+  shouldNotBeFunction: function (val, message) {
     if(_.isFunction(val)) {
-      throw new Error(constants.ShouldNotBeFunction + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeFunction;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeString: function (val, configPath) {
+  shouldBeString: function (val, message) {
     if(!_.isString(val)) {
-      throw new Error(constants.ShouldBeString + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeString;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeString: function (val, configPath) {
+  shouldNotBeString: function (val, message) {
     if(_.isString(val)) {
-      throw new Error(constants.ShouldNotBeString + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeString;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeNumber: function (val, configPath) {
+  shouldBeNumber: function (val, message) {
     if(!_.isNumber(val)) {
-      throw new Error(constants.ShouldBeNumber + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeNumber;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeNumber: function (val, configPath) {
+  shouldNotBeNumber: function (val, message) {
+    console.log("val: " + val);
     if(_.isNumber(val)) {
-      throw new Error(constants.ShouldNotBeNumber + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeNumber;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeFinite: function (val, configPath) {
+  shouldBeFinite: function (val, message) {
     if(!_.isFinite(val)) {
-      throw new Error(constants.ShouldBeFinite + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeFinite;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldBeInfinite: function (val, configPath) {
+  shouldBeInfinite: function (val, message) {
     if(_.isFinite(val)) {
-      throw new Error(constants.ShouldBeInfinite + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeInfinite;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeBoolean: function (val, configPath) {
+  shouldBeBoolean: function (val, message) {
     if(!_.isBoolean(val)) {
-      throw new Error(constants.ShouldBeBoolean + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeBoolean;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeBoolean: function (val, configPath) {
+  shouldNotBeBoolean: function (val, message) {
     if(_.isBoolean(val)) {
-      throw new Error(constants.ShouldNotBeBoolean + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeBoolean;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeDate: function (val, configPath) {
+  shouldBeDate: function (val, message) {
     if(!_.isDate(val)) {
-      throw new Error(constants.ShouldBeDate + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeDate;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeDate: function (val, configPath) {
+  shouldNotBeDate: function (val, message) {
     if(_.isDate(val)) {
-      throw new Error(constants.ShouldNotBeDate + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeDate;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeRegExp: function (val, configPath) {
+  shouldBeRegExp: function (val, message) {
     if(!_.isRegExp(val)) {
-      throw new Error(constants.ShouldBeRegExp + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeRegExp;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeRegExp: function (val, configPath) {
+  shouldNotBeRegExp: function (val, message) {
     if(_.isRegExp(val)) {
-      throw new Error(constants.ShouldNotBeRegExp + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeRegExp;
+      throw new Error(msg);
     }
+    return this;
   },
 
-  shouldBeFalsey: function (val, configPath) {
+  shouldBeFalsey: function (val, message) {
     if(!_.isNaN(val) && !_.isNull(val) && !_.isUndefined(val)) {
-      throw new Error(constants.ShouldBeFalsey + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldBeFalsey;
+      throw new Error(msg);
     }
+    return this;
   },
-  shouldNotBeFalsey: function (val, configPath) {
+  shouldNotBeFalsey: function (val, message) {
     if(_.isNaN(val) || _.isNull(val) || _.isUndefined(val)) {
-      throw new Error(constants.ShouldNotBeFalsey + this.getFilePathInfo(configPath));
+      var msg = message || constants.ShouldNotBeFalsey;
+      throw new Error(msg);
     }
+    return this;
   }
 };
 

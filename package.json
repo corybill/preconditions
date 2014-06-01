@@ -1,6 +1,17 @@
 {
   "name": "preconditions",
-  "version": "0.0.1",
+  "author": "Cory Parrish",
+  "version": "0.0.2",
+  "description": "Support for Guava like Precondition error checking in Node.js",
+  "homepage": "https://github.com/corybill/Preconditions",
+  "bugs": {
+    "url": "https://github.com/corybill/Preconditions/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/corybill/Preconditions.git"
+  },
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",

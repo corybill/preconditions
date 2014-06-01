@@ -5,8 +5,6 @@ var validatorFunctions = require("./validatorFunctions");
 var require = require("util");
 
 function Preconditions (objectUnderTest) {
-  this.validatorFunctions = validatorFunctions;
-
   //out = Object Under Test
   this.out = objectUnderTest;
 }
@@ -19,17 +17,17 @@ function Preconditions (objectUnderTest) {
  * @param configPath
  * @param verification
  */
-Preconditions.prototype.validate = function (configPath, verification) {
+Preconditions.prototype.validate = function (configPath, verification, message) {
   var variables = configPath.split(".");
 
-  var current = this.out;
+  var current = this.out || {};
   var count = 0;
   for (var key in variables) {
     var variable = variables[key];
 
     //If statement needed because we need to be able to verify shouldBeUndefined.
     if (count !== variables.length-1) {
-      this.validatorFunctions.shouldBeDefined(current[variable], configPath);
+      validatorFunctions.shouldBeDefined(current[variable], message);
     }
 
     current = current[variable];
@@ -39,168 +37,193 @@ Preconditions.prototype.validate = function (configPath, verification) {
   verification(current);
 };
 
-Preconditions.prototype.shouldBeDefined = function (configPath) {
+Preconditions.prototype.shouldBeDefined = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeDefined(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeDefined(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldBeUndefined = function (configPath) {
+Preconditions.prototype.shouldBeUndefined = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeUndefined(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeUndefined(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeNonEmptyArray = function (configPath) {
+Preconditions.prototype.shouldBeNonEmptyArray = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeArray(val, configPath);
-    this.validatorFunctions.shouldNotBeEmpty(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeArray(val, message);
+    validatorFunctions.shouldNotBeEmpty(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeArray = function (configPath) {
+Preconditions.prototype.shouldBeArray = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeArray(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeArray(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeArray = function (configPath) {
+Preconditions.prototype.shouldNotBeArray = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeArray(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeArray(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeObject = function (configPath) {
+Preconditions.prototype.shouldBeObject = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeObject(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeObject(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeObject = function (configPath) {
+Preconditions.prototype.shouldNotBeObject = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeObject(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeObject(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeEmpty = function (configPath) {
+Preconditions.prototype.shouldBeEmpty = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeEmpty(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeEmpty(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeEmpty = function (configPath) {
+Preconditions.prototype.shouldNotBeEmpty = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeEmpty(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeEmpty(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeFunction = function (configPath) {
+Preconditions.prototype.shouldBeFunction = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeFunction(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeFunction(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeFunction = function (configPath) {
+Preconditions.prototype.shouldNotBeFunction = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeFunction(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeFunction(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeString = function (configPath) {
+Preconditions.prototype.shouldBeString = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeString(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeString(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeString = function (configPath) {
+Preconditions.prototype.shouldNotBeString = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeString(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeString(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeNumber = function (configPath) {
+Preconditions.prototype.shouldBeNumber = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeNumber(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeNumber(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeNumber = function (configPath) {
+Preconditions.prototype.shouldNotBeNumber = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeNumber(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeNumber(val, message);
+  }, message);
+
   return this;
 };
 
 
-Preconditions.prototype.shouldBeFinite = function (configPath) {
+Preconditions.prototype.shouldBeFinite = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeFinite(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeFinite(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldBeInfinite = function (configPath) {
+Preconditions.prototype.shouldBeInfinite = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeInfinite(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeInfinite(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeBoolean = function (configPath) {
+Preconditions.prototype.shouldBeBoolean = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeBoolean(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeBoolean(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeBoolean = function (configPath) {
+Preconditions.prototype.shouldNotBeBoolean = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeBoolean(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeBoolean(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeDate = function (configPath) {
+Preconditions.prototype.shouldBeDate = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeDate(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeDate(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeDate = function (configPath) {
+Preconditions.prototype.shouldNotBeDate = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeDate(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeDate(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeRegExp = function (configPath) {
+Preconditions.prototype.shouldBeRegExp = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeRegExp(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeRegExp(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeRegExp = function (configPath) {
+Preconditions.prototype.shouldNotBeRegExp = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeRegExp(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeRegExp(val, message);
+  }, message);
+
   return this;
 };
 
-Preconditions.prototype.shouldBeFalsey = function (configPath) {
+Preconditions.prototype.shouldBeFalsey = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldBeFalsey(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldBeFalsey(val, message);
+  }, message);
+
   return this;
 };
-Preconditions.prototype.shouldNotBeFalsey = function (configPath) {
+Preconditions.prototype.shouldNotBeFalsey = function (configPath, message) {
   this.validate(configPath, function (val) {
-    this.validatorFunctions.shouldNotBeFalsey(val, configPath);
-  }.bind(this));
+    validatorFunctions.shouldNotBeFalsey(val, message);
+  }, message);
+
   return this;
 };
 
@@ -211,11 +234,14 @@ module.exports = {
    * @param objectUnderTest - Object Under Test
    * @returns Preconditions object with object for testing.
    */
-  build: function (objectUnderTest) {
+  instance: function (objectUnderTest) {
     return new Preconditions(objectUnderTest);
   },
-  getClass: function (objectUnderTest) {
+  constructor: function (objectUnderTest) {
     return Preconditions;
+  },
+  singleton: function () {
+    return validatorFunctions;
   }
 
 };
