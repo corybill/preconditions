@@ -26,14 +26,14 @@ There are three functions that are exposed from the library.
    </code>
 </pre>
 
-###Setup
+###Examples Using Instances (.instance())
+
+####Setup Instance
 1. Require the preconditions library - require("preconditions")
 2. Call the .instance() function on the required preconditions.
 3. Make an API call passing in a string representation of the variable you'd like to verify.
 4. "String Representation" - Means using dot notation (i.e. "foo.deep.stringValue").
 5. Looking at the object in the first code example, foo.deep.stringValue = "FOO"
-
-###Examples Using Instances (.instance())
 
 Create and build the preconditions validator.
 <pre>
