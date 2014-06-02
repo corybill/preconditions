@@ -1,6 +1,8 @@
 #Preconditions Library
 ####Support for Guava like Precondition error checking in Node.js
 
+## ***** Release 1.0.2 has an npm install bug and has been deprecated!  Please update *****
+
 <p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.  
 Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.  
 This Preconditions library will assist you in doing just that by immediately throwing an Error
