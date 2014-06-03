@@ -137,56 +137,44 @@ You can use a static instance to verify a single value.
 
 ###API
 ####Guava API
-| Signature (not including extra args)               | Description                                                                                                                                                                                                                                                | Default Error Message                                                                       |
-|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| checkArgument(boolean)                             | Checks that the boolean is true. Use for validating arguments to methods.                                                                                                                                                                                  | Illegal Argument.                                                                           |
-| checkNotNull(T)                                    | Checks that the value is not null. Returns the value directly, so you can use checkNotNull(value) inline.                                                                                                                                                  | Variable should be defined.                                                                 |
-| checkState(boolean)                                | Checks some state of the object, not dependent on the method arguments. For example, an Iterator might use this to check that next has been called before any call to remove.                                                                              | Illegal State.                                                                              |
-| checkElementIndex(int index, int size)             | Checks that index is a valid element index into a list, string, or array with the specified size. An element index may range from 0 inclusive to sizeexclusive. You don't pass the list, string, or array directly; you just pass its size.Returns index.  | Index should be between between 0 (inclusive) and size (exclusive).                         |
-| checkPositionIndex(int index, int size)            | Checks that index is a valid position index into a list, string, or array with the specified size. A position index may range from 0 inclusive to sizeinclusive. You don't pass the list, string, or array directly; you just pass its size.Returns index. | Index should be between between 0 (inclusive) and size (inclusive).                         |
-| checkPositionIndexes(int start, int end, int size) | Checks that [start, end) is a valid sub range of a list, string, or array with the specified size. Comes with its own error message.                                                                                                                       | Start and End should be between valid sub range between 0 (inclusive) and size (inclusive). |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
-|                                                    |                                                                                                                                                                                                                                                            |                                                                                             |
+| Signature (not including extra args)               | Default Error Message                                                                       |
+|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| checkArgument(configPath, message)                 | Illegal Argument.                                                                           |
+| shouldBeDefined(T)                                 | Variable should be defined.                                                                 |
+| checkState(boolean)                                | Illegal State.                                                                              |
+| checkElementIndex(int index, int size)             | Index should be between between 0 (inclusive) and size (exclusive).                         |
+| checkPositionIndex(int index, int size)            | Index should be between between 0 (inclusive) and size (inclusive).                         |
+| checkPositionIndexes(int start, int end, int size) | Start and End should be between valid sub range between 0 (inclusive) and size (inclusive). |
+
 
 ####Convenience Functions
-<pre>
-    <code>
-        shouldBeDefined
-        shouldBeUndefined
-        shouldBeNonEmptyArray
-        shouldBeArray
-        shouldNotBeArray
-        shouldBeObject
-        shouldNotBeObject
-        shouldBeEmpty
-        shouldNotBeEmpty
-        shouldBeFunction
-        shouldNotBeFunction
-        shouldBeString
-        shouldNotBeString
-        shouldBeNumber
-        shouldNotBeNumber
-        shouldBeFinite
-        shouldBeInfinite
-        shouldBeBoolean
-        shouldNotBeBoolean
-        shouldBeDate
-        shouldNotBeDate
-        shouldBeRegExp
-        shouldNotBeRegExp
-        shouldBeFalsey - Means that the value should be NaN || Null || undefined
-        shouldNotBeFalsey - Means that the value should not be NaN && 
-                                                 should not be Null &&
-                                                 should not be undefined
-    </pre>
-</code>
+| Signature (not including extra args)       | Default Error Message                                                                                                                         |
+|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| shouldBeDefined(configPath, message)       | Variable should be defined.                                                                                                                   |
+| shouldBeUndefined(configPath, message)     | Variable should be undefined.                                                                                                                 |
+| shouldBeNonEmptyArray(configPath, message) | Variable should be of type Array.                                                                                                             |
+| shouldBeArray(configPath, message)         | Variable should NOT be of type Array.                                                                                                         |
+| shouldNotBeArray(configPath, message)      | Variable should be of type Object.                                                                                                            |
+| shouldBeObject(configPath, message)        | Variable should NOT be of type Object.                                                                                                        |
+| shouldNotBeObject(configPath, message)     | Array or object should be empty.                                                                                                              |
+| shouldBeEmpty(configPath, message)         | Array or object should NOT be empty.                                                                                                          |
+| shouldNotBeEmpty(configPath, message)      | Variable should be a Function.                                                                                                                |
+| shouldBeFunction(configPath, message)      | Variable should NOT be a Function.                                                                                                            |
+| shouldNotBeFunction(configPath, message)   | Variable should be a String.                                                                                                                  |
+| shouldBeString(configPath, message)        | Variable should NOT be a String.                                                                                                              |
+| shouldNotBeString(configPath, message)     | Variable should be a Number.                                                                                                                  |
+| shouldBeNumber(configPath, message)        | Variable should NOT be a Number.                                                                                                              |
+| shouldNotBeNumber(configPath, message)     | Variable should NOT be a Number.                                                                                                              |
+| shouldBeFinite(configPath, message)        | Variable should be Finite (i.e. not infinity).                                                                                                |
+| shouldBeInfinite(configPath, message)      | Variable should be Infinite.                                                                                                                  |
+| shouldBeBoolean(configPath, message)       | Variable should be a Boolean.                                                                                                                 |
+| shouldNotBeBoolean(configPath, message)    | Variable should NOT be a Boolean.                                                                                                             |
+| shouldBeDate(configPath, message)          | Variable should be a Date.                                                                                                                    |
+| shouldNotBeDate(configPath, message)       | Variable should NOT be a Date.                                                                                                                |
+| shouldBeRegExp(configPath, message)        | Variable should be a RegExp.                                                                                                                  |
+| shouldNotBeRegExp(configPath, message)     | Variable should NOT be a RegExp.                                                                                                              |
+| shouldBeFalsey                             | Variable should be falsey. (Means that the value should be NaN || Null || undefined.)                                                         |
+| shouldNotBeFalsey                          | Variable should NOT be falsey. (Means that the value should not be NaN &amp;&amp; should not be Null &amp;&amp; and should not be undefined.) |
 
 ###Missing API or Bugs
 Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found bug.
