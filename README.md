@@ -1,9 +1,9 @@
 #Preconditions Library
-**Release 1.0.2 has an npm install bug and has been deprecated!  Please update
-**If you are on windows and are seeing npm install issues due to the '^' in the package.json, pleas update node to > (v0.10.28).
 ####Support for Guava like Precondition error checking in Node.js
 
-## *****  *****
+###Known Issues
+1. Release 1.0.2 has an npm install bug and has been deprecated!  Please update!
+2. If you are using windows and are seeing npm install issues due to the '^' in the package.json, please update node to >= (v0.10.28).
 
 <p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.  
 Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.  
@@ -188,4 +188,4 @@ You can use a static instance to verify a single value.
 | shouldNotBeFalsey(configPath, message)     | Variable should NOT be falsey. (Means that the value should not be NaN, Null, AND undefined.) |
 
 ###Missing API or Bugs
-Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found bug.
+Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found a bug.
