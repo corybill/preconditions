@@ -139,12 +139,12 @@ You can use a static instance to verify a single value.
 ####Guava API
 | Signature (not including extra args)               | Default Error Message                                                                       |
 |----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| checkArgument(configPath, message)                 | Illegal Argument.                                                                           |
-| shouldBeDefined(T)                                 | Variable should be defined.                                                                 |
-| checkState(boolean)                                | Illegal State.                                                                              |
-| checkElementIndex(int index, int size)             | Index should be between between 0 (inclusive) and size (exclusive).                         |
-| checkPositionIndex(int index, int size)            | Index should be between between 0 (inclusive) and size (inclusive).                         |
-| checkPositionIndexes(int start, int end, int size) | Start and End should be between valid sub range between 0 (inclusive) and size (inclusive). |
+| checkArgument(val, message)                        | Illegal Argument.                                                                           |
+| shouldBeDefined(val, message)                      | Variable should be defined.                                                                 |
+| checkState(val, message)                           | Illegal State.                                                                              |
+| checkElementIndex(index, size, message)            | Index should be between between 0 (inclusive) and size (exclusive).                         |
+| checkPositionIndex(index, size, message)           | Index should be between between 0 (inclusive) and size (inclusive).                         |
+| checkPositionIndexes(start, end, size, message)    | Start and End should be between valid sub range between 0 (inclusive) and size (inclusive). |
 
 
 ####Convenience Functions
