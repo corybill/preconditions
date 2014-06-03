@@ -227,6 +227,28 @@ Preconditions.prototype.shouldNotBeFalsey = function (configPath, message) {
   return this;
 };
 
+Preconditions.prototype.checkArgument = function (val, message) {
+  validatorFunctions.checkArgument(val, message);
+  return this;
+};
+Preconditions.prototype.checkState = function (val, message) {
+  validatorFunctions.checkState(val, message);
+  return this;
+};
+
+Preconditions.prototype.checkElementIndex = function (index, size, message) {
+  validatorFunctions.checkElementIndex(index, size, message);
+  return this;
+};
+Preconditions.prototype.checkPositionIndex = function (index, size, message) {
+  validatorFunctions.checkPositionIndex(index, size, message);
+  return this;
+};
+Preconditions.prototype.checkPositionIndexes = function (start, end, size, message) {
+  validatorFunctions.checkPositionIndexes(start, end, size, message);
+  return this;
+};
+
 module.exports = {
 
   /**

@@ -183,6 +183,48 @@ var validatorFunctions = {
       throw new Error(msg);
     }
     return this;
+  },
+
+  checkArgument: function (val, message) {
+    if(!val) {
+        var msg = message || constants.IllegalArgument;
+        throw new Error(msg);
+    }
+    return this;
+  },
+  checkState: function (val, message) {
+    if(!val) {
+      var msg = message || constants.IllegalState;
+      throw new Error(msg);
+    }
+    return this;
+  },
+
+  checkElementIndex: function (index, size, message) {
+    if (index < 0 || index >= size) {
+      var msg = message || constants.ShouldHaveValidIndex;
+      throw new Error(msg);
+    }
+    return this;
+  },
+  checkPositionIndex: function (index, size, message) {
+    if (index < 0 || index > size) {
+      var msg = message || constants.ShouldHaveValidPosition;
+      throw new Error(msg);
+    }
+    return this;
+  },
+  checkPositionIndexes: function (start, end, size, message) {
+    var msg;
+    if (end < start) {
+      msg = message || constants.StartBeforeEnd;
+      throw new Error(msg);
+    }
+    if (start < 0 || end > size) {
+      msg = message || constants.ShouldHaveValidPositions;
+      throw new Error(msg);
+    }
+    return this;
   }
 };
 

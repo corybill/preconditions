@@ -381,4 +381,136 @@ describe("singleton", function () {
         .shouldBeNumber(stringValue);
     }.bind(this)).toThrow(new Error(this.customErrorMessage));
   });
+
+  describe("checkArgument", function () {
+    it("should fail when value is false (i.e. is an illegal argument)", function () {
+      var value = this.values.foo.deep.stringValue === "FOOFOO";
+      expect(function () {this.sut.checkArgument(value);}.bind(this)).toThrow(new Error(constants.IllegalArgument));
+    });
+
+    it("should pass when value is true", function () {
+      var value = this.values.foo.deep.stringValue === "FOO";
+      expect(this.sut.checkArgument(value));
+    });
+  });
+  describe("checkState", function () {
+    it("should fail when value is false (i.e. has an illegal state)", function () {
+      var value = this.values.foo.deep.stringValue === "FOOFOO";
+      expect(function () {this.sut.checkState(value);}.bind(this)).toThrow(new Error(constants.IllegalState));
+    });
+
+    it("should pass when value is true", function () {
+      var value = this.values.foo.deep.stringValue === "FOO";
+      expect(this.sut.checkState(value));
+    });
+  });
+
+  describe("checkElementIndex", function () {
+    it("should fail when index is less than 0", function () {
+      var index = -4;
+      var size = 10;
+      expect(function () {this.sut.checkElementIndex(index, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidIndex));
+    });
+    it("should fail when index is greater than size", function () {
+      var index = 12;
+      var size = 10;
+      expect(function () {this.sut.checkElementIndex(index, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidIndex));
+    });
+    it("should fail when index is equal to size", function () {
+      var index = 10;
+      var size = 10;
+      expect(function () {this.sut.checkElementIndex(index, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidIndex));
+    });
+
+    it("should pass when value is greater than zero and less than size", function () {
+      var index = 8;
+      var size = 10;
+      expect(this.sut.checkElementIndex(index, size));
+    });
+    it("should pass when value is equal to zero", function () {
+      var index = 0;
+      var size = 10;
+      expect(this.sut.checkElementIndex(index, size));
+    });
+  });
+
+  describe("checkPositionIndex", function () {
+    it("should fail when index is less than 0", function () {
+      var index = -4;
+      var size = 10;
+      expect(function () {this.sut.checkPositionIndex(index, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidPosition));
+    });
+    it("should fail when index is greater than size", function () {
+      var index = 12;
+      var size = 10;
+      expect(function () {this.sut.checkPositionIndex(index, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidPosition));
+    });
+
+    it("should pass when value is greater than zero and less than size", function () {
+      var index = 8;
+      var size = 10;
+      expect(this.sut.checkPositionIndex(index, size));
+    });
+    it("should pass when value is equal to zero", function () {
+      var index = 0;
+      var size = 10;
+      expect(this.sut.checkPositionIndex(index, size));
+    });
+    it("should pass when value is equal to size", function () {
+      var index = 10;
+      var size = 10;
+      expect(this.sut.checkPositionIndex(index, size));
+    });
+  });
+
+  describe("checkPositionIndexes", function () {
+    it("should fail when start is less than 0", function () {
+      var start = -4;
+      var end = 10;
+      var size = 12;
+      expect(function () {this.sut.checkPositionIndexes(start, end, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidPositions));
+    });
+    it("should fail when end is less than start", function () {
+      var start = 5;
+      var end = 3;
+      var size = 12;
+      expect(function () {this.sut.checkPositionIndexes(start, end, size);}.bind(this)).toThrow(new Error(constants.StartBeforeEnd));
+    });
+    it("should fail when end is greater than size", function () {
+      var start = 3;
+      var end = 13;
+      var size = 12;
+      expect(function () {this.sut.checkPositionIndexes(start, end, size);}.bind(this)).toThrow(new Error(constants.ShouldHaveValidPositions));
+    });
+
+    describe("start is greater than 0", function () {
+      it("should pass when end is less than size and greater than start", function () {
+        var start = 2;
+        var end = 10;
+        var size = 12;
+        expect(this.sut.checkPositionIndexes(start, end, size));
+      });
+      it("should pass when end is equal to size and greater than start", function () {
+        var start = 2;
+        var end = 12;
+        var size = 12;
+        expect(this.sut.checkPositionIndexes(start, end, size));
+      });
+    });
+    describe("start is equal 0", function () {
+      it("should pass when end is less than size and greater than start", function () {
+        var start = 0;
+        var end = 10;
+        var size = 12;
+        expect(this.sut.checkPositionIndexes(start, end, size));
+      });
+      it("should pass when end is equal to size and greater than start", function () {
+        var start = 0;
+        var end = 12;
+        var size = 12;
+        expect(this.sut.checkPositionIndexes(start, end, size));
+      });
+    });
+  });
 });
+

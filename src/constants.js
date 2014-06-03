@@ -33,3 +33,11 @@ exports.ShouldNotBeRegExp = "Variable should NOT be a RegExp.";
 
 exports.ShouldBeFalsey = "Variable should be falsey.";
 exports.ShouldNotBeFalsey = "Variable should NOT be falsey.";
+
+exports.IllegalArgument = "Illegal Argument.";
+exports.IllegalState = "Illegal State.";
+
+exports.ShouldHaveValidIndex = "Index should be between between 0 (inclusive) and size (exclusive).";
+exports.ShouldHaveValidPosition = "Index should be between index between 0 (inclusive) and size (inclusive).";
+exports.ShouldHaveValidPositions = "Start and End should be between valid sub range between 0 (inclusive) and size (inclusive).";
+exports.StartBeforeEnd = "Start value should be less than the end value.";
