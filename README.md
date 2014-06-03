@@ -173,8 +173,8 @@ You can use a static instance to verify a single value.
 | shouldNotBeDate(configPath, message)       | Variable should NOT be a Date.                                                                                                                |
 | shouldBeRegExp(configPath, message)        | Variable should be a RegExp.                                                                                                                  |
 | shouldNotBeRegExp(configPath, message)     | Variable should NOT be a RegExp.                                                                                                              |
-| shouldBeFalsey                             | Variable should be falsey. (Means that the value should be NaN || Null || undefined.)                                                         |
-| shouldNotBeFalsey                          | Variable should NOT be falsey. (Means that the value should not be NaN &amp;&amp; should not be Null &amp;&amp; and should not be undefined.) |
+| shouldBeFalsey(configPath, message)        | Variable should be falsey. (Means that the value should be NaN, Null, OR undefined.)                                                         |
+| shouldNotBeFalsey(configPath, message)     | Variable should NOT be falsey. (Means that the value should not be NaN, Null, AND undefined.) |
 
 ###Missing API or Bugs
 Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found bug.
