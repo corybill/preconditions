@@ -424,6 +424,7 @@ describe("preconditions", function () {
         .shouldNotBeFalsey(numberValue)
         .shouldBeDefined(numberValue)
         .shouldBeNumber(numberValue)
+        .checkPositionIndex(5, 10, "Custom error message.")
         .shouldBeTrue(true));
     });
     it("should chain correctly but fail on bad value at end with custom error message", function () {
@@ -438,6 +439,7 @@ describe("preconditions", function () {
             .shouldNotBeFalsey(numberValue)
             .shouldBeDefined(numberValue)
             .shouldBeNumber(numberValue)
+            .checkPositionIndex(5, 10, "Custom error message.")
             .shouldBeTrue(false, this.customErrorMessage);
         }.bind(this)).toThrow(new Error(this.customErrorMessage));
     });

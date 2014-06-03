@@ -1,12 +1,15 @@
 #Preconditions Library
+**Release 1.0.2 has an npm install bug and has been deprecated!  Please update
+**If you are on windows and are seeing npm install issues due to the '^' in the package.json, pleas update node to > (v0.10.28).
 ####Support for Guava like Precondition error checking in Node.js
 
-## ***** Release 1.0.2 has an npm install bug and has been deprecated!  Please update *****
+## *****  *****
 
 <p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.  
 Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.  
 This Preconditions library will assist you in doing just that by immediately throwing an Error
-if any of your invariants fail.</p>
+if any of your invariants fail.  You can mix and match standard Guava API with convenience functions both with
+and without chaining.</p>
 
 ###High Level Info
 There are three functions that are exposed from the library.
@@ -61,7 +64,9 @@ Create and build the preconditions validator.
         });
         preconditions.shouldBeDefined("foo.deep.stringValue");
         preconditions.shouldBeDefined("foo.deep.emptyArray");
+        preconditions.checkArguments("FOO" === "FOO");
         preconditions.shouldBeUndefined("foo.deep.someValue");
+        preconditions.checkPositionIndex(5, 10);
         preconditions.shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
@@ -73,7 +78,9 @@ We can chain calls too.
         
         preconditions.shouldBeDefined("foo.deep.stringValue")
             .shouldBeDefined("foo.deep.emptyArray")
+            .checkArguments("FOO" === "FOO");
             .shouldBeUndefined("foo.deep.someValue")
+            .checkPositionIndex(5, 10);
             .shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
@@ -84,8 +91,10 @@ You can use the default error messages or you can pass in your own error message
         var preconditions = require("preconditions").instance(this);
                 
         preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
+            .checkArguments("FOO" === "FOO");
             .shouldBeDefined("foo.deep.emptyArray")
             .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
+            .checkPositionIndex(5, 10, "Custom error message.");
             .shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
@@ -117,6 +126,7 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
               .shouldNotBeFalsey(numberValue)
               .shouldBeDefined(numberValue)
               .shouldBeNumber(numberValue)
+              .checkPositionIndex(5, 10, "Custom error message.");
               .shouldBeTrue(false, "Value should be true (I am a custom error message).");
    </code>
 </pre>
@@ -131,6 +141,7 @@ You can use a static instance to verify a single value.
         preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.")
             .shouldBeDefined(someObj.valueTwo)
             .shouldBeUndefined(someObj.valueThree, "Custom error message.")
+            .checkPositionIndex(5, 10, "Custom error message.");
             .shouldBeFunction(someObj.valueOne);
    </code>
 </pre>
