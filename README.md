@@ -78,9 +78,9 @@ We can chain calls too.
         
         preconditions.shouldBeDefined("foo.deep.stringValue")
             .shouldBeDefined("foo.deep.emptyArray")
-            .checkArguments("FOO" === "FOO");
+            .checkArguments("FOO" === "FOO")
             .shouldBeUndefined("foo.deep.someValue")
-            .checkPositionIndex(5, 10);
+            .checkPositionIndex(5, 10)
             .shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
@@ -94,7 +94,7 @@ You can use the default error messages or you can pass in your own error message
             .checkArguments("FOO" === "FOO");
             .shouldBeDefined("foo.deep.emptyArray")
             .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
-            .checkPositionIndex(5, 10, "Custom error message.");
+            .checkPositionIndex(5, 10, "Custom error message.")
             .shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
@@ -126,7 +126,7 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
               .shouldNotBeFalsey(numberValue)
               .shouldBeDefined(numberValue)
               .shouldBeNumber(numberValue)
-              .checkPositionIndex(5, 10, "Custom error message.");
+              .checkPositionIndex(5, 10, "Custom error message.")
               .shouldBeTrue(false, "Value should be true (I am a custom error message).");
    </code>
 </pre>
@@ -141,7 +141,7 @@ You can use a static instance to verify a single value.
         preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.")
             .shouldBeDefined(someObj.valueTwo)
             .shouldBeUndefined(someObj.valueThree, "Custom error message.")
-            .checkPositionIndex(5, 10, "Custom error message.");
+            .checkPositionIndex(5, 10, "Custom error message.")
             .shouldBeFunction(someObj.valueOne);
    </code>
 </pre>
