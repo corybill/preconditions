@@ -12,12 +12,14 @@
     "type" : "git",
     "url" : "https://github.com/corybill/Preconditions.git"
   },
-  "dependencies": {
+  "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jasmine-node": "^0.2.1",
-    "grunt-jasmine-node-coverage": "^0.1.11",
+    "grunt-jasmine-node-coverage": "^0.1.11"
+  },
+  "dependencies": {
     "underscore": "^1.6.0"
   }
 }
