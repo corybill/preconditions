@@ -1,7 +1,7 @@
 {
   "name": "preconditions",
   "author": "Cory Parrish",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Support for Guava like Precondition error checking in Node.js",
   "homepage": "https://github.com/corybill/Preconditions",
   "bugs": {

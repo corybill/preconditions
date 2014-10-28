@@ -1,12 +1,8 @@
 #Preconditions Library
 ####Support for Guava like Precondition error checking in Node.js
 
-###Known Issues
-1. Release 1.0.2 has an npm install bug and has been deprecated!  Please update!
-2. If you are using windows and are seeing npm install issues due to the '^' in the package.json, please update node to >= (v0.10.28).
-
-<p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.  
-Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.  
+<p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.
+Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.
 This Preconditions library will assist you in doing just that by immediately throwing an Error
 if any of your invariants fail.  You can mix and match standard Guava API with convenience functions both with
 and without chaining.</p>
@@ -20,14 +16,14 @@ There are three functions that are exposed from the library.
 ###Install
 <pre>
     <code>
-        npm install preconditions    
+        npm install preconditions
    </code>
 </pre>
 
 ###Source Code
 <pre>
     <code>
-        https://github.com/corybill/Preconditions   
+        https://github.com/corybill/Preconditions
    </code>
 </pre>
 
@@ -70,12 +66,12 @@ Create and build the preconditions validator.
         preconditions.shouldBeFunction("foo.deep.functionValue");
    </code>
 </pre>
-   
+
 We can chain calls too.
 <pre>
     <code>
         var preconditions = require("preconditions").instance(this);
-        
+
         preconditions.shouldBeDefined("foo.deep.stringValue")
             .shouldBeDefined("foo.deep.emptyArray")
             .checkArguments("FOO" === "FOO")
@@ -89,7 +85,7 @@ You can use the default error messages or you can pass in your own error message
 <pre>
     <code>
         var preconditions = require("preconditions").instance(this);
-                
+
         preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
             .checkArguments("FOO" === "FOO");
             .shouldBeDefined("foo.deep.emptyArray")
@@ -105,7 +101,7 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
 <pre>
     <code>
         var Preconditions = builder.constructor();
-        
+
         function ChildClass(someObjectToTest) {
           Preconditions.call(this, someObjectToTest);
         }
@@ -116,10 +112,10 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
             throw new Error(msg);
           }
         };
-  
+
         this.ShouldBeTrue = "ShouldBeTrue";
         this.childSut = new ChildClass(this.out);
-        
+
         this.childSut.shouldNotBeFalsey(stringValue)
               .shouldBeDefined(stringValue)
               .shouldBeString(stringValue)
@@ -137,7 +133,7 @@ You can use a static instance to verify a single value.
 <pre>
     <code>
         var preconditions = require("preconditions").singleton();
-                
+
         preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.")
             .shouldBeDefined(someObj.valueTwo)
             .shouldBeUndefined(someObj.valueThree, "Custom error message.")
@@ -189,3 +185,15 @@ You can use a static instance to verify a single value.
 
 ###Missing API or Bugs
 Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found a bug.
+
+###Known Issues
+1. Release 1.0.2 has an npm install bug and has been deprecated!  Please update!
+2. If you are using windows and are seeing npm install issues due to the '^' in the package.json, please update node to >= (v0.10.28).
+
+###Releases
+1.0.8 - Removed 'underscore' and added 'lodash'.
+      - Added a .jshintrc file and a more extensive linting process
+      - Separated dependencies and dev-dependencies to reduce installation load.
+        - A big thanks to Esteban Ordano (eordano) for doing this work.
+
+1.0.7 - First official public release.
