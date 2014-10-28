@@ -1,7 +1,7 @@
 "use strict";
 
-var constants = require("./constants");
-var _ = require("underscore");
+var constants = require("./constants"),
+  _ = require("lodash");
 
 var validatorFunctions = {
   shouldBeDefined: function (val, message) {

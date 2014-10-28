@@ -2,7 +2,6 @@
 
 var builder = require("./../src/preconditions");
 var constants = require("./../src/constants");
-var _ = require("underscore");
 
 describe("preconditions", function () {
 

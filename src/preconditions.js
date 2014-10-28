@@ -1,8 +1,7 @@
 "use strict";
 
-var _ = require("underscore");
-var validatorFunctions = require("./validatorFunctions");
-var require = require("util");
+var validatorFunctions = require("./validatorFunctions"),
+  _ = require("lodash");
 
 function Preconditions (objectUnderTest) {
   //out = Object Under Test
@@ -22,9 +21,8 @@ Preconditions.prototype.validate = function (configPath, verification, message) 
 
   var current = this.out || {};
   var count = 0;
-  for (var key in variables) {
-    var variable = variables[key];
 
+  _.forEach(variables, function (variable) {
     //If statement needed because we need to be able to verify shouldBeUndefined.
     if (count !== variables.length-1) {
       validatorFunctions.shouldBeDefined(current[variable], message);
@@ -32,7 +30,7 @@ Preconditions.prototype.validate = function (configPath, verification, message) 
 
     current = current[variable];
     count++;
-  }
+  });
 
   verification(current);
 };
@@ -259,7 +257,7 @@ module.exports = {
   instance: function (objectUnderTest) {
     return new Preconditions(objectUnderTest);
   },
-  constructor: function (objectUnderTest) {
+  constructor: function () {
     return Preconditions;
   },
   singleton: function () {
