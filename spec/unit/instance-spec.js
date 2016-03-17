@@ -43,7 +43,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeDefined", function () {
-    it("should fail when passing in an undefined value", function () {
+    it("it should fail when passing in an undefined value", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeDefined).message;
       };
@@ -63,7 +63,7 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should fail when passing in a deep undefined value", function () {
+    it("it should fail when passing in a deep undefined value", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeDefined).message;
       };
@@ -83,7 +83,7 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should return my custom error message", function () {
+    it("it should return my custom error message", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(errorContext.customErrorMessage).message;
       };
@@ -103,16 +103,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when passing in a defined value", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(errorContext.customErrorMessage).message;
-      };
+    it("it should pass when passing in a defined value", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -124,7 +120,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldBeUndefined", function () {
-    it("should fail when value is defined", function () {
+    it("it should fail when value is defined", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeUndefined).message;
       };
@@ -144,16 +140,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is undefined", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeUndefined).message;
-      };
+    it("it should pass when value is undefined", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.undefinedValue", this.customErrorMessage];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -166,7 +158,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeNonEmptyArray", function () {
-    it("should fail when value is NOT an array", function () {
+    it("it should fail when value is NOT an array", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeArray).message;
       };
@@ -185,7 +177,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value has length of zero", function () {
+    it("it should fail when value has length of zero", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeEmpty).message;
       };
@@ -205,16 +197,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is non empty array", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeArray).message;
-      };
+    it("it should pass when value is non empty array", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.nonEmptyArray"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -226,7 +214,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldBeArray", function () {
-    it("should fail when value is NOT array", function () {
+    it("it should fail when value is NOT array", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeArray).message;
       };
@@ -246,16 +234,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is array", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeArray).message;
-      };
+    it("it should pass when value is array", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.emptyArray"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -267,7 +251,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeArray", function () {
-    it("should fail when value is array", function () {
+    it("it should fail when value is array", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeArray).message;
       };
@@ -287,16 +271,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT array", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeArray).message;
-      };
+    it("it should pass when value is NOT array", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -309,7 +289,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeEmpty", function () {
-    it("should fail when value is NOT empty", function () {
+    it("it should fail when value is NOT empty", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeEmpty).message;
       };
@@ -329,16 +309,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is empty", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeEmpty).message;
-      };
+    it("it should pass when value is empty", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.emptyArray"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -350,7 +326,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeEmpty", function () {
-    it("should fail when value is empty", function () {
+    it("it should fail when value is empty", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeEmpty).message;
       };
@@ -370,16 +346,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT empty", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeEmpty).message;
-      };
+    it("it should pass when value is NOT empty", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.nonEmptyArray"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -392,7 +364,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeObject", function () {
-    it("should fail when value is NOT an Object", function () {
+    it("it should fail when value is NOT an Object", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeObject).message;
       };
@@ -412,16 +384,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is an Object", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeObject).message;
-      };
+    it("it should pass when value is an Object", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -433,7 +401,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeObject", function () {
-    it("should fail when value is an Object", function () {
+    it("it should fail when value is an Object", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeObject).message;
       };
@@ -453,16 +421,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT an Object", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeObject).message;
-      };
+    it("it should pass when value is NOT an Object", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -475,7 +439,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeFunction", function () {
-    it("should fail when value is NOT a Function", function () {
+    it("it should fail when value is NOT a Function", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeFunction).message;
       };
@@ -495,16 +459,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a Function", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFunction).message;
-      };
+    it("it should pass when value is a Function", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.functionValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -516,7 +476,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeFunction", function () {
-    it("should fail when value is a Function", function () {
+    it("it should fail when value is a Function", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFunction).message;
       };
@@ -536,16 +496,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a Function", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFunction).message;
-      };
+    it("it should pass when value is NOT a Function", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.numberValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -558,7 +514,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeString", function () {
-    it("should fail when value is NOT a String", function () {
+    it("it should fail when value is NOT a String", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeString).message;
       };
@@ -578,16 +534,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a String", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeString).message;
-      };
+    it("it should pass when value is a String", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -599,7 +551,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeString", function () {
-    it("should fail when value is a String", function () {
+    it("it should fail when value is a String", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeString).message;
       };
@@ -619,16 +571,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a String", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeString).message;
-      };
+    it("it should pass when value is NOT a String", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.numberValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -641,7 +589,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeNumber", function () {
-    it("should fail when value is NOT a Number", function () {
+    it("it should fail when value is NOT a Number", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeNumber).message;
       };
@@ -661,16 +609,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a Number", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeNumber).message;
-      };
+    it("it should pass when value is a Number", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.numberValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -682,7 +626,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeNumber", function () {
-    it("should fail when value is a Number", function () {
+    it("it should fail when value is a Number", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeNumber).message;
       };
@@ -702,16 +646,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a Number", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeNumber).message;
-      };
+    it("it should pass when value is NOT a Number", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -724,7 +664,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeFinite", function () {
-    it("should fail when value is NOT Finite", function () {
+    it("it should fail when value is NOT Finite", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeFinite).message;
       };
@@ -744,16 +684,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is Finite", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFinite).message;
-      };
+    it("it should pass when value is Finite", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.finiteValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -765,7 +701,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldBeInfinite", function () {
-    it("should fail when value is NOT Infinite", function () {
+    it("it should fail when value is NOT Infinite", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeInfinite).message;
       };
@@ -785,16 +721,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is Infinite", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeInfinite).message;
-      };
+    it("it should pass when value is Infinite", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.infiniteValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -807,7 +739,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeBoolean", function () {
-    it("should fail when value is NOT a Boolean", function () {
+    it("it should fail when value is NOT a Boolean", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeBoolean).message;
       };
@@ -827,16 +759,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a Boolean", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeBoolean).message;
-      };
+    it("it should pass when value is a Boolean", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.falseValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -848,7 +776,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeBoolean", function () {
-    it("should fail when value is a Boolean", function () {
+    it("it should fail when value is a Boolean", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeBoolean).message;
       };
@@ -868,16 +796,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a Boolean", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeBoolean).message;
-      };
+    it("it should pass when value is NOT a Boolean", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -890,7 +814,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeDate", function () {
-    it("should fail when value is NOT a Date", function () {
+    it("it should fail when value is NOT a Date", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeDate).message;
       };
@@ -910,16 +834,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a Date", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeDate).message;
-      };
+    it("it should pass when value is a Date", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.dateValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -931,7 +851,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeDate", function () {
-    it("should fail when value is a Date", function () {
+    it("it should fail when value is a Date", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeDate).message;
       };
@@ -951,16 +871,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a Date", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeDate).message;
-      };
+    it("it should pass when value is NOT a Date", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -973,7 +889,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeRegExp", function () {
-    it("should fail when value is NOT a Regular Expression", function () {
+    it("it should fail when value is NOT a Regular Expression", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeRegExp).message;
       };
@@ -993,16 +909,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is a Regular Expression", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeRegExp).message;
-      };
+    it("it should pass when value is a Regular Expression", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.regExpValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1014,7 +926,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeRegExp", function () {
-    it("should fail when value is a Regular Expression", function () {
+    it("it should fail when value is a Regular Expression", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeRegExp).message;
       };
@@ -1034,16 +946,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT a Regular Expression", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeRegExp).message;
-      };
+    it("it should pass when value is NOT a Regular Expression", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1056,7 +964,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeFalsey", function () {
-    it("should fail when value is NOT falsey", function () {
+    it("it should fail when value is NOT falsey", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
       };
@@ -1076,16 +984,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is undefined", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is undefined", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.undefinedValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1095,16 +999,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is Nan", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is Nan", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.NaNValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1114,16 +1014,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is null", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is null", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.nullValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1135,7 +1031,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeFalsey", function () {
-    it("should fail when value is undefined", function () {
+    it("it should fail when value is undefined", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1154,7 +1050,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is Nan", function () {
+    it("it should fail when value is Nan", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1173,7 +1069,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is null", function () {
+    it("it should fail when value is null", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1193,16 +1089,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT falsey", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
-      };
+    it("it should pass when value is NOT falsey", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1215,7 +1107,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeFalsy", function () {
-    it("should fail when value is NOT falsey", function () {
+    it("it should fail when value is NOT falsey", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
       };
@@ -1235,16 +1127,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is undefined", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is undefined", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.undefinedValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1254,16 +1142,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is Nan", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is Nan", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.NaNValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1273,16 +1157,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is null", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is null", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.nullValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1294,7 +1174,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeFalsy", function () {
-    it("should fail when value is undefined", function () {
+    it("it should fail when value is undefined", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1313,7 +1193,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is Nan", function () {
+    it("it should fail when value is Nan", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1332,7 +1212,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is null", function () {
+    it("it should fail when value is null", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1352,16 +1232,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT falsey", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
-      };
+    it("it should pass when value is NOT falsey", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1374,7 +1250,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("shouldBeTruthy", function () {
-    it("should fail when value is undefined", function () {
+    it("it should fail when value is undefined", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1393,7 +1269,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is Nan", function () {
+    it("it should fail when value is Nan", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1412,7 +1288,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when value is null", function () {
+    it("it should fail when value is null", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
       };
@@ -1432,16 +1308,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is NOT falsey", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
-      };
+    it("it should pass when value is NOT falsey", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.stringValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1453,7 +1325,7 @@ describe("preconditions - when using an instance", function () {
     });
   });
   describe("shouldNotBeTruthy", function () {
-    it("should fail when value is NOT falsey", function () {
+    it("it should fail when value is NOT falsey", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
       };
@@ -1473,16 +1345,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is undefined", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is undefined", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.undefinedValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1492,16 +1360,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is Nan", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is Nan", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.NaNValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1511,16 +1375,12 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is null", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
-      };
+    it("it should pass when value is null", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep.nullValue"];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1567,17 +1427,13 @@ describe("preconditions - when using an instance", function () {
       };
     });
 
-    it("should chain and pass successfully", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
-      };
+    it("it should chain and pass successfully", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [true];
       };
 
       errorContext.setupTest();
       errorContext.setupInheritance();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1587,9 +1443,9 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should chain correctly but fail on bad value at end with custom error message", function () {
+    it("it should chain correctly but fail on bad value at end with custom error message", function () {
       errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+        errorContext.expectedErrorMessage = errorContext.ShouldBeTrue;
       };
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [false];
@@ -1604,13 +1460,13 @@ describe("preconditions - when using an instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeTrue")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err.message).eql(errorContext.ShouldBeTrue);
+          expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
   });
 
   describe("checkArgument", function () {
-    it("should fail when value is false (i.e. is an illegal argument)", function () {
+    it("it should fail when value is false (i.e. is an illegal argument)", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.IllegalArgument).message;
       };
@@ -1630,16 +1486,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is true", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.IllegalArgument).message;
-      };
+    it("it should pass when value is true", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [true];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1652,7 +1504,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("checkState", function () {
-    it("should fail when value is false (i.e. is an illegal argument)", function () {
+    it("it should fail when value is false (i.e. is an illegal argument)", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.IllegalState).message;
       };
@@ -1672,16 +1524,12 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is true", function () {
-      errorContext.setupErrorMessages = function () {
-        errorContext.expectedErrorMessage = new Error(constants.IllegalState).message;
-      };
+    it("it should pass when value is true", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [true];
       };
 
       errorContext.setupTest();
-      errorContext.setupErrorMessages();
       errorContext.setupInputParams();
 
       new Scenario()
@@ -1694,7 +1542,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("checkElementIndex", function () {
-    it("should fail when index is less than 0", function () {
+    it("it should fail when index is less than 0", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidIndex).message;
       };
@@ -1713,7 +1561,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when index is greater than size", function () {
+    it("it should fail when index is greater than size", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidIndex).message;
       };
@@ -1732,7 +1580,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when index is equal to size", function () {
+    it("it should fail when index is equal to size", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidIndex).message;
       };
@@ -1752,7 +1600,7 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is greater than zero and less than size", function () {
+    it("it should pass when value is greater than zero and less than size", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [8, 10];
       };
@@ -1767,7 +1615,7 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is equal to zero", function () {
+    it("it should pass when value is equal to zero", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [0, 10];
       };
@@ -1785,7 +1633,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("checkPositionIndex", function () {
-    it("should fail when index is less than 0", function () {
+    it("it should fail when index is less than 0", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidPosition).message;
       };
@@ -1804,7 +1652,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when index is greater than size", function () {
+    it("it should fail when index is greater than size", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidPosition).message;
       };
@@ -1824,7 +1672,7 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should pass when value is greater than zero and less than size", function () {
+    it("it should pass when value is greater than zero and less than size", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [8, 10];
       };
@@ -1839,7 +1687,7 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is equal to zero", function () {
+    it("it should pass when value is equal to zero", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [0, 10];
       };
@@ -1854,7 +1702,7 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
-    it("should pass when value is equal to size", function () {
+    it("it should pass when value is equal to size", function () {
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [10, 10];
       };
@@ -1872,7 +1720,7 @@ describe("preconditions - when using an instance", function () {
   });
 
   describe("checkPositionIndexes", function () {
-    it("should fail when start is less than 0", function () {
+    it("it should fail when start is less than 0", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidPositions).message;
       };
@@ -1891,7 +1739,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when end is less than start", function () {
+    it("it should fail when end is less than start", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidPositions).message;
       };
@@ -1910,7 +1758,7 @@ describe("preconditions - when using an instance", function () {
           expect(err.message).eql(errorContext.expectedErrorMessage);
         });
     });
-    it("should fail when end is greater than size", function () {
+    it("it should fail when end is greater than size", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldHaveValidPositions).message;
       };
@@ -1931,7 +1779,7 @@ describe("preconditions - when using an instance", function () {
     });
 
     describe("start is greater than 0", function () {
-      it("should pass when end is less than size and greater than start", function () {
+      it("it should pass when end is less than size and greater than start", function () {
         errorContext.setupInputParams = function () {
           errorContext.inputParams = [2, 10, 12];
         };
@@ -1946,7 +1794,7 @@ describe("preconditions - when using an instance", function () {
             expect(err).to.be.undefined; // eslint-disable-line
           });
       });
-      it("should pass when end is equal to size and greater than start", function () {
+      it("it should pass when end is equal to size and greater than start", function () {
         errorContext.setupInputParams = function () {
           errorContext.inputParams = [2, 12, 12];
         };
@@ -1963,7 +1811,7 @@ describe("preconditions - when using an instance", function () {
       });
     });
     describe("start is equal 0", function () {
-      it("should pass when end is less than size and greater than start", function () {
+      it("it should pass when end is less than size and greater than start", function () {
         errorContext.setupInputParams = function () {
           errorContext.inputParams = [0, 10, 12];
         };
@@ -1978,7 +1826,7 @@ describe("preconditions - when using an instance", function () {
             expect(err).to.be.undefined; // eslint-disable-line
           });
       });
-      it("should pass when end is equal to size and greater than start", function () {
+      it("it should pass when end is equal to size and greater than start", function () {
         errorContext.setupInputParams = function () {
           errorContext.inputParams = [0, 12, 12];
         };
@@ -1998,7 +1846,7 @@ describe("preconditions - when using an instance", function () {
 
   describe("when chaining commands", function () {
 
-    it("should work using chaining commands for success", function () {
+    it("it should work using chaining commands for success", function () {
       errorContext.setupChain = function () {
         let stringValue = "foo.deep.stringValue";
         let numberValue = "foo.deep.numberValue";
@@ -2026,7 +1874,7 @@ describe("preconditions - when using an instance", function () {
         });
     });
 
-    it("should work using chaining commands when fail at end of chain", function () {
+    it("it should work using chaining commands when fail at end of chain", function () {
       errorContext.setupErrorMessages = function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeNumber).message;
       };
