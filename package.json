@@ -1,26 +1,49 @@
 {
   "name": "preconditions",
   "author": "Cory Parrish",
-  "version": "1.0.8",
+  "main": "./lib/preconditions.js",
+  "version": "2.0.0",
   "description": "Support for Guava like Precondition error checking in Node.js",
   "homepage": "https://github.com/corybill/Preconditions",
   "bugs": {
     "url": "https://github.com/corybill/Preconditions/issues"
   },
+  "scripts": {
+    "test": "npm run ut && npm run lint",
+    "ut": "./node_modules/maddox/bin/maddox.js ./spec/unit",
+    "perf": "env perf=true env test=false maddox ./spec/unit",
+    "uap": "env perf=true test=true maddox ./spec/unit",
+    "coverage": "./bin/maddox-cov.js",
+    "lint": "./node_modules/eslint/bin/eslint.js ./spec/ ./lib",
+    "docs": " ./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/**/*.js\" > api.md"
+  },
+  "keywords": [
+    "Preconditions",
+    "Guava",
+    "Throw Error",
+    "Errr",
+    "Error",
+    "Error Factory",
+    "Error Builder",
+    "Stack Trace",
+    "Appendable",
+    "Debug Params",
+    "Promise",
+    "Promise Chain"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/corybill/Preconditions.git"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-jasmine-node": "^0.2.1",
-    "grunt-jasmine-node-coverage": "^0.1.11",
-    "jasmine-node": "^1.14.5"
+    "chai": "^3.5.0",
+    "chance": "^1.0.1",
+    "eslint": "^2.4.0",
+    "maddox": "0.0.8"
   },
   "dependencies": {
-    "lodash": "^3.0.0"
+    "errr": "1.0.7",
+    "lodash": "3.0.0"
   }
 }
