@@ -1,7 +1,8 @@
 "use strict";
 
 const Preconditions = require("./../../lib/preconditions"),
-  constants = require("./../../lib/constants");
+  constants = require("./../../lib/constants"),
+  random = require("../random");
 
 const Maddox = require("maddox"),
   chai = require("chai");
@@ -88,6 +89,31 @@ describe("preconditions - when using singleton instance", function () {
       };
       errorContext.setupInputParams = function () {
         errorContext.inputParams = [errorContext.out.foo.deep.badValue, errorContext.customErrorMessage];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeDefined")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("it should return the templated error message.", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.type = random.word();
+        errorContext.code = random.uniqueId();
+        errorContext.message = random.uniqueId();
+
+        errorContext.expectedErrorMessage = `(${errorContext.type}:${errorContext.code}) - Error ${errorContext.message}.`;
+        errorContext.templatedMessage = "(%s:%s) - Error %s.";
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.badValue, errorContext.templatedMessage, [errorContext.type, errorContext.code, errorContext.message]];
       };
 
       errorContext.setupTest();

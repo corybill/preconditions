@@ -15,7 +15,7 @@
     "uap": "env perf=true test=true maddox ./spec/unit",
     "coverage": "./bin/maddox-cov.js",
     "lint": "./node_modules/eslint/bin/eslint.js ./spec/ ./lib",
-    "docs": " ./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/**/*.js\" > api.md"
+    "docs": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/**/*.js\" > api.md"
   },
   "keywords": [
     "Preconditions",
@@ -27,9 +27,12 @@
     "Error Builder",
     "Stack Trace",
     "Appendable",
+    "append stack trace",
+    "concat strack trace",
     "Debug Params",
     "Promise",
-    "Promise Chain"
+    "Promise Chain",
+    "errr"
   ],
   "license": "MIT",
   "repository": {
@@ -40,6 +43,7 @@
     "chai": "^3.5.0",
     "chance": "^1.0.1",
     "eslint": "^2.4.0",
+    "jsdoc-to-markdown": "^1.3.3",
     "maddox": "0.0.8"
   },
   "dependencies": {
