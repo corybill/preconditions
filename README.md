@@ -1,5 +1,7 @@
 # Preconditions Library
 
+[![Join the chat at https://gitter.im/corybill/Preconditions](https://badges.gitter.im/corybill/Preconditions.svg)](https://gitter.im/corybill/Preconditions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![view on npm](http://img.shields.io/npm/v/preconditions.svg)](https://www.npmjs.org/package/preconditions)
 [![npm module downloads](http://img.shields.io/npm/dt/preconditions.svg)](https://www.npmjs.org/package/preconditions)
 [![Build Status](https://travis-ci.org/corybill/preconditions.svg?branch=master)](https://travis-ci.org/corybill/preconditions)
