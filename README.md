@@ -128,16 +128,17 @@ Please reach out to me (Cory Parrish) if you would like a new precondition added
 ## API
 
 <dl>
-<dt><a href="#ErrInstanceValidation">ErrInstanceValidation</a></dt>
-<dd></dd>
 <dt><a href="#ErrrDecorator">ErrrDecorator</a></dt>
 <dd><p>Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.</p>
 </dd>
-</dl>
-
-## Members
-
-<dl>
+<dt><a href="#ErrrValidation">ErrrValidation</a></dt>
+<dd><p>Validate single value with a buildable interface on top of the errr node module.
+Use this interface if you want to utilize the following functionality:</p>
+<ol>
+<li>Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.</li>
+<li>Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.</li>
+</ol>
+</dd>
 <dt><a href="#errSingletonValidation">errSingletonValidation</a></dt>
 <dd><p>Validate single value with a chainable interface.
 Use this interface if you want to utilize the following functionality:</p>
@@ -146,15 +147,583 @@ Use this interface if you want to utilize the following functionality:</p>
 <li>Chain together precondition validations.</li>
 </ol>
 </dd>
-<dt><a href="#ErrrFactory">ErrrFactory</a></dt>
-<dd><p>Validate single value with a buildable interface on top of the errr node module.
-Use this interface if you want to utilize the following functionality:</p>
-<ol>
-<li>Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.</li>
-<li>Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.</li>
-</ol>
-</dd>
+<dt><a href="#ErrInstanceValidation">ErrInstanceValidation</a></dt>
+<dd></dd>
 </dl>
+
+<a name="ErrrValidation"></a>
+
+## ErrrValidation
+Validate single value with a buildable interface on top of the errr node module.
+Use this interface if you want to utilize the following functionality:
+1. Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.
+3. Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.
+
+**Kind**: global class  
+
+* [ErrrValidation](#ErrrValidation)
+    * [.shouldBeDefined(val, [message], [template])](#ErrrValidation.shouldBeDefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeUndefined(val, [message], [template])](#ErrrValidation.shouldBeUndefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeArray(val, [message], [template])](#ErrrValidation.shouldBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeArray(val, [message], [template])](#ErrrValidation.shouldNotBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeObject(val, [message], [template])](#ErrrValidation.shouldBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeObject(val, [message], [template])](#ErrrValidation.shouldNotBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeEmpty(val, [message], [template])](#ErrrValidation.shouldBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeEmpty(val, [message], [template])](#ErrrValidation.shouldNotBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeFunction(val, [message], [template])](#ErrrValidation.shouldBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeFunction(val, [message], [template])](#ErrrValidation.shouldNotBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeString(val, [message], [template])](#ErrrValidation.shouldBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeString(val, [message], [template])](#ErrrValidation.shouldNotBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeNumber(val, [message], [template])](#ErrrValidation.shouldBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeNumber(val, [message], [template])](#ErrrValidation.shouldNotBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeFinite(val, [message], [template])](#ErrrValidation.shouldBeFinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeInfinite(val, [message], [template])](#ErrrValidation.shouldBeInfinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeBoolean(val, [message], [template])](#ErrrValidation.shouldBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeBoolean(val, [message], [template])](#ErrrValidation.shouldNotBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeDate(val, [message], [template])](#ErrrValidation.shouldBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeDate(val, [message], [template])](#ErrrValidation.shouldNotBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeRegExp(val, [message], [template])](#ErrrValidation.shouldBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeRegExp(val, [message], [template])](#ErrrValidation.shouldNotBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeFalsey(val, [message], [template])](#ErrrValidation.shouldBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeFalsey(val, [message], [template])](#ErrrValidation.shouldNotBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeFalsy(val, [message], [template])](#ErrrValidation.shouldBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeFalsy(val, [message], [template])](#ErrrValidation.shouldNotBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldBeTruthy(val, [message], [template])](#ErrrValidation.shouldBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.shouldNotBeTruthy(val, [message], [template])](#ErrrValidation.shouldNotBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.checkArgument(expression, [message], [template])](#ErrrValidation.checkArgument) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.checkState(expression, [message], [template])](#ErrrValidation.checkState) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.checkElementIndex(index, size, [message], [template])](#ErrrValidation.checkElementIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.checkPositionIndex(index, size, [message], [template])](#ErrrValidation.checkPositionIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+    * [.checkPositionIndexes(start, end, size, [message], [template])](#ErrrValidation.checkPositionIndexes) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+
+<a name="ErrrValidation.shouldBeDefined"></a>
+
+### ErrrValidation.shouldBeDefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not defined.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeUndefined"></a>
+
+### ErrrValidation.shouldBeUndefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is defined.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeArray"></a>
+
+### ErrrValidation.shouldBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Array.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeArray"></a>
+
+### ErrrValidation.shouldNotBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Array.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeObject"></a>
+
+### ErrrValidation.shouldBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Object.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeObject"></a>
+
+### ErrrValidation.shouldNotBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Object.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeEmpty"></a>
+
+### ErrrValidation.shouldBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not empty.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeEmpty"></a>
+
+### ErrrValidation.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is empty.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeFunction"></a>
+
+### ErrrValidation.shouldBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Function.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeFunction"></a>
+
+### ErrrValidation.shouldNotBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Function.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeString"></a>
+
+### ErrrValidation.shouldBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type String.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeString"></a>
+
+### ErrrValidation.shouldNotBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type String.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeNumber"></a>
+
+### ErrrValidation.shouldBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Number.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeNumber"></a>
+
+### ErrrValidation.shouldNotBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Number.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeFinite"></a>
+
+### ErrrValidation.shouldBeFinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not finite.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeInfinite"></a>
+
+### ErrrValidation.shouldBeInfinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is finite.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeBoolean"></a>
+
+### ErrrValidation.shouldBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Boolean.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeBoolean"></a>
+
+### ErrrValidation.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Boolean.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeDate"></a>
+
+### ErrrValidation.shouldBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not of type Date.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeDate"></a>
+
+### ErrrValidation.shouldNotBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is of type Date.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeRegExp"></a>
+
+### ErrrValidation.shouldBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not a Regular Expression.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeRegExp"></a>
+
+### ErrrValidation.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is a Regular Expression.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeFalsey"></a>
+
+### ErrrValidation.shouldBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is not falsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeFalsey"></a>
+
+### ErrrValidation.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Throws an error if 'val' is falsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeFalsy"></a>
+
+### ErrrValidation.shouldBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Synonym for shouldBeFalsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeFalsy"></a>
+
+### ErrrValidation.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Synonym for shouldNotBeFalsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldBeTruthy"></a>
+
+### ErrrValidation.shouldBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Synonym for shouldNotBeFalsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.shouldNotBeTruthy"></a>
+
+### ErrrValidation.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Synonym for shouldBeFalsey.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.checkArgument"></a>
+
+### ErrrValidation.checkArgument(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Ensures the truth of an expression involving one or more parameters to the calling method.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| expression | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.checkState"></a>
+
+### ErrrValidation.checkState(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| expression | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.checkElementIndex"></a>
+
+### ErrrValidation.checkElementIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Ensures that index specifies a valid element in an array, list or string of size size.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.checkPositionIndex"></a>
+
+### ErrrValidation.checkPositionIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Ensures that index specifies a valid position in an array, list or string of size size.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrValidation.checkPositionIndexes"></a>
+
+### ErrrValidation.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
+
+**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
+**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | <code>Number</code> |  |
+| end | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="ErrrDecorator"></a>
+
+## ErrrDecorator
+Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.
+
+**Kind**: global class  
+
+* [ErrrDecorator](#ErrrDecorator)
+    * [new ErrrDecorator([message], [template])](#new_ErrrDecorator_new)
+    * [.debug(params, [shouldDebug])](#ErrrDecorator+debug) ⇒ <code>ErrorBuilder</code>
+    * [.appendTo(err)](#ErrrDecorator+appendTo) ⇒ <code>ErrorBuilder</code>
+    * [.test()](#ErrrDecorator+test)
+    * [.t()](#ErrrDecorator+t)
+
+<a name="new_ErrrDecorator_new"></a>
+
+### new ErrrDecorator([message], [template])
+Provides an interface to build an error.  Then allows you to get or throw the error.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [message] | <code>String</code> | Error message that will supplied to Error Object. |
+| [template] | <code>Array</code> | Array of parameters.  If given, util.format(message, template) will be applied to the message string. |
+
+<a name="ErrrDecorator+debug"></a>
+
+### errrDecorator.debug(params, [shouldDebug]) ⇒ <code>ErrorBuilder</code>
+Decorated function from 'errr' module. Add parameters to the stack trace that will make it easier to debug the problem.
+
+**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
+**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| params | <code>Object</code> | Object Map of key value parameters that will make it easier to debug the error. |
+| [shouldDebug] | <code>Boolean</code> | If shouldDebug === false, then debug params will not print.  Any other value (including undefined), and the debug params will be printed. Useful if you want to only print debugParams given an Environment Variable. |
+
+<a name="ErrrDecorator+appendTo"></a>
+
+### errrDecorator.appendTo(err) ⇒ <code>ErrorBuilder</code>
+Decorated function from 'errr' module. Append the error being built, to the end of this error's stack trace.
+
+**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
+**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| err | <code>Error</code> | The stack trace of the error being built, will be appended to this error's stack trace. |
+
+<a name="ErrrDecorator+test"></a>
+
+### errrDecorator.test()
+Validate preconditions check and throw an errr if it fails.
+
+**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
+<a name="ErrrDecorator+t"></a>
+
+### errrDecorator.t()
+Synonym for the test function.
+
+**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
 
 <a name="ErrInstanceValidation"></a>
 
@@ -660,68 +1229,6 @@ Ensures that start and end specify a valid positions in an array, list or string
 | size | <code>Number</code> |  |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrrDecorator"></a>
-
-## ErrrDecorator
-Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.
-
-**Kind**: global class  
-
-* [ErrrDecorator](#ErrrDecorator)
-    * [new ErrrDecorator([message], [template])](#new_ErrrDecorator_new)
-    * [.debug(params, [shouldDebug])](#ErrrDecorator+debug) ⇒ <code>ErrorBuilder</code>
-    * [.appendTo(err)](#ErrrDecorator+appendTo) ⇒ <code>ErrorBuilder</code>
-    * [.test()](#ErrrDecorator+test)
-    * [.t()](#ErrrDecorator+t)
-
-<a name="new_ErrrDecorator_new"></a>
-
-### new ErrrDecorator([message], [template])
-Provides an interface to build an error.  Then allows you to get or throw the error.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [message] | <code>String</code> | Error message that will supplied to Error Object. |
-| [template] | <code>Array</code> | Array of parameters.  If given, util.format(message, template) will be applied to the message string. |
-
-<a name="ErrrDecorator+debug"></a>
-
-### errrDecorator.debug(params, [shouldDebug]) ⇒ <code>ErrorBuilder</code>
-Decorated function from 'errr' module. Add parameters to the stack trace that will make it easier to debug the problem.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| params | <code>Object</code> | Object Map of key value parameters that will make it easier to debug the error. |
-| [shouldDebug] | <code>Boolean</code> | If shouldDebug === false, then debug params will not print.  Any other value (including undefined), and the debug params will be printed. Useful if you want to only print debugParams given an Environment Variable. |
-
-<a name="ErrrDecorator+appendTo"></a>
-
-### errrDecorator.appendTo(err) ⇒ <code>ErrorBuilder</code>
-Decorated function from 'errr' module. Append the error being built, to the end of this error's stack trace.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| err | <code>Error</code> | The stack trace of the error being built, will be appended to this error's stack trace. |
-
-<a name="ErrrDecorator+test"></a>
-
-### errrDecorator.test()
-Validate preconditions check and throw an errr if it fails.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-<a name="ErrrDecorator+t"></a>
-
-### errrDecorator.t()
-Synonym for the test function.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
 <a name="errSingletonValidation"></a>
 
 ## errSingletonValidation
@@ -1224,517 +1731,6 @@ Ensures that start and end specify a valid positions in an array, list or string
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | <code>Number</code> |  |
-| end | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory"></a>
-
-## ErrrFactory
-Validate single value with a buildable interface on top of the errr node module.
-Use this interface if you want to utilize the following functionality:
-1. Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.
-3. Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.
-
-**Kind**: global variable  
-
-* [ErrrFactory](#ErrrFactory)
-    * [.shouldBeDefined(val, [message], [template])](#ErrrFactory.shouldBeDefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeUndefined(val, [message], [template])](#ErrrFactory.shouldBeUndefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeArray(val, [message], [template])](#ErrrFactory.shouldBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeArray(val, [message], [template])](#ErrrFactory.shouldNotBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeObject(val, [message], [template])](#ErrrFactory.shouldBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeObject(val, [message], [template])](#ErrrFactory.shouldNotBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeEmpty(val, [message], [template])](#ErrrFactory.shouldBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeEmpty(val, [message], [template])](#ErrrFactory.shouldNotBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFunction(val, [message], [template])](#ErrrFactory.shouldBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFunction(val, [message], [template])](#ErrrFactory.shouldNotBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeString(val, [message], [template])](#ErrrFactory.shouldBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeString(val, [message], [template])](#ErrrFactory.shouldNotBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeNumber(val, [message], [template])](#ErrrFactory.shouldBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeNumber(val, [message], [template])](#ErrrFactory.shouldNotBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFinite(val, [message], [template])](#ErrrFactory.shouldBeFinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeInfinite(val, [message], [template])](#ErrrFactory.shouldBeInfinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeBoolean(val, [message], [template])](#ErrrFactory.shouldBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeBoolean(val, [message], [template])](#ErrrFactory.shouldNotBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeDate(val, [message], [template])](#ErrrFactory.shouldBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeDate(val, [message], [template])](#ErrrFactory.shouldNotBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeRegExp(val, [message], [template])](#ErrrFactory.shouldBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeRegExp(val, [message], [template])](#ErrrFactory.shouldNotBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFalsey(val, [message], [template])](#ErrrFactory.shouldBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFalsey(val, [message], [template])](#ErrrFactory.shouldNotBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFalsy(val, [message], [template])](#ErrrFactory.shouldBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFalsy(val, [message], [template])](#ErrrFactory.shouldNotBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeTruthy(val, [message], [template])](#ErrrFactory.shouldBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeTruthy(val, [message], [template])](#ErrrFactory.shouldNotBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkArgument(expression, [message], [template])](#ErrrFactory.checkArgument) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkState(expression, [message], [template])](#ErrrFactory.checkState) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkElementIndex(index, size, [message], [template])](#ErrrFactory.checkElementIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkPositionIndex(index, size, [message], [template])](#ErrrFactory.checkPositionIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkPositionIndexes(start, end, size, [message], [template])](#ErrrFactory.checkPositionIndexes) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-
-<a name="ErrrFactory.shouldBeDefined"></a>
-
-### ErrrFactory.shouldBeDefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not defined.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeUndefined"></a>
-
-### ErrrFactory.shouldBeUndefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is defined.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeArray"></a>
-
-### ErrrFactory.shouldBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Array.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeArray"></a>
-
-### ErrrFactory.shouldNotBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Array.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeObject"></a>
-
-### ErrrFactory.shouldBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Object.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeObject"></a>
-
-### ErrrFactory.shouldNotBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Object.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeEmpty"></a>
-
-### ErrrFactory.shouldBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not empty.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeEmpty"></a>
-
-### ErrrFactory.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is empty.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeFunction"></a>
-
-### ErrrFactory.shouldBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Function.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeFunction"></a>
-
-### ErrrFactory.shouldNotBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Function.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeString"></a>
-
-### ErrrFactory.shouldBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type String.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeString"></a>
-
-### ErrrFactory.shouldNotBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type String.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeNumber"></a>
-
-### ErrrFactory.shouldBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Number.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeNumber"></a>
-
-### ErrrFactory.shouldNotBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Number.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeFinite"></a>
-
-### ErrrFactory.shouldBeFinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not finite.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeInfinite"></a>
-
-### ErrrFactory.shouldBeInfinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is finite.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeBoolean"></a>
-
-### ErrrFactory.shouldBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Boolean.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeBoolean"></a>
-
-### ErrrFactory.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Boolean.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeDate"></a>
-
-### ErrrFactory.shouldBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not of type Date.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeDate"></a>
-
-### ErrrFactory.shouldNotBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is of type Date.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeRegExp"></a>
-
-### ErrrFactory.shouldBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not a Regular Expression.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeRegExp"></a>
-
-### ErrrFactory.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is a Regular Expression.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeFalsey"></a>
-
-### ErrrFactory.shouldBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is not falsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeFalsey"></a>
-
-### ErrrFactory.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Throws an error if 'val' is falsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeFalsy"></a>
-
-### ErrrFactory.shouldBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Synonym for shouldBeFalsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeFalsy"></a>
-
-### ErrrFactory.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Synonym for shouldNotBeFalsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldBeTruthy"></a>
-
-### ErrrFactory.shouldBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Synonym for shouldNotBeFalsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.shouldNotBeTruthy"></a>
-
-### ErrrFactory.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Synonym for shouldBeFalsey.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.checkArgument"></a>
-
-### ErrrFactory.checkArgument(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Ensures the truth of an expression involving one or more parameters to the calling method.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| expression | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.checkState"></a>
-
-### ErrrFactory.checkState(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| expression | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.checkElementIndex"></a>
-
-### ErrrFactory.checkElementIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Ensures that index specifies a valid element in an array, list or string of size size.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| index | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.checkPositionIndex"></a>
-
-### ErrrFactory.checkPositionIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Ensures that index specifies a valid position in an array, list or string of size size.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| index | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="ErrrFactory.checkPositionIndexes"></a>
-
-### ErrrFactory.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
-
-**Kind**: static method of <code>[ErrrFactory](#ErrrFactory)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
