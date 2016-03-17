@@ -106,7 +106,15 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
     .shouldBeTrue(false, "Value should be true (I am a custom error message).");
 </pre>
 
-###Missing API or Bugs
+## NPM Scripts
+1. npm run test - Run linter and unit tests.
+2. npm run ut - Use Maddox to Run Unit Tests.
+3. npm run perf - Use Maddox to Performance metrics.
+3. npm run uap - Use Maddox to Unit Tests and Performance metrics.
+4. npm run lint - Run linter.
+5. npm run docs - Rebuild public API Docs.
+
+### Missing API or Bugs
 Please reach out to me (Cory Parrish) if you would like a new precondition added or if you think you have found a bug.
 
 ###Known Issues
