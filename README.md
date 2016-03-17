@@ -38,7 +38,7 @@ You can use a static instance to verify one value at a time and use the errr mod
 <pre>
   var preconditions = require("preconditions").errr();
   
-  preconditions.shouldBeDefined(someObj.valueOne);
+  preconditions.shouldBeDefined(someObj.valueOne).test();
   preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
   preconditions.shouldBeDefined(someObj.valueOne, "Error (%s:%s): Error Message.", [errType, errCode]).test();
   preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").debug({param1: "someDebugParam"}).test();
