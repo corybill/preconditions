@@ -1153,6 +1153,324 @@ describe("preconditions - when using singleton instance", function () {
     });
   });
 
+  describe("shouldBeFalsy", function () {
+    it("should fail when value is NOT falsy", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.stringValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("should pass when value is undefined", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.undefinedValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+    it("should pass when value is Nan", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.NanValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+    it("should pass when value is null", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.nullValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+  });
+  describe("shouldNotBeFalsy", function () {
+    it("should fail when value is undefined", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.undefinedValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+    it("should fail when value is Nan", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.NanValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+    it("should fail when value is null", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.nullValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("should pass when value is NOT falsy", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.stringValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+  });
+
+  describe("shouldBeTruthy", function () {
+    it("should fail when value is undefined", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.undefinedValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+    it("should fail when value is Nan", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.NanValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+    it("should fail when value is null", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.nullValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("should pass when value is truthy", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.stringValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+  });
+  describe("shouldNotBeTruthy", function () {
+    it("should fail when value is truthy", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.stringValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("should pass when value is undefined", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.undefinedValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+    it("should pass when value is Nan", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.NanValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+    it("should pass when value is null", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldBeFalsey).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [errorContext.out.foo.deep.nullValue];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
+  });
+
   describe("checkArgument", function () {
     it("should fail when value is false (i.e. is an illegal argument)", function () {
       errorContext.setupErrorMessages = function () {
