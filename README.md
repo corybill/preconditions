@@ -25,7 +25,7 @@ and helps to solve some important issues with Node, listed below. See https://ww
 <pre>npm install preconditions</pre>
 
 ### Preconditions Interface
-There are three functions that are exposed from the library.
+There are four functions that are exposed from the library.
 
 1. errr() - Verify a one value at a time while building an 'errr' object.  You can append errors together and add debug params to the stack trace. 
 2. singleton() - Verify one value at a time with a chainable preconditions interface.
