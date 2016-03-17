@@ -37,11 +37,12 @@ There are four functions that are exposed from the library.
 You can use a static instance to verify one value at a time and use the errr module.  For more on the errr module see here https://github.com/corybill/Preconditions#errrdecorator and here https://github.com/corybill/errr#errr.
 <pre>
   var preconditions = require("preconditions").errr();
-    
+  
+  preconditions.shouldBeDefined(someObj.valueOne);
   preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
-  preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
-  preconditions.shouldBeUndefined(someObj.valueThree, "Custom error message.").debug({param1: "someDebugParam"}).test();
-  preconditions.checkPositionIndex(5, 10, "Custom error message.").appendTo(someErrorObj).test();
+  preconditions.shouldBeDefined(someObj.valueOne, "Error (%s:%s): Error Message.", [errType, errCode]).test();
+  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").debug({param1: "someDebugParam"}).test();
+  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").appendTo(someErrorObj).test();
   preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
     .debug({param1: "someDebugParam"})
     .appendTo(someErrorObj)
@@ -54,9 +55,9 @@ You can use a static instance to verify one value at a time.
 <pre>
   var preconditions = require("preconditions").singleton();
 
-  preconditions.shouldBeDefined(someObj.valueOne
-    .shouldBeString(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
-    .shouldBeUndefined(someObj.valueThree, "Custom error message.");
+  preconditions.shouldBeDefined(someObj.valueOne)
+    .shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
+    .shouldBeDefined(someObj.valueThree, "Custom error message.");
 </pre>
 
 ### Examples Using Instance Interface (.instance())
