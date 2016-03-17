@@ -3,9 +3,14 @@
 <dl>
 <dt><a href="#ErrInstanceValidation">ErrInstanceValidation</a></dt>
 <dd></dd>
-<dt><a href="#ErrrDecorator">ErrrDecorator</a></dt>
+<dt><a href="#Errr;kjDecorator">ErrrDecorator</a></dt>
 <dd><p>Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.</p>
 </dd>
+</dl>
+
+## Members
+
+<dl>
 <dt><a href="#errSingletonValidation">errSingletonValidation</a></dt>
 <dd><p>Validate single value with a chainable interface.
 Use this interface if you want to utilize the following functionality:</p>
@@ -601,34 +606,34 @@ Use this interface if you want to utilize the following functionality:
 **Kind**: global variable  
 
 * [errSingletonValidation](#errSingletonValidation)
-    * [.shouldBeDefined(val, [message])](#errSingletonValidation.shouldBeDefined) ⇒ <code>this</code>
-    * [.shouldBeUndefined(val, [message])](#errSingletonValidation.shouldBeUndefined) ⇒ <code>this</code>
-    * [.shouldBeArray(val, [message])](#errSingletonValidation.shouldBeArray) ⇒ <code>this</code>
-    * [.shouldNotBeArray(val, [message])](#errSingletonValidation.shouldNotBeArray) ⇒ <code>this</code>
-    * [.shouldBeObject(val, [message])](#errSingletonValidation.shouldBeObject) ⇒ <code>this</code>
-    * [.shouldNotBeObject(val, [message])](#errSingletonValidation.shouldNotBeObject) ⇒ <code>this</code>
-    * [.shouldBeEmpty(val, [message])](#errSingletonValidation.shouldBeEmpty) ⇒ <code>this</code>
-    * [.shouldNotBeEmpty(val, [message])](#errSingletonValidation.shouldNotBeEmpty) ⇒ <code>this</code>
-    * [.shouldBeFunction(val, [message])](#errSingletonValidation.shouldBeFunction) ⇒ <code>this</code>
-    * [.shouldNotBeFunction(val, [message])](#errSingletonValidation.shouldNotBeFunction) ⇒ <code>this</code>
-    * [.shouldBeString(val, [message])](#errSingletonValidation.shouldBeString) ⇒ <code>this</code>
-    * [.shouldNotBeString(val, [message])](#errSingletonValidation.shouldNotBeString) ⇒ <code>this</code>
-    * [.shouldBeNumber(val, [message])](#errSingletonValidation.shouldBeNumber) ⇒ <code>this</code>
-    * [.shouldNotBeNumber(val, [message])](#errSingletonValidation.shouldNotBeNumber) ⇒ <code>this</code>
-    * [.shouldBeFinite(val, [message])](#errSingletonValidation.shouldBeFinite) ⇒ <code>this</code>
-    * [.shouldBeInfinite(val, [message])](#errSingletonValidation.shouldBeInfinite) ⇒ <code>this</code>
-    * [.shouldBeBoolean(val, [message])](#errSingletonValidation.shouldBeBoolean) ⇒ <code>this</code>
-    * [.shouldNotBeBoolean(val, [message])](#errSingletonValidation.shouldNotBeBoolean) ⇒ <code>this</code>
-    * [.shouldBeDate(val, [message])](#errSingletonValidation.shouldBeDate) ⇒ <code>this</code>
-    * [.shouldNotBeDate(val, [message])](#errSingletonValidation.shouldNotBeDate) ⇒ <code>this</code>
-    * [.shouldBeRegExp(val, [message])](#errSingletonValidation.shouldBeRegExp) ⇒ <code>this</code>
-    * [.shouldNotBeRegExp(val, [message])](#errSingletonValidation.shouldNotBeRegExp) ⇒ <code>this</code>
-    * [.shouldBeFalsey(val, [message])](#errSingletonValidation.shouldBeFalsey) ⇒ <code>this</code>
-    * [.shouldNotBeFalsey(val, [message])](#errSingletonValidation.shouldNotBeFalsey) ⇒ <code>this</code>
-    * [.shouldBeFalsy(val, [message])](#errSingletonValidation.shouldBeFalsy) ⇒ <code>this</code>
-    * [.shouldNotBeFalsy(val, [message])](#errSingletonValidation.shouldNotBeFalsy) ⇒ <code>this</code>
-    * [.shouldBeTruthy(val, [message])](#errSingletonValidation.shouldBeTruthy) ⇒ <code>this</code>
-    * [.shouldNotBeTruthy(val, [message])](#errSingletonValidation.shouldNotBeTruthy) ⇒ <code>this</code>
+    * [.shouldBeDefined(val, [message], [template])](#errSingletonValidation.shouldBeDefined) ⇒ <code>this</code>
+    * [.shouldBeUndefined(val, [message], [template])](#errSingletonValidation.shouldBeUndefined) ⇒ <code>this</code>
+    * [.shouldBeArray(val, [message], [template])](#errSingletonValidation.shouldBeArray) ⇒ <code>this</code>
+    * [.shouldNotBeArray(val, [message], [template])](#errSingletonValidation.shouldNotBeArray) ⇒ <code>this</code>
+    * [.shouldBeObject(val, [message], [template])](#errSingletonValidation.shouldBeObject) ⇒ <code>this</code>
+    * [.shouldNotBeObject(val, [message], [template])](#errSingletonValidation.shouldNotBeObject) ⇒ <code>this</code>
+    * [.shouldBeEmpty(val, [message], [template])](#errSingletonValidation.shouldBeEmpty) ⇒ <code>this</code>
+    * [.shouldNotBeEmpty(val, [message], [template])](#errSingletonValidation.shouldNotBeEmpty) ⇒ <code>this</code>
+    * [.shouldBeFunction(val, [message], [template])](#errSingletonValidation.shouldBeFunction) ⇒ <code>this</code>
+    * [.shouldNotBeFunction(val, [message], [template])](#errSingletonValidation.shouldNotBeFunction) ⇒ <code>this</code>
+    * [.shouldBeString(val, [message], [template])](#errSingletonValidation.shouldBeString) ⇒ <code>this</code>
+    * [.shouldNotBeString(val, [message], [template])](#errSingletonValidation.shouldNotBeString) ⇒ <code>this</code>
+    * [.shouldBeNumber(val, [message], [template])](#errSingletonValidation.shouldBeNumber) ⇒ <code>this</code>
+    * [.shouldNotBeNumber(val, [message], [template])](#errSingletonValidation.shouldNotBeNumber) ⇒ <code>this</code>
+    * [.shouldBeFinite(val, [message], [template])](#errSingletonValidation.shouldBeFinite) ⇒ <code>this</code>
+    * [.shouldBeInfinite(val, [message], [template])](#errSingletonValidation.shouldBeInfinite) ⇒ <code>this</code>
+    * [.shouldBeBoolean(val, [message], [template])](#errSingletonValidation.shouldBeBoolean) ⇒ <code>this</code>
+    * [.shouldNotBeBoolean(val, [message], [template])](#errSingletonValidation.shouldNotBeBoolean) ⇒ <code>this</code>
+    * [.shouldBeDate(val, [message], [template])](#errSingletonValidation.shouldBeDate) ⇒ <code>this</code>
+    * [.shouldNotBeDate(val, [message], [template])](#errSingletonValidation.shouldNotBeDate) ⇒ <code>this</code>
+    * [.shouldBeRegExp(val, [message], [template])](#errSingletonValidation.shouldBeRegExp) ⇒ <code>this</code>
+    * [.shouldNotBeRegExp(val, [message], [template])](#errSingletonValidation.shouldNotBeRegExp) ⇒ <code>this</code>
+    * [.shouldBeFalsey(val, [message], [template])](#errSingletonValidation.shouldBeFalsey) ⇒ <code>this</code>
+    * [.shouldNotBeFalsey(val, [message], [template])](#errSingletonValidation.shouldNotBeFalsey) ⇒ <code>this</code>
+    * [.shouldBeFalsy(val, [message], [template])](#errSingletonValidation.shouldBeFalsy) ⇒ <code>this</code>
+    * [.shouldNotBeFalsy(val, [message], [template])](#errSingletonValidation.shouldNotBeFalsy) ⇒ <code>this</code>
+    * [.shouldBeTruthy(val, [message], [template])](#errSingletonValidation.shouldBeTruthy) ⇒ <code>this</code>
+    * [.shouldNotBeTruthy(val, [message], [template])](#errSingletonValidation.shouldNotBeTruthy) ⇒ <code>this</code>
     * [.checkArgument(expression, [message], [template])](#errSingletonValidation.checkArgument) ⇒ <code>this</code>
     * [.checkState(expression, [message], [template])](#errSingletonValidation.checkState) ⇒ <code>this</code>
     * [.checkElementIndex(index, size, [message], [template])](#errSingletonValidation.checkElementIndex) ⇒ <code>this</code>
@@ -637,7 +642,7 @@ Use this interface if you want to utilize the following functionality:
 
 <a name="errSingletonValidation.shouldBeDefined"></a>
 
-### errSingletonValidation.shouldBeDefined(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeDefined(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not defined.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -647,10 +652,11 @@ Throws an error if 'val' is not defined.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeUndefined"></a>
 
-### errSingletonValidation.shouldBeUndefined(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeUndefined(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is defined.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -660,10 +666,11 @@ Throws an error if 'val' is defined.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeArray"></a>
 
-### errSingletonValidation.shouldBeArray(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeArray(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Array.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -673,10 +680,11 @@ Throws an error if 'val' is not of type Array.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeArray"></a>
 
-### errSingletonValidation.shouldNotBeArray(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeArray(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Array.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -686,10 +694,11 @@ Throws an error if 'val' is of type Array.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeObject"></a>
 
-### errSingletonValidation.shouldBeObject(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeObject(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Object.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -699,10 +708,11 @@ Throws an error if 'val' is not of type Object.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeObject"></a>
 
-### errSingletonValidation.shouldNotBeObject(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeObject(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Object.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -712,10 +722,11 @@ Throws an error if 'val' is of type Object.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeEmpty"></a>
 
-### errSingletonValidation.shouldBeEmpty(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeEmpty(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not empty.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -725,10 +736,11 @@ Throws an error if 'val' is not empty.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeEmpty"></a>
 
-### errSingletonValidation.shouldNotBeEmpty(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is empty.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -738,10 +750,11 @@ Throws an error if 'val' is empty.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeFunction"></a>
 
-### errSingletonValidation.shouldBeFunction(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeFunction(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Function.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -751,10 +764,11 @@ Throws an error if 'val' is not of type Function.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeFunction"></a>
 
-### errSingletonValidation.shouldNotBeFunction(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeFunction(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Function.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -764,10 +778,11 @@ Throws an error if 'val' is of type Function.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeString"></a>
 
-### errSingletonValidation.shouldBeString(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeString(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type String.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -777,10 +792,11 @@ Throws an error if 'val' is not of type String.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeString"></a>
 
-### errSingletonValidation.shouldNotBeString(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeString(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type String.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -790,10 +806,11 @@ Throws an error if 'val' is of type String.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeNumber"></a>
 
-### errSingletonValidation.shouldBeNumber(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeNumber(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Number.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -803,10 +820,11 @@ Throws an error if 'val' is not of type Number.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeNumber"></a>
 
-### errSingletonValidation.shouldNotBeNumber(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeNumber(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Number.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -816,10 +834,11 @@ Throws an error if 'val' is of type Number.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeFinite"></a>
 
-### errSingletonValidation.shouldBeFinite(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeFinite(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not finite.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -829,10 +848,11 @@ Throws an error if 'val' is not finite.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeInfinite"></a>
 
-### errSingletonValidation.shouldBeInfinite(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeInfinite(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not infinite.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -842,10 +862,11 @@ Throws an error if 'val' is not infinite.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeBoolean"></a>
 
-### errSingletonValidation.shouldBeBoolean(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeBoolean(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Boolean.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -855,10 +876,11 @@ Throws an error if 'val' is not of type Boolean.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeBoolean"></a>
 
-### errSingletonValidation.shouldNotBeBoolean(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Boolean.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -868,10 +890,11 @@ Throws an error if 'val' is of type Boolean.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeDate"></a>
 
-### errSingletonValidation.shouldBeDate(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeDate(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not of type Date.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -881,10 +904,11 @@ Throws an error if 'val' is not of type Date.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeDate"></a>
 
-### errSingletonValidation.shouldNotBeDate(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeDate(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is of type Date.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -894,10 +918,11 @@ Throws an error if 'val' is of type Date.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeRegExp"></a>
 
-### errSingletonValidation.shouldBeRegExp(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeRegExp(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not a Regular Expression.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -907,10 +932,11 @@ Throws an error if 'val' is not a Regular Expression.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeRegExp"></a>
 
-### errSingletonValidation.shouldNotBeRegExp(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is a Regular Expression.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -920,10 +946,11 @@ Throws an error if 'val' is a Regular Expression.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeFalsey"></a>
 
-### errSingletonValidation.shouldBeFalsey(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeFalsey(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is not falsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -933,10 +960,11 @@ Throws an error if 'val' is not falsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeFalsey"></a>
 
-### errSingletonValidation.shouldNotBeFalsey(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>this</code>
 Throws an error if 'val' is falsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -946,10 +974,11 @@ Throws an error if 'val' is falsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeFalsy"></a>
 
-### errSingletonValidation.shouldBeFalsy(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeFalsy(val, [message], [template]) ⇒ <code>this</code>
 Synonym for shouldBeFalsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -959,10 +988,11 @@ Synonym for shouldBeFalsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeFalsy"></a>
 
-### errSingletonValidation.shouldNotBeFalsy(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>this</code>
 Synonym for shouldNotBeFalsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -972,10 +1002,11 @@ Synonym for shouldNotBeFalsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldBeTruthy"></a>
 
-### errSingletonValidation.shouldBeTruthy(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldBeTruthy(val, [message], [template]) ⇒ <code>this</code>
 Synonym for shouldNotBeFalsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -985,10 +1016,11 @@ Synonym for shouldNotBeFalsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.shouldNotBeTruthy"></a>
 
-### errSingletonValidation.shouldNotBeTruthy(val, [message]) ⇒ <code>this</code>
+### errSingletonValidation.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>this</code>
 Synonym for shouldBeFalsey.
 
 **Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
@@ -998,6 +1030,7 @@ Synonym for shouldBeFalsey.
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
 <a name="errSingletonValidation.checkArgument"></a>
 
