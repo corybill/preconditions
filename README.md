@@ -26,6 +26,7 @@ and helps to solve some important issues with Node, listed below. See https://ww
 
 ### Preconditions Interface
 There are three functions that are exposed from the library.
+
 1. errr() - Verify a one value at a time while building an 'errr' object.  You can append errors together and add debug params to the stack trace. 
 2. singleton() - Verify one value at a time with a chainable preconditions interface.
 3. instance() - Create a testing suite passing in a single object.  Run a single, or multiple tests on the passed in object. Shouldn't be used in production code.
