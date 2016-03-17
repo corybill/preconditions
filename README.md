@@ -34,7 +34,7 @@ There are four functions that are exposed from the library.
 
 ### Examples Using the Errr Interface (.errr())
 
-You can use a static instance to verify one value at a time and use the errr module.
+You can use a static instance to verify one value at a time and use the errr module.  For more on the errr module see here https://github.com/corybill/Preconditions#errrdecorator and here https://github.com/corybill/errr#errr.
 <pre>
   var preconditions = require("preconditions").errr();
     
