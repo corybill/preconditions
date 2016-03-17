@@ -35,18 +35,16 @@ There are three functions that are exposed from the library.
 
 You can use a static instance to verify one value at a time and use the errr module.
 <pre>
-  <code>
-    var preconditions = require("preconditions").errr();
-      
-    preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
-    preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
-    preconditions.shouldBeUndefined(someObj.valueThree, "Custom error message.").debug({param1: "someDebugParam"}).test();
-    preconditions.checkPositionIndex(5, 10, "Custom error message.").appendTo(someErrorObj).test();
-    preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
-      .debug({param1: "someDebugParam"})
-      .appendTo(someErrorObj)
-      .test();  
-  </code>
+  var preconditions = require("preconditions").errr();
+    
+  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
+  preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
+  preconditions.shouldBeUndefined(someObj.valueThree, "Custom error message.").debug({param1: "someDebugParam"}).test();
+  preconditions.checkPositionIndex(5, 10, "Custom error message.").appendTo(someErrorObj).test();
+  preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
+    .debug({param1: "someDebugParam"})
+    .appendTo(someErrorObj)
+    .test();  
 </pre>
 
 ### Examples Using the Singleton Interface (.singleton())
