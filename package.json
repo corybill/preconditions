@@ -4,9 +4,9 @@
   "main": "./lib/preconditions.js",
   "version": "2.0.3",
   "description": "Support for Guava like Precondition error checking in Node.js",
-  "homepage": "https://github.com/corybill/Preconditions",
+  "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
-    "url": "https://github.com/corybill/Preconditions/issues"
+    "url": "https://github.com/corybill/preconditions/issues"
   },
   "scripts": {
     "test": "npm run ut && npm run lint",
@@ -18,7 +18,7 @@
     "docs": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/**/*.js\" > api.md"
   },
   "keywords": [
-    "Preconditions",
+    "preconditions",
     "Guava",
     "Throw Error",
     "Errr",
@@ -42,7 +42,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/corybill/Preconditions.git"
+    "url": "https://github.com/corybill/preconditions.git"
   },
   "devDependencies": {
     "chai": "^3.5.0",
