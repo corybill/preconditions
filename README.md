@@ -2,7 +2,7 @@
 
 [![view on npm](http://img.shields.io/npm/v/preconditions.svg)](https://www.npmjs.org/package/preconditions)
 [![npm module downloads](http://img.shields.io/npm/dt/preconditions.svg)](https://www.npmjs.org/package/preconditions)
-[![Build Status](https://travis-ci.org/corybill/Preconditions.svg?branch=master)](https://travis-ci.org/corybill/preconditions)
+[![Build Status](https://travis-ci.org/corybill/Preconditions.svg?branch=master)](https://travis-ci.org/corybill/Preconditions)
 [![Gitter](https://badges.gitter.im/corybill/reconditions.svg)](https://gitter.im/corybill/preconditions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 #### Support for Guava like Precondition error checking in Node.js
