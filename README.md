@@ -78,7 +78,7 @@ Should not be used in production code!
       .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
       .checkPositionIndex(5, 10, "Custom error message.")
       .shouldBeFunction("foo.deep.functionValue");
-  <code>
+  </code>
 </pre>
 
 ### Examples Using The Constructor (.constructor())
