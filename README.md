@@ -22,7 +22,7 @@ and helps to solve some important issues with Node, listed below. See https://ww
 3. Add debug params to stack traces to assist with bug resolution.
 
 ### Install
-<pre>npm install preconditions</pre>
+<pre><code>npm install guava-optional</code></pre>
 
 ### Preconditions Interface
 There are four functions that are exposed from the library.
@@ -34,30 +34,34 @@ There are four functions that are exposed from the library.
 
 ### Examples Using the Errr Interface (.errr())
 
-You can use a static instance to verify one value at a time and use the errr module.  For more on the errr module see here https://github.com/corybill/Preconditions#errrdecorator and here https://github.com/corybill/errr#errr.
+You can use a static instance to verify one value at a time while using the errr module to build an errr.  For more on the errr module see here https://github.com/corybill/Preconditions#errrdecorator and here https://github.com/corybill/errr#errr.
 <pre>
-  var preconditions = require("preconditions").errr();
+  <code>
+    var preconditions = require("preconditions").errr();
   
-  preconditions.shouldBeDefined(someObj.valueOne).test();
-  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
-  preconditions.shouldBeDefined(someObj.valueOne, "Error (%s:%s): Error Message.", [errType, errCode]).test();
-  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").debug({param1: "someDebugParam"}).test();
-  preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").appendTo(someErrorObj).test();
-  preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
-    .debug({param1: "someDebugParam"})
-    .appendTo(someErrorObj)
-    .test();  
+    preconditions.shouldBeDefined(someObj.valueOne).test();
+    preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").test();
+    preconditions.shouldBeDefined(someObj.valueOne, "Error (%s:%s): Error Message.", [errType, errCode]).test();
+    preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").debug({param1: "someDebugParam"}).test();
+    preconditions.shouldBeDefined(someObj.valueOne, "Custom error message.").appendTo(someErrorObj).test();
+    preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
+      .debug({param1: "someDebugParam"})
+      .appendTo(someErrorObj)
+      .test();
+  </code>
 </pre>
 
 ### Examples Using the Singleton Interface (.singleton())
 
 You can use a static instance to verify one value at a time.
 <pre>
-  var preconditions = require("preconditions").singleton();
-
-  preconditions.shouldBeDefined(someObj.valueOne)
-    .shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
-    .shouldBeDefined(someObj.valueThree, "Custom error message.");
+  <code>
+    var preconditions = require("preconditions").singleton();
+  
+    preconditions.shouldBeDefined(someObj.valueOne)
+      .shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]).test();
+      .shouldBeDefined(someObj.valueThree, "Custom error message.");
+  </code>
 </pre>
 
 ### Examples Using Instance Interface (.instance())
@@ -65,14 +69,16 @@ Should not be used in production code!
 
 #### Setup Instance
 <pre>
-  var preconditions = require("preconditions").instance(this);
-  
-  preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
-    .checkArguments("FOO" === "FOO");
-    .shouldBeDefined("foo.deep.emptyArray")
-    .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
-    .checkPositionIndex(5, 10, "Custom error message.")
-    .shouldBeFunction("foo.deep.functionValue");
+  <code>
+    var preconditions = require("preconditions").instance(this);
+    
+    preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
+      .checkArguments("FOO" === "FOO");
+      .shouldBeDefined("foo.deep.emptyArray")
+      .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
+      .checkPositionIndex(5, 10, "Custom error message.")
+      .shouldBeFunction("foo.deep.functionValue");
+  <code>
 </pre>
 
 ### Examples Using The Constructor (.constructor())
@@ -80,30 +86,32 @@ Should not be used in production code!
 
 The Preconditions object itself is exposed so that you can extend the Preconditions class.
 <pre>
-  var Preconditions = builder.constructor();
-  
-  function ChildClass(someObjectToTest) {
-    Preconditions.call(this, someObjectToTest);
-  }
-  ChildClass.prototype = Object.create(Preconditions.prototype);
-  ChildClass.prototype.shouldBeTrue = function (value, message) {
-    var msg = message || this.ShouldBeTrue;
-    if (value !== true) {
-      throw new Error(msg);
+  <code>
+    var Preconditions = builder.constructor();
+    
+    function ChildClass(someObjectToTest) {
+      Preconditions.call(this, someObjectToTest);
     }
-  };
-
-  this.ShouldBeTrue = "ShouldBeTrue";
-  this.childSut = new ChildClass(this.out);
-
-  this.childSut.shouldNotBeFalsey(stringValue)
-    .shouldBeDefined(stringValue)
-    .shouldBeString(stringValue)
-    .shouldNotBeFalsey(numberValue)
-    .shouldBeDefined(numberValue)
-    .shouldBeNumber(numberValue)
-    .checkPositionIndex(5, 10, "Custom error message.")
-    .shouldBeTrue(false, "Value should be true (I am a custom error message).");
+    ChildClass.prototype = Object.create(Preconditions.prototype);
+    ChildClass.prototype.shouldBeTrue = function (value, message) {
+      var msg = message || this.ShouldBeTrue;
+      if (value !== true) {
+        throw new Error(msg);
+      }
+    };
+  
+    this.ShouldBeTrue = "ShouldBeTrue";
+    this.childSut = new ChildClass(this.out);
+  
+    this.childSut.shouldNotBeFalsey(stringValue)
+      .shouldBeDefined(stringValue)
+      .shouldBeString(stringValue)
+      .shouldNotBeFalsey(numberValue)
+      .shouldBeDefined(numberValue)
+      .shouldBeNumber(numberValue)
+      .checkPositionIndex(5, 10, "Custom error message.")
+      .shouldBeTrue(false, "Value should be true (I am a custom error message).");
+  <code>
 </pre>
 
 ## NPM Scripts
