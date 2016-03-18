@@ -111,7 +111,7 @@ The Preconditions object itself is exposed so that you can extend the Preconditi
       .shouldBeNumber(numberValue)
       .checkPositionIndex(5, 10, "Custom error message.")
       .shouldBeTrue(false, "Value should be true (I am a custom error message).");
-  <code>
+  </code>
 </pre>
 
 ## NPM Scripts
