@@ -144,488 +144,1076 @@ Please reach out to me (Cory Parrish) if you would like a new precondition added
 
 ## API
 
-<dl>
-<dt><a href="#ErrrDecorator">ErrrDecorator</a></dt>
-<dd><p>Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.</p>
-</dd>
-<dt><a href="#ErrrValidation">ErrrValidation</a></dt>
-<dd><p>Validate single value with a buildable interface on top of the errr node module.
-Use this interface if you want to utilize the following functionality:</p>
-<ol>
-<li>Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.</li>
-<li>Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.</li>
-</ol>
-</dd>
-<dt><a href="#errSingletonValidation">errSingletonValidation</a></dt>
-<dd><p>Validate single value with a chainable interface.
-Use this interface if you want to utilize the following functionality:</p>
-<ol>
-<li>Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.</li>
-<li>Chain together precondition validations.</li>
-</ol>
-</dd>
-<dt><a href="#ErrInstanceValidation">ErrInstanceValidation</a></dt>
-<dd></dd>
-</dl>
+### Preconditions Interface
+<a name="preconditions"></a>
 
-<a name="ErrrValidation"></a>
+### Validate Using Errr Module
+<a name="Validator"></a>
+<a name="Decorator"></a>
 
-## ErrrValidation
+### Validate Without Errr Module
+<a name="singletonValidator"></a>
+<a name="InstanceValidator"></a>
+
+## preconditions
+Preconditions interface.
+
+**Kind**: global variable  
+
+* [preconditions](#preconditions)
+    * [.errr()](#preconditions.errr) ⇒
+    * [.singleton()](#preconditions.singleton) ⇒
+    * [.instance(objectUnderTest)](#preconditions.instance) ⇒
+    * [.constructor()](#preconditions.constructor) ⇒
+
+<a name="preconditions.errr"></a>
+
+### preconditions.errr() ⇒
+Validate single value with the buildable errr interface from the static errr Validation functionality.
+
+**Kind**: static method of <code>[preconditions](#preconditions)</code>  
+**Returns**: Error Validation Singleton.  
+<a name="preconditions.singleton"></a>
+
+### preconditions.singleton() ⇒
+Validate single value with the chainable interface from the Error Validation Singleton.
+
+**Kind**: static method of <code>[preconditions](#preconditions)</code>  
+**Returns**: Error Validation Singleton.  
+<a name="preconditions.instance"></a>
+
+### preconditions.instance(objectUnderTest) ⇒
+**Kind**: static method of <code>[preconditions](#preconditions)</code>  
+**Returns**: Error Validation instance.  
+**Warning**: This functionality has very poor performance.  Please use the 'singleton' or 'errr' functionality instead.
+
+Validate values of a given JSON object with the preconditions object.  
+
+| Param | Description |
+| --- | --- |
+| objectUnderTest | Object Under Test |
+
+<a name="preconditions.constructor"></a>
+
+### preconditions.constructor() ⇒
+Gives ability to extend and add other preconditions to the Error Validation constructor.
+
+**Kind**: static method of <code>[preconditions](#preconditions)</code>  
+**Returns**: Error Validation constructor.  
+**Warning**: This functionality only works with the 'instance' function which has very poor performance.
+
+## Validator
 Validate single value with a buildable interface on top of the errr node module.
 Use this interface if you want to utilize the following functionality:
-1. Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.
+1. Error message templating. 2. Only templates error message if Validator fails which saves event queue cycles.
 3. Gives ability to append Stack traces to an existing error. 4. Gives ability to append debug params to stack trace.
 
 **Kind**: global class  
 
-* [ErrrValidation](#ErrrValidation)
-    * [.shouldBeDefined(val, [message], [template])](#ErrrValidation.shouldBeDefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeUndefined(val, [message], [template])](#ErrrValidation.shouldBeUndefined) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeArray(val, [message], [template])](#ErrrValidation.shouldBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeArray(val, [message], [template])](#ErrrValidation.shouldNotBeArray) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeObject(val, [message], [template])](#ErrrValidation.shouldBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeObject(val, [message], [template])](#ErrrValidation.shouldNotBeObject) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeEmpty(val, [message], [template])](#ErrrValidation.shouldBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeEmpty(val, [message], [template])](#ErrrValidation.shouldNotBeEmpty) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFunction(val, [message], [template])](#ErrrValidation.shouldBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFunction(val, [message], [template])](#ErrrValidation.shouldNotBeFunction) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeString(val, [message], [template])](#ErrrValidation.shouldBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeString(val, [message], [template])](#ErrrValidation.shouldNotBeString) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeNumber(val, [message], [template])](#ErrrValidation.shouldBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeNumber(val, [message], [template])](#ErrrValidation.shouldNotBeNumber) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFinite(val, [message], [template])](#ErrrValidation.shouldBeFinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeInfinite(val, [message], [template])](#ErrrValidation.shouldBeInfinite) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeBoolean(val, [message], [template])](#ErrrValidation.shouldBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeBoolean(val, [message], [template])](#ErrrValidation.shouldNotBeBoolean) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeDate(val, [message], [template])](#ErrrValidation.shouldBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeDate(val, [message], [template])](#ErrrValidation.shouldNotBeDate) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeRegExp(val, [message], [template])](#ErrrValidation.shouldBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeRegExp(val, [message], [template])](#ErrrValidation.shouldNotBeRegExp) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFalsey(val, [message], [template])](#ErrrValidation.shouldBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFalsey(val, [message], [template])](#ErrrValidation.shouldNotBeFalsey) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeFalsy(val, [message], [template])](#ErrrValidation.shouldBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeFalsy(val, [message], [template])](#ErrrValidation.shouldNotBeFalsy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldBeTruthy(val, [message], [template])](#ErrrValidation.shouldBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.shouldNotBeTruthy(val, [message], [template])](#ErrrValidation.shouldNotBeTruthy) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkArgument(expression, [message], [template])](#ErrrValidation.checkArgument) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkState(expression, [message], [template])](#ErrrValidation.checkState) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkElementIndex(index, size, [message], [template])](#ErrrValidation.checkElementIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkPositionIndex(index, size, [message], [template])](#ErrrValidation.checkPositionIndex) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
-    * [.checkPositionIndexes(start, end, size, [message], [template])](#ErrrValidation.checkPositionIndexes) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+* [Validator](#Validator)
+    * [.shouldBeDefined(val, [message], [template])](#Validator.shouldBeDefined) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeUndefined(val, [message], [template])](#Validator.shouldBeUndefined) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeArray(val, [message], [template])](#Validator.shouldBeArray) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeArray(val, [message], [template])](#Validator.shouldNotBeArray) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeObject(val, [message], [template])](#Validator.shouldBeObject) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeObject(val, [message], [template])](#Validator.shouldNotBeObject) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeEmpty(val, [message], [template])](#Validator.shouldBeEmpty) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeEmpty(val, [message], [template])](#Validator.shouldNotBeEmpty) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeFunction(val, [message], [template])](#Validator.shouldBeFunction) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeFunction(val, [message], [template])](#Validator.shouldNotBeFunction) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeString(val, [message], [template])](#Validator.shouldBeString) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeString(val, [message], [template])](#Validator.shouldNotBeString) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeNumber(val, [message], [template])](#Validator.shouldBeNumber) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeNumber(val, [message], [template])](#Validator.shouldNotBeNumber) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeFinite(val, [message], [template])](#Validator.shouldBeFinite) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeInfinite(val, [message], [template])](#Validator.shouldBeInfinite) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeBoolean(val, [message], [template])](#Validator.shouldBeBoolean) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeBoolean(val, [message], [template])](#Validator.shouldNotBeBoolean) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeDate(val, [message], [template])](#Validator.shouldBeDate) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeDate(val, [message], [template])](#Validator.shouldNotBeDate) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeRegExp(val, [message], [template])](#Validator.shouldBeRegExp) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeRegExp(val, [message], [template])](#Validator.shouldNotBeRegExp) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeFalsey(val, [message], [template])](#Validator.shouldBeFalsey) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeFalsey(val, [message], [template])](#Validator.shouldNotBeFalsey) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeFalsy(val, [message], [template])](#Validator.shouldBeFalsy) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeFalsy(val, [message], [template])](#Validator.shouldNotBeFalsy) ⇒ <code>ErrrDecorator</code>
+    * [.shouldBeTruthy(val, [message], [template])](#Validator.shouldBeTruthy) ⇒ <code>ErrrDecorator</code>
+    * [.shouldNotBeTruthy(val, [message], [template])](#Validator.shouldNotBeTruthy) ⇒ <code>ErrrDecorator</code>
+    * [.checkArgument(expression, [message], [template])](#Validator.checkArgument) ⇒ <code>ErrrDecorator</code>
+    * [.checkState(expression, [message], [template])](#Validator.checkState) ⇒ <code>ErrrDecorator</code>
+    * [.checkElementIndex(index, size, [message], [template])](#Validator.checkElementIndex) ⇒ <code>ErrrDecorator</code>
+    * [.checkPositionIndex(index, size, [message], [template])](#Validator.checkPositionIndex) ⇒ <code>ErrrDecorator</code>
+    * [.checkPositionIndexes(start, end, size, [message], [template])](#Validator.checkPositionIndexes) ⇒ <code>ErrrDecorator</code>
 
-<a name="ErrrValidation.shouldBeDefined"></a>
+<a name="Validator.shouldBeDefined"></a>
 
-### ErrrValidation.shouldBeDefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeDefined(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not defined.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeUndefined"></a>
+<a name="Validator.shouldBeUndefined"></a>
 
-### ErrrValidation.shouldBeUndefined(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeUndefined(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is defined.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeArray"></a>
+<a name="Validator.shouldBeArray"></a>
 
-### ErrrValidation.shouldBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeArray(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Array.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeArray"></a>
+<a name="Validator.shouldNotBeArray"></a>
 
-### ErrrValidation.shouldNotBeArray(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeArray(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Array.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeObject"></a>
+<a name="Validator.shouldBeObject"></a>
 
-### ErrrValidation.shouldBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeObject(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Object.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeObject"></a>
+<a name="Validator.shouldNotBeObject"></a>
 
-### ErrrValidation.shouldNotBeObject(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeObject(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Object.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeEmpty"></a>
+<a name="Validator.shouldBeEmpty"></a>
 
-### ErrrValidation.shouldBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeEmpty(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not empty.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeEmpty"></a>
+<a name="Validator.shouldNotBeEmpty"></a>
 
-### ErrrValidation.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is empty.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeFunction"></a>
+<a name="Validator.shouldBeFunction"></a>
 
-### ErrrValidation.shouldBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeFunction(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Function.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeFunction"></a>
+<a name="Validator.shouldNotBeFunction"></a>
 
-### ErrrValidation.shouldNotBeFunction(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeFunction(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Function.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeString"></a>
+<a name="Validator.shouldBeString"></a>
 
-### ErrrValidation.shouldBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeString(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type String.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeString"></a>
+<a name="Validator.shouldNotBeString"></a>
 
-### ErrrValidation.shouldNotBeString(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeString(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type String.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeNumber"></a>
+<a name="Validator.shouldBeNumber"></a>
 
-### ErrrValidation.shouldBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeNumber(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Number.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeNumber"></a>
+<a name="Validator.shouldNotBeNumber"></a>
 
-### ErrrValidation.shouldNotBeNumber(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeNumber(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Number.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeFinite"></a>
+<a name="Validator.shouldBeFinite"></a>
 
-### ErrrValidation.shouldBeFinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeFinite(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not finite.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeInfinite"></a>
+<a name="Validator.shouldBeInfinite"></a>
 
-### ErrrValidation.shouldBeInfinite(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeInfinite(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is finite.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeBoolean"></a>
+<a name="Validator.shouldBeBoolean"></a>
 
-### ErrrValidation.shouldBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeBoolean(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Boolean.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeBoolean"></a>
+<a name="Validator.shouldNotBeBoolean"></a>
 
-### ErrrValidation.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Boolean.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeDate"></a>
+<a name="Validator.shouldBeDate"></a>
 
-### ErrrValidation.shouldBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeDate(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not of type Date.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeDate"></a>
+<a name="Validator.shouldNotBeDate"></a>
 
-### ErrrValidation.shouldNotBeDate(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeDate(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is of type Date.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeRegExp"></a>
+<a name="Validator.shouldBeRegExp"></a>
 
-### ErrrValidation.shouldBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeRegExp(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not a Regular Expression.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeRegExp"></a>
+<a name="Validator.shouldNotBeRegExp"></a>
 
-### ErrrValidation.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is a Regular Expression.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeFalsey"></a>
+<a name="Validator.shouldBeFalsey"></a>
 
-### ErrrValidation.shouldBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeFalsey(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is not falsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeFalsey"></a>
+<a name="Validator.shouldNotBeFalsey"></a>
 
-### ErrrValidation.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Throws an error if 'val' is falsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeFalsy"></a>
+<a name="Validator.shouldBeFalsy"></a>
 
-### ErrrValidation.shouldBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeFalsy(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Synonym for shouldBeFalsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeFalsy"></a>
+<a name="Validator.shouldNotBeFalsy"></a>
 
-### ErrrValidation.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Synonym for shouldNotBeFalsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldBeTruthy"></a>
+<a name="Validator.shouldBeTruthy"></a>
 
-### ErrrValidation.shouldBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldBeTruthy(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Synonym for shouldNotBeFalsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.shouldNotBeTruthy"></a>
+<a name="Validator.shouldNotBeTruthy"></a>
 
-### ErrrValidation.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Synonym for shouldBeFalsey.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.checkArgument"></a>
+<a name="Validator.checkArgument"></a>
 
-### ErrrValidation.checkArgument(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.checkArgument(expression, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Ensures the truth of an expression involving one or more parameters to the calling method.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | expression | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.checkState"></a>
+<a name="Validator.checkState"></a>
 
-### ErrrValidation.checkState(expression, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### Validator.checkState(expression, [message], [template]) ⇒ <code>ErrrDecorator</code>
 Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| expression | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="Validator.checkElementIndex"></a>
+
+### Validator.checkElementIndex(index, size, [message], [template]) ⇒ <code>ErrrDecorator</code>
+Ensures that index specifies a valid element in an array, list or string of size size.
+
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="Validator.checkPositionIndex"></a>
+
+### Validator.checkPositionIndex(index, size, [message], [template]) ⇒ <code>ErrrDecorator</code>
+Ensures that index specifies a valid position in an array, list or string of size size.
+
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="Validator.checkPositionIndexes"></a>
+
+### Validator.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>ErrrDecorator</code>
+Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
+
+**Kind**: static method of <code>[Validator](#Validator)</code>  
+**Returns**: <code>ErrrDecorator</code> - - An object that decorates the errr node module.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | <code>Number</code> |  |
+| end | <code>Number</code> |  |
+| size | <code>Number</code> |  |
+| [message] | <code>String</code> | The error message or the error template string to use if the Validator fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+## Decorator
+Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.
+
+**Kind**: global class  
+
+* [Decorator](#Decorator)
+    * [new Decorator([message], [template])](#new_Decorator_new)
+    * [.debug(params, [shouldDebug])](#Decorator+debug) ⇒ <code>ErrorBuilder</code>
+    * [.appendTo(err)](#Decorator+appendTo) ⇒ <code>ErrorBuilder</code>
+    * [.test()](#Decorator+test)
+    * [.t()](#Decorator+t)
+
+<a name="new_Decorator_new"></a>
+
+### new Decorator([message], [template])
+Provides an interface to build an error.  Then allows you to get or throw the error.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [message] | <code>String</code> | Error message that will supplied to Error Object. |
+| [template] | <code>Array</code> | Array of parameters.  If given, util.format(message, template) will be applied to the message string. |
+
+<a name="Decorator+debug"></a>
+
+### decorator.debug(params, [shouldDebug]) ⇒ <code>ErrorBuilder</code>
+Decorated function from 'errr' module. Add parameters to the stack trace that will make it easier to debug the problem.
+
+**Kind**: instance method of <code>[Decorator](#Decorator)</code>  
+**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| params | <code>Object</code> | Object Map of key value parameters that will make it easier to debug the error. |
+| [shouldDebug] | <code>Boolean</code> | If shouldDebug === false, then debug params will not print.  Any other value (including undefined), and the debug params will be printed. Useful if you want to only print debugParams given an Environment Variable. |
+
+<a name="Decorator+appendTo"></a>
+
+### decorator.appendTo(err) ⇒ <code>ErrorBuilder</code>
+Decorated function from 'errr' module. Append the error being built, to the end of this error's stack trace.
+
+**Kind**: instance method of <code>[Decorator](#Decorator)</code>  
+**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| err | <code>Error</code> | The stack trace of the error being built, will be appended to this error's stack trace. |
+
+<a name="Decorator+test"></a>
+
+### decorator.test()
+Validate preconditions check and throw an errr if it fails.
+
+**Kind**: instance method of <code>[Decorator](#Decorator)</code>  
+<a name="Decorator+t"></a>
+
+### decorator.t()
+Synonym for the test function.
+
+**Kind**: instance method of <code>[Decorator](#Decorator)</code>
+
+## singletonValidator
+Validate single value with a chainable interface.
+Use this interface if you want to utilize the following functionality:
+1. Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.
+3. Chain together precondition validations.
+
+**Kind**: global variable  
+
+* [singletonValidator](#singletonValidator)
+    * [.shouldBeDefined(val, [message], [template])](#singletonValidator.shouldBeDefined) ⇒ <code>this</code>
+    * [.shouldBeUndefined(val, [message], [template])](#singletonValidator.shouldBeUndefined) ⇒ <code>this</code>
+    * [.shouldBeArray(val, [message], [template])](#singletonValidator.shouldBeArray) ⇒ <code>this</code>
+    * [.shouldNotBeArray(val, [message], [template])](#singletonValidator.shouldNotBeArray) ⇒ <code>this</code>
+    * [.shouldBeObject(val, [message], [template])](#singletonValidator.shouldBeObject) ⇒ <code>this</code>
+    * [.shouldNotBeObject(val, [message], [template])](#singletonValidator.shouldNotBeObject) ⇒ <code>this</code>
+    * [.shouldBeEmpty(val, [message], [template])](#singletonValidator.shouldBeEmpty) ⇒ <code>this</code>
+    * [.shouldNotBeEmpty(val, [message], [template])](#singletonValidator.shouldNotBeEmpty) ⇒ <code>this</code>
+    * [.shouldBeFunction(val, [message], [template])](#singletonValidator.shouldBeFunction) ⇒ <code>this</code>
+    * [.shouldNotBeFunction(val, [message], [template])](#singletonValidator.shouldNotBeFunction) ⇒ <code>this</code>
+    * [.shouldBeString(val, [message], [template])](#singletonValidator.shouldBeString) ⇒ <code>this</code>
+    * [.shouldNotBeString(val, [message], [template])](#singletonValidator.shouldNotBeString) ⇒ <code>this</code>
+    * [.shouldBeNumber(val, [message], [template])](#singletonValidator.shouldBeNumber) ⇒ <code>this</code>
+    * [.shouldNotBeNumber(val, [message], [template])](#singletonValidator.shouldNotBeNumber) ⇒ <code>this</code>
+    * [.shouldBeFinite(val, [message], [template])](#singletonValidator.shouldBeFinite) ⇒ <code>this</code>
+    * [.shouldBeInfinite(val, [message], [template])](#singletonValidator.shouldBeInfinite) ⇒ <code>this</code>
+    * [.shouldBeBoolean(val, [message], [template])](#singletonValidator.shouldBeBoolean) ⇒ <code>this</code>
+    * [.shouldNotBeBoolean(val, [message], [template])](#singletonValidator.shouldNotBeBoolean) ⇒ <code>this</code>
+    * [.shouldBeDate(val, [message], [template])](#singletonValidator.shouldBeDate) ⇒ <code>this</code>
+    * [.shouldNotBeDate(val, [message], [template])](#singletonValidator.shouldNotBeDate) ⇒ <code>this</code>
+    * [.shouldBeRegExp(val, [message], [template])](#singletonValidator.shouldBeRegExp) ⇒ <code>this</code>
+    * [.shouldNotBeRegExp(val, [message], [template])](#singletonValidator.shouldNotBeRegExp) ⇒ <code>this</code>
+    * [.shouldBeFalsey(val, [message], [template])](#singletonValidator.shouldBeFalsey) ⇒ <code>this</code>
+    * [.shouldNotBeFalsey(val, [message], [template])](#singletonValidator.shouldNotBeFalsey) ⇒ <code>this</code>
+    * [.shouldBeFalsy(val, [message], [template])](#singletonValidator.shouldBeFalsy) ⇒ <code>this</code>
+    * [.shouldNotBeFalsy(val, [message], [template])](#singletonValidator.shouldNotBeFalsy) ⇒ <code>this</code>
+    * [.shouldBeTruthy(val, [message], [template])](#singletonValidator.shouldBeTruthy) ⇒ <code>this</code>
+    * [.shouldNotBeTruthy(val, [message], [template])](#singletonValidator.shouldNotBeTruthy) ⇒ <code>this</code>
+    * [.checkArgument(expression, [message], [template])](#singletonValidator.checkArgument) ⇒ <code>this</code>
+    * [.checkState(expression, [message], [template])](#singletonValidator.checkState) ⇒ <code>this</code>
+    * [.checkElementIndex(index, size, [message], [template])](#singletonValidator.checkElementIndex) ⇒ <code>this</code>
+    * [.checkPositionIndex(index, size, [message], [template])](#singletonValidator.checkPositionIndex) ⇒ <code>this</code>
+    * [.checkPositionIndexes(start, end, size, [message], [template])](#singletonValidator.checkPositionIndexes) ⇒ <code>this</code>
+
+<a name="singletonValidator.shouldBeDefined"></a>
+
+### singletonValidator.shouldBeDefined(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not defined.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeUndefined"></a>
+
+### singletonValidator.shouldBeUndefined(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is defined.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeArray"></a>
+
+### singletonValidator.shouldBeArray(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Array.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeArray"></a>
+
+### singletonValidator.shouldNotBeArray(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Array.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeObject"></a>
+
+### singletonValidator.shouldBeObject(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Object.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeObject"></a>
+
+### singletonValidator.shouldNotBeObject(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Object.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeEmpty"></a>
+
+### singletonValidator.shouldBeEmpty(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not empty.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeEmpty"></a>
+
+### singletonValidator.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is empty.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeFunction"></a>
+
+### singletonValidator.shouldBeFunction(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Function.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeFunction"></a>
+
+### singletonValidator.shouldNotBeFunction(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Function.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeString"></a>
+
+### singletonValidator.shouldBeString(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type String.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeString"></a>
+
+### singletonValidator.shouldNotBeString(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type String.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeNumber"></a>
+
+### singletonValidator.shouldBeNumber(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Number.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeNumber"></a>
+
+### singletonValidator.shouldNotBeNumber(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Number.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeFinite"></a>
+
+### singletonValidator.shouldBeFinite(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not finite.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeInfinite"></a>
+
+### singletonValidator.shouldBeInfinite(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not infinite.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeBoolean"></a>
+
+### singletonValidator.shouldBeBoolean(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Boolean.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeBoolean"></a>
+
+### singletonValidator.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Boolean.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeDate"></a>
+
+### singletonValidator.shouldBeDate(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not of type Date.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeDate"></a>
+
+### singletonValidator.shouldNotBeDate(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is of type Date.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeRegExp"></a>
+
+### singletonValidator.shouldBeRegExp(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not a Regular Expression.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeRegExp"></a>
+
+### singletonValidator.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is a Regular Expression.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeFalsey"></a>
+
+### singletonValidator.shouldBeFalsey(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is not falsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeFalsey"></a>
+
+### singletonValidator.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>this</code>
+Throws an error if 'val' is falsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeFalsy"></a>
+
+### singletonValidator.shouldBeFalsy(val, [message], [template]) ⇒ <code>this</code>
+Synonym for shouldBeFalsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeFalsy"></a>
+
+### singletonValidator.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>this</code>
+Synonym for shouldNotBeFalsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldBeTruthy"></a>
+
+### singletonValidator.shouldBeTruthy(val, [message], [template]) ⇒ <code>this</code>
+Synonym for shouldNotBeFalsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.shouldNotBeTruthy"></a>
+
+### singletonValidator.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>this</code>
+Synonym for shouldBeFalsey.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.checkArgument"></a>
+
+### singletonValidator.checkArgument(expression, [message], [template]) ⇒ <code>this</code>
+Ensures the truth of an expression involving one or more parameters to the calling method.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -633,13 +1221,27 @@ Ensures the truth of an expression involving the state of the calling instance, 
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.checkElementIndex"></a>
+<a name="singletonValidator.checkState"></a>
 
-### ErrrValidation.checkElementIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### singletonValidator.checkState(expression, [message], [template]) ⇒ <code>this</code>
+Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| expression | <code>String</code> | The value to validate. |
+| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
+| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
+
+<a name="singletonValidator.checkElementIndex"></a>
+
+### singletonValidator.checkElementIndex(index, size, [message], [template]) ⇒ <code>this</code>
 Ensures that index specifies a valid element in an array, list or string of size size.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -648,13 +1250,13 @@ Ensures that index specifies a valid element in an array, list or string of size
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.checkPositionIndex"></a>
+<a name="singletonValidator.checkPositionIndex"></a>
 
-### ErrrValidation.checkPositionIndex(index, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### singletonValidator.checkPositionIndex(index, size, [message], [template]) ⇒ <code>this</code>
 Ensures that index specifies a valid position in an array, list or string of size size.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -663,13 +1265,13 @@ Ensures that index specifies a valid position in an array, list or string of siz
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrValidation.checkPositionIndexes"></a>
+<a name="singletonValidator.checkPositionIndexes"></a>
 
-### ErrrValidation.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>[ErrrDecorator](#ErrrDecorator)</code>
+### singletonValidator.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>this</code>
 Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
 
-**Kind**: static method of <code>[ErrrValidation](#ErrrValidation)</code>  
-**Returns**: <code>[ErrrDecorator](#ErrrDecorator)</code> - - An object that decorates the errr node module.  
+**Kind**: static method of <code>[singletonValidator](#singletonValidator)</code>  
+**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -679,72 +1281,7 @@ Ensures that start and end specify a valid positions in an array, list or string
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrrDecorator"></a>
-
-## ErrrDecorator
-Error Builder allows you to use optional functions to build an error object.  The error can have appended stack traces and debug params to assist with debugging.
-
-**Kind**: global class  
-
-* [ErrrDecorator](#ErrrDecorator)
-    * [new ErrrDecorator([message], [template])](#new_ErrrDecorator_new)
-    * [.debug(params, [shouldDebug])](#ErrrDecorator+debug) ⇒ <code>ErrorBuilder</code>
-    * [.appendTo(err)](#ErrrDecorator+appendTo) ⇒ <code>ErrorBuilder</code>
-    * [.test()](#ErrrDecorator+test)
-    * [.t()](#ErrrDecorator+t)
-
-<a name="new_ErrrDecorator_new"></a>
-
-### new ErrrDecorator([message], [template])
-Provides an interface to build an error.  Then allows you to get or throw the error.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [message] | <code>String</code> | Error message that will supplied to Error Object. |
-| [template] | <code>Array</code> | Array of parameters.  If given, util.format(message, template) will be applied to the message string. |
-
-<a name="ErrrDecorator+debug"></a>
-
-### errrDecorator.debug(params, [shouldDebug]) ⇒ <code>ErrorBuilder</code>
-Decorated function from 'errr' module. Add parameters to the stack trace that will make it easier to debug the problem.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| params | <code>Object</code> | Object Map of key value parameters that will make it easier to debug the error. |
-| [shouldDebug] | <code>Boolean</code> | If shouldDebug === false, then debug params will not print.  Any other value (including undefined), and the debug params will be printed. Useful if you want to only print debugParams given an Environment Variable. |
-
-<a name="ErrrDecorator+appendTo"></a>
-
-### errrDecorator.appendTo(err) ⇒ <code>ErrorBuilder</code>
-Decorated function from 'errr' module. Append the error being built, to the end of this error's stack trace.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-**Returns**: <code>ErrorBuilder</code> - - Returns the instance of errorBuilder to allow chainability.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| err | <code>Error</code> | The stack trace of the error being built, will be appended to this error's stack trace. |
-
-<a name="ErrrDecorator+test"></a>
-
-### errrDecorator.test()
-Validate preconditions check and throw an errr if it fails.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-<a name="ErrrDecorator+t"></a>
-
-### errrDecorator.t()
-Synonym for the test function.
-
-**Kind**: instance method of <code>[ErrrDecorator](#ErrrDecorator)</code>  
-
-<a name="ErrInstanceValidation"></a>
-
-## ErrInstanceValidation
+## InstanceValidator
 **Kind**: global class  
 **Warning**: - This interface will not perform as well 'singleton' or 'errr' interfaces.  Please use those if possible.
 
@@ -754,57 +1291,57 @@ System will validate the the Person, Person.Address, and Person.Address.Street o
 Use this interface if you want to utilize the following functionality:
 1. Nested object validation using a dot notation.  
 
-* [ErrInstanceValidation](#ErrInstanceValidation)
-    * [new ErrInstanceValidation(objectUnderTest)](#new_ErrInstanceValidation_new)
-    * [.shouldBeDefined(configPath, [message])](#ErrInstanceValidation+shouldBeDefined) ⇒ <code>this</code>
-    * [.shouldBeUndefined(configPath, [message])](#ErrInstanceValidation+shouldBeUndefined) ⇒ <code>this</code>
-    * [.shouldBeNonEmptyArray(configPath, [message])](#ErrInstanceValidation+shouldBeNonEmptyArray) ⇒ <code>this</code>
-    * [.shouldBeArray(configPath, [message])](#ErrInstanceValidation+shouldBeArray) ⇒ <code>this</code>
-    * [.shouldNotBeArray(configPath, [message])](#ErrInstanceValidation+shouldNotBeArray) ⇒ <code>this</code>
-    * [.shouldBeObject(configPath, [message])](#ErrInstanceValidation+shouldBeObject) ⇒ <code>this</code>
-    * [.shouldNotBeObject(configPath, [message])](#ErrInstanceValidation+shouldNotBeObject) ⇒ <code>this</code>
-    * [.shouldBeEmpty(configPath, [message])](#ErrInstanceValidation+shouldBeEmpty) ⇒ <code>this</code>
-    * [.shouldNotBeEmpty(configPath, [message])](#ErrInstanceValidation+shouldNotBeEmpty) ⇒ <code>this</code>
-    * [.shouldBeFunction(configPath, [message])](#ErrInstanceValidation+shouldBeFunction) ⇒ <code>this</code>
-    * [.shouldNotBeFunction(configPath, [message])](#ErrInstanceValidation+shouldNotBeFunction) ⇒ <code>this</code>
-    * [.shouldBeString(configPath, [message])](#ErrInstanceValidation+shouldBeString) ⇒ <code>this</code>
-    * [.shouldNotBeString(configPath, [message])](#ErrInstanceValidation+shouldNotBeString) ⇒ <code>this</code>
-    * [.shouldBeNumber(configPath, [message])](#ErrInstanceValidation+shouldBeNumber) ⇒ <code>this</code>
-    * [.shouldNotBeNumber(configPath, [message])](#ErrInstanceValidation+shouldNotBeNumber) ⇒ <code>this</code>
-    * [.shouldBeFinite(configPath, [message])](#ErrInstanceValidation+shouldBeFinite) ⇒ <code>this</code>
-    * [.shouldBeInfinite(configPath, [message])](#ErrInstanceValidation+shouldBeInfinite) ⇒ <code>this</code>
-    * [.shouldBeBoolean(configPath, [message])](#ErrInstanceValidation+shouldBeBoolean) ⇒ <code>this</code>
-    * [.shouldNotBeBoolean(configPath, [message])](#ErrInstanceValidation+shouldNotBeBoolean) ⇒ <code>this</code>
-    * [.shouldBeDate(configPath, [message])](#ErrInstanceValidation+shouldBeDate) ⇒ <code>this</code>
-    * [.shouldNotBeDate(configPath, [message])](#ErrInstanceValidation+shouldNotBeDate) ⇒ <code>this</code>
-    * [.shouldBeRegExp(configPath, [message])](#ErrInstanceValidation+shouldBeRegExp) ⇒ <code>this</code>
-    * [.shouldNotBeRegExp(configPath, [message])](#ErrInstanceValidation+shouldNotBeRegExp) ⇒ <code>this</code>
-    * [.shouldBeFalsey(configPath, [message])](#ErrInstanceValidation+shouldBeFalsey) ⇒ <code>this</code>
-    * [.shouldNotBeFalsey(configPath, [message])](#ErrInstanceValidation+shouldNotBeFalsey) ⇒ <code>this</code>
-    * [.shouldBeFalsy(configPath, [message])](#ErrInstanceValidation+shouldBeFalsy) ⇒ <code>this</code>
-    * [.shouldNotBeFalsy(configPath, [message])](#ErrInstanceValidation+shouldNotBeFalsy) ⇒ <code>this</code>
-    * [.shouldBeTruthy(configPath, [message])](#ErrInstanceValidation+shouldBeTruthy) ⇒ <code>this</code>
-    * [.shouldNotBeTruthy(configPath, [message])](#ErrInstanceValidation+shouldNotBeTruthy) ⇒ <code>this</code>
-    * [.checkArgument(expression, [message], [template])](#ErrInstanceValidation+checkArgument) ⇒ <code>this</code>
-    * [.checkState(expression, [message])](#ErrInstanceValidation+checkState) ⇒ <code>this</code>
-    * [.checkElementIndex(index, size, [message])](#ErrInstanceValidation+checkElementIndex) ⇒ <code>this</code>
-    * [.checkPositionIndex(index, size, [message])](#ErrInstanceValidation+checkPositionIndex) ⇒ <code>this</code>
-    * [.checkPositionIndexes(start, end, size, [message])](#ErrInstanceValidation+checkPositionIndexes) ⇒ <code>this</code>
+* [InstanceValidator](#InstanceValidator)
+    * [new InstanceValidator(objectUnderTest)](#new_InstanceValidator_new)
+    * [.shouldBeDefined(configPath, [message])](#InstanceValidator+shouldBeDefined) ⇒ <code>this</code>
+    * [.shouldBeUndefined(configPath, [message])](#InstanceValidator+shouldBeUndefined) ⇒ <code>this</code>
+    * [.shouldBeNonEmptyArray(configPath, [message])](#InstanceValidator+shouldBeNonEmptyArray) ⇒ <code>this</code>
+    * [.shouldBeArray(configPath, [message])](#InstanceValidator+shouldBeArray) ⇒ <code>this</code>
+    * [.shouldNotBeArray(configPath, [message])](#InstanceValidator+shouldNotBeArray) ⇒ <code>this</code>
+    * [.shouldBeObject(configPath, [message])](#InstanceValidator+shouldBeObject) ⇒ <code>this</code>
+    * [.shouldNotBeObject(configPath, [message])](#InstanceValidator+shouldNotBeObject) ⇒ <code>this</code>
+    * [.shouldBeEmpty(configPath, [message])](#InstanceValidator+shouldBeEmpty) ⇒ <code>this</code>
+    * [.shouldNotBeEmpty(configPath, [message])](#InstanceValidator+shouldNotBeEmpty) ⇒ <code>this</code>
+    * [.shouldBeFunction(configPath, [message])](#InstanceValidator+shouldBeFunction) ⇒ <code>this</code>
+    * [.shouldNotBeFunction(configPath, [message])](#InstanceValidator+shouldNotBeFunction) ⇒ <code>this</code>
+    * [.shouldBeString(configPath, [message])](#InstanceValidator+shouldBeString) ⇒ <code>this</code>
+    * [.shouldNotBeString(configPath, [message])](#InstanceValidator+shouldNotBeString) ⇒ <code>this</code>
+    * [.shouldBeNumber(configPath, [message])](#InstanceValidator+shouldBeNumber) ⇒ <code>this</code>
+    * [.shouldNotBeNumber(configPath, [message])](#InstanceValidator+shouldNotBeNumber) ⇒ <code>this</code>
+    * [.shouldBeFinite(configPath, [message])](#InstanceValidator+shouldBeFinite) ⇒ <code>this</code>
+    * [.shouldBeInfinite(configPath, [message])](#InstanceValidator+shouldBeInfinite) ⇒ <code>this</code>
+    * [.shouldBeBoolean(configPath, [message])](#InstanceValidator+shouldBeBoolean) ⇒ <code>this</code>
+    * [.shouldNotBeBoolean(configPath, [message])](#InstanceValidator+shouldNotBeBoolean) ⇒ <code>this</code>
+    * [.shouldBeDate(configPath, [message])](#InstanceValidator+shouldBeDate) ⇒ <code>this</code>
+    * [.shouldNotBeDate(configPath, [message])](#InstanceValidator+shouldNotBeDate) ⇒ <code>this</code>
+    * [.shouldBeRegExp(configPath, [message])](#InstanceValidator+shouldBeRegExp) ⇒ <code>this</code>
+    * [.shouldNotBeRegExp(configPath, [message])](#InstanceValidator+shouldNotBeRegExp) ⇒ <code>this</code>
+    * [.shouldBeFalsey(configPath, [message])](#InstanceValidator+shouldBeFalsey) ⇒ <code>this</code>
+    * [.shouldNotBeFalsey(configPath, [message])](#InstanceValidator+shouldNotBeFalsey) ⇒ <code>this</code>
+    * [.shouldBeFalsy(configPath, [message])](#InstanceValidator+shouldBeFalsy) ⇒ <code>this</code>
+    * [.shouldNotBeFalsy(configPath, [message])](#InstanceValidator+shouldNotBeFalsy) ⇒ <code>this</code>
+    * [.shouldBeTruthy(configPath, [message])](#InstanceValidator+shouldBeTruthy) ⇒ <code>this</code>
+    * [.shouldNotBeTruthy(configPath, [message])](#InstanceValidator+shouldNotBeTruthy) ⇒ <code>this</code>
+    * [.checkArgument(expression, [message], [template])](#InstanceValidator+checkArgument) ⇒ <code>this</code>
+    * [.checkState(expression, [message])](#InstanceValidator+checkState) ⇒ <code>this</code>
+    * [.checkElementIndex(index, size, [message])](#InstanceValidator+checkElementIndex) ⇒ <code>this</code>
+    * [.checkPositionIndex(index, size, [message])](#InstanceValidator+checkPositionIndex) ⇒ <code>this</code>
+    * [.checkPositionIndexes(start, end, size, [message])](#InstanceValidator+checkPositionIndexes) ⇒ <code>this</code>
 
-<a name="new_ErrInstanceValidation_new"></a>
+<a name="new_InstanceValidator_new"></a>
 
-### new ErrInstanceValidation(objectUnderTest)
+### new InstanceValidator(objectUnderTest)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | objectUnderTest | <code>Object</code> | Object to run validations against. |
 
-<a name="ErrInstanceValidation+shouldBeDefined"></a>
+<a name="InstanceValidator+shouldBeDefined"></a>
 
-### errInstanceValidation.shouldBeDefined(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeDefined(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is defined.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -812,12 +1349,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeUndefined"></a>
+<a name="InstanceValidator+shouldBeUndefined"></a>
 
-### errInstanceValidation.shouldBeUndefined(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeUndefined(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not defined.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -825,12 +1362,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeNonEmptyArray"></a>
+<a name="InstanceValidator+shouldBeNonEmptyArray"></a>
 
-### errInstanceValidation.shouldBeNonEmptyArray(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeNonEmptyArray(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not an array or is an empty array.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -838,12 +1375,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeArray"></a>
+<a name="InstanceValidator+shouldBeArray"></a>
 
-### errInstanceValidation.shouldBeArray(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeArray(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is an array.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -851,12 +1388,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeArray"></a>
+<a name="InstanceValidator+shouldNotBeArray"></a>
 
-### errInstanceValidation.shouldNotBeArray(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeArray(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not an array.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -864,12 +1401,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeObject"></a>
+<a name="InstanceValidator+shouldBeObject"></a>
 
-### errInstanceValidation.shouldBeObject(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeObject(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type Object.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -877,12 +1414,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeObject"></a>
+<a name="InstanceValidator+shouldNotBeObject"></a>
 
-### errInstanceValidation.shouldNotBeObject(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeObject(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type Object.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -890,12 +1427,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeEmpty"></a>
+<a name="InstanceValidator+shouldBeEmpty"></a>
 
-### errInstanceValidation.shouldBeEmpty(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeEmpty(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not empty.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -903,12 +1440,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeEmpty"></a>
+<a name="InstanceValidator+shouldNotBeEmpty"></a>
 
-### errInstanceValidation.shouldNotBeEmpty(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeEmpty(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is empty.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -916,12 +1453,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeFunction"></a>
+<a name="InstanceValidator+shouldBeFunction"></a>
 
-### errInstanceValidation.shouldBeFunction(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeFunction(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type Function.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -929,12 +1466,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeFunction"></a>
+<a name="InstanceValidator+shouldNotBeFunction"></a>
 
-### errInstanceValidation.shouldNotBeFunction(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeFunction(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type Function.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -942,12 +1479,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeString"></a>
+<a name="InstanceValidator+shouldBeString"></a>
 
-### errInstanceValidation.shouldBeString(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeString(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type String.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -955,12 +1492,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeString"></a>
+<a name="InstanceValidator+shouldNotBeString"></a>
 
-### errInstanceValidation.shouldNotBeString(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeString(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type String.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -968,12 +1505,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeNumber"></a>
+<a name="InstanceValidator+shouldBeNumber"></a>
 
-### errInstanceValidation.shouldBeNumber(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeNumber(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type Number.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -981,12 +1518,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeNumber"></a>
+<a name="InstanceValidator+shouldNotBeNumber"></a>
 
-### errInstanceValidation.shouldNotBeNumber(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeNumber(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type Number.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -994,12 +1531,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeFinite"></a>
+<a name="InstanceValidator+shouldBeFinite"></a>
 
-### errInstanceValidation.shouldBeFinite(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeFinite(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not finite.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1007,12 +1544,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeInfinite"></a>
+<a name="InstanceValidator+shouldBeInfinite"></a>
 
-### errInstanceValidation.shouldBeInfinite(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeInfinite(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not infinte.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1020,12 +1557,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeBoolean"></a>
+<a name="InstanceValidator+shouldBeBoolean"></a>
 
-### errInstanceValidation.shouldBeBoolean(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeBoolean(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type Boolean.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1033,12 +1570,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeBoolean"></a>
+<a name="InstanceValidator+shouldNotBeBoolean"></a>
 
-### errInstanceValidation.shouldNotBeBoolean(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeBoolean(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type Boolean.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1046,12 +1583,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeDate"></a>
+<a name="InstanceValidator+shouldBeDate"></a>
 
-### errInstanceValidation.shouldBeDate(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeDate(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not of type Date.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1059,12 +1596,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeDate"></a>
+<a name="InstanceValidator+shouldNotBeDate"></a>
 
-### errInstanceValidation.shouldNotBeDate(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeDate(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is of type Date.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1072,12 +1609,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeRegExp"></a>
+<a name="InstanceValidator+shouldBeRegExp"></a>
 
-### errInstanceValidation.shouldBeRegExp(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeRegExp(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not a Regular Expression.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1085,12 +1622,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeRegExp"></a>
+<a name="InstanceValidator+shouldNotBeRegExp"></a>
 
-### errInstanceValidation.shouldNotBeRegExp(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeRegExp(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is a Regular Expression.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1098,12 +1635,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeFalsey"></a>
+<a name="InstanceValidator+shouldBeFalsey"></a>
 
-### errInstanceValidation.shouldBeFalsey(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeFalsey(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is not falsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1111,12 +1648,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeFalsey"></a>
+<a name="InstanceValidator+shouldNotBeFalsey"></a>
 
-### errInstanceValidation.shouldNotBeFalsey(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeFalsey(configPath, [message]) ⇒ <code>this</code>
 Throws an error if any value does not exist in the objectToTest, from configPath. Throws an error if the last key from configPath is falsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1124,12 +1661,12 @@ Throws an error if any value does not exist in the objectToTest, from configPath
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeFalsy"></a>
+<a name="InstanceValidator+shouldBeFalsy"></a>
 
-### errInstanceValidation.shouldBeFalsy(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeFalsy(configPath, [message]) ⇒ <code>this</code>
 Synonym for shouldBeFalsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1137,12 +1674,12 @@ Synonym for shouldBeFalsey.
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeFalsy"></a>
+<a name="InstanceValidator+shouldNotBeFalsy"></a>
 
-### errInstanceValidation.shouldNotBeFalsy(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeFalsy(configPath, [message]) ⇒ <code>this</code>
 Synonym for shouldNotBeFalsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1150,12 +1687,12 @@ Synonym for shouldNotBeFalsey.
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldBeTruthy"></a>
+<a name="InstanceValidator+shouldBeTruthy"></a>
 
-### errInstanceValidation.shouldBeTruthy(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldBeTruthy(configPath, [message]) ⇒ <code>this</code>
 Synonym for shouldNotBeFalsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1163,12 +1700,12 @@ Synonym for shouldNotBeFalsey.
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+shouldNotBeTruthy"></a>
+<a name="InstanceValidator+shouldNotBeTruthy"></a>
 
-### errInstanceValidation.shouldNotBeTruthy(configPath, [message]) ⇒ <code>this</code>
+### instanceValidator.shouldNotBeTruthy(configPath, [message]) ⇒ <code>this</code>
 Synonym for shouldBeFalsey.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1176,12 +1713,12 @@ Synonym for shouldBeFalsey.
 | configPath | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+checkArgument"></a>
+<a name="InstanceValidator+checkArgument"></a>
 
-### errInstanceValidation.checkArgument(expression, [message], [template]) ⇒ <code>this</code>
+### instanceValidator.checkArgument(expression, [message], [template]) ⇒ <code>this</code>
 Ensures the truth of an expression involving one or more parameters to the calling method.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1190,12 +1727,12 @@ Ensures the truth of an expression involving one or more parameters to the calli
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 | [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
 
-<a name="ErrInstanceValidation+checkState"></a>
+<a name="InstanceValidator+checkState"></a>
 
-### errInstanceValidation.checkState(expression, [message]) ⇒ <code>this</code>
-Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+### instanceValidator.checkState(expression, [message]) ⇒ <code>this</code>
+Ensures the truth of an expression involving the state of the calling InstanceValidator, but not involving any parameters to the calling method.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1203,12 +1740,12 @@ Ensures the truth of an expression involving the state of the calling instance, 
 | expression | <code>String</code> | The value to validate. |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+checkElementIndex"></a>
+<a name="InstanceValidator+checkElementIndex"></a>
 
-### errInstanceValidation.checkElementIndex(index, size, [message]) ⇒ <code>this</code>
+### instanceValidator.checkElementIndex(index, size, [message]) ⇒ <code>this</code>
 Ensures that index specifies a valid element in an array, list or string of size size.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1217,12 +1754,12 @@ Ensures that index specifies a valid element in an array, list or string of size
 | size | <code>Number</code> |  |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+checkPositionIndex"></a>
+<a name="InstanceValidator+checkPositionIndex"></a>
 
-### errInstanceValidation.checkPositionIndex(index, size, [message]) ⇒ <code>this</code>
+### instanceValidator.checkPositionIndex(index, size, [message]) ⇒ <code>this</code>
 Ensures that index specifies a valid position in an array, list or string of size size.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1231,12 +1768,12 @@ Ensures that index specifies a valid position in an array, list or string of siz
 | size | <code>Number</code> |  |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="ErrInstanceValidation+checkPositionIndexes"></a>
+<a name="InstanceValidator+checkPositionIndexes"></a>
 
-### errInstanceValidation.checkPositionIndexes(start, end, size, [message]) ⇒ <code>this</code>
+### instanceValidator.checkPositionIndexes(start, end, size, [message]) ⇒ <code>this</code>
 Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
 
-**Kind**: instance method of <code>[ErrInstanceValidation](#ErrInstanceValidation)</code>  
+**Kind**: instance method of <code>[InstanceValidator](#InstanceValidator)</code>  
 **Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
 
 | Param | Type | Description |
@@ -1246,513 +1783,3 @@ Ensures that start and end specify a valid positions in an array, list or string
 | size | <code>Number</code> |  |
 | [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
 
-<a name="errSingletonValidation"></a>
-
-## errSingletonValidation
-Validate single value with a chainable interface.
-Use this interface if you want to utilize the following functionality:
-1. Error message templating. 2. Only templates error message if validation fails which saves event queue cycles.
-3. Chain together precondition validations.
-
-**Kind**: global variable  
-
-* [errSingletonValidation](#errSingletonValidation)
-    * [.shouldBeDefined(val, [message], [template])](#errSingletonValidation.shouldBeDefined) ⇒ <code>this</code>
-    * [.shouldBeUndefined(val, [message], [template])](#errSingletonValidation.shouldBeUndefined) ⇒ <code>this</code>
-    * [.shouldBeArray(val, [message], [template])](#errSingletonValidation.shouldBeArray) ⇒ <code>this</code>
-    * [.shouldNotBeArray(val, [message], [template])](#errSingletonValidation.shouldNotBeArray) ⇒ <code>this</code>
-    * [.shouldBeObject(val, [message], [template])](#errSingletonValidation.shouldBeObject) ⇒ <code>this</code>
-    * [.shouldNotBeObject(val, [message], [template])](#errSingletonValidation.shouldNotBeObject) ⇒ <code>this</code>
-    * [.shouldBeEmpty(val, [message], [template])](#errSingletonValidation.shouldBeEmpty) ⇒ <code>this</code>
-    * [.shouldNotBeEmpty(val, [message], [template])](#errSingletonValidation.shouldNotBeEmpty) ⇒ <code>this</code>
-    * [.shouldBeFunction(val, [message], [template])](#errSingletonValidation.shouldBeFunction) ⇒ <code>this</code>
-    * [.shouldNotBeFunction(val, [message], [template])](#errSingletonValidation.shouldNotBeFunction) ⇒ <code>this</code>
-    * [.shouldBeString(val, [message], [template])](#errSingletonValidation.shouldBeString) ⇒ <code>this</code>
-    * [.shouldNotBeString(val, [message], [template])](#errSingletonValidation.shouldNotBeString) ⇒ <code>this</code>
-    * [.shouldBeNumber(val, [message], [template])](#errSingletonValidation.shouldBeNumber) ⇒ <code>this</code>
-    * [.shouldNotBeNumber(val, [message], [template])](#errSingletonValidation.shouldNotBeNumber) ⇒ <code>this</code>
-    * [.shouldBeFinite(val, [message], [template])](#errSingletonValidation.shouldBeFinite) ⇒ <code>this</code>
-    * [.shouldBeInfinite(val, [message], [template])](#errSingletonValidation.shouldBeInfinite) ⇒ <code>this</code>
-    * [.shouldBeBoolean(val, [message], [template])](#errSingletonValidation.shouldBeBoolean) ⇒ <code>this</code>
-    * [.shouldNotBeBoolean(val, [message], [template])](#errSingletonValidation.shouldNotBeBoolean) ⇒ <code>this</code>
-    * [.shouldBeDate(val, [message], [template])](#errSingletonValidation.shouldBeDate) ⇒ <code>this</code>
-    * [.shouldNotBeDate(val, [message], [template])](#errSingletonValidation.shouldNotBeDate) ⇒ <code>this</code>
-    * [.shouldBeRegExp(val, [message], [template])](#errSingletonValidation.shouldBeRegExp) ⇒ <code>this</code>
-    * [.shouldNotBeRegExp(val, [message], [template])](#errSingletonValidation.shouldNotBeRegExp) ⇒ <code>this</code>
-    * [.shouldBeFalsey(val, [message], [template])](#errSingletonValidation.shouldBeFalsey) ⇒ <code>this</code>
-    * [.shouldNotBeFalsey(val, [message], [template])](#errSingletonValidation.shouldNotBeFalsey) ⇒ <code>this</code>
-    * [.shouldBeFalsy(val, [message], [template])](#errSingletonValidation.shouldBeFalsy) ⇒ <code>this</code>
-    * [.shouldNotBeFalsy(val, [message], [template])](#errSingletonValidation.shouldNotBeFalsy) ⇒ <code>this</code>
-    * [.shouldBeTruthy(val, [message], [template])](#errSingletonValidation.shouldBeTruthy) ⇒ <code>this</code>
-    * [.shouldNotBeTruthy(val, [message], [template])](#errSingletonValidation.shouldNotBeTruthy) ⇒ <code>this</code>
-    * [.checkArgument(expression, [message], [template])](#errSingletonValidation.checkArgument) ⇒ <code>this</code>
-    * [.checkState(expression, [message], [template])](#errSingletonValidation.checkState) ⇒ <code>this</code>
-    * [.checkElementIndex(index, size, [message], [template])](#errSingletonValidation.checkElementIndex) ⇒ <code>this</code>
-    * [.checkPositionIndex(index, size, [message], [template])](#errSingletonValidation.checkPositionIndex) ⇒ <code>this</code>
-    * [.checkPositionIndexes(start, end, size, [message], [template])](#errSingletonValidation.checkPositionIndexes) ⇒ <code>this</code>
-
-<a name="errSingletonValidation.shouldBeDefined"></a>
-
-### errSingletonValidation.shouldBeDefined(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not defined.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeUndefined"></a>
-
-### errSingletonValidation.shouldBeUndefined(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is defined.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeArray"></a>
-
-### errSingletonValidation.shouldBeArray(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Array.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeArray"></a>
-
-### errSingletonValidation.shouldNotBeArray(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Array.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeObject"></a>
-
-### errSingletonValidation.shouldBeObject(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Object.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeObject"></a>
-
-### errSingletonValidation.shouldNotBeObject(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Object.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeEmpty"></a>
-
-### errSingletonValidation.shouldBeEmpty(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not empty.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeEmpty"></a>
-
-### errSingletonValidation.shouldNotBeEmpty(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is empty.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeFunction"></a>
-
-### errSingletonValidation.shouldBeFunction(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Function.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeFunction"></a>
-
-### errSingletonValidation.shouldNotBeFunction(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Function.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeString"></a>
-
-### errSingletonValidation.shouldBeString(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type String.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeString"></a>
-
-### errSingletonValidation.shouldNotBeString(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type String.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeNumber"></a>
-
-### errSingletonValidation.shouldBeNumber(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Number.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeNumber"></a>
-
-### errSingletonValidation.shouldNotBeNumber(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Number.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeFinite"></a>
-
-### errSingletonValidation.shouldBeFinite(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not finite.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeInfinite"></a>
-
-### errSingletonValidation.shouldBeInfinite(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not infinite.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeBoolean"></a>
-
-### errSingletonValidation.shouldBeBoolean(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Boolean.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeBoolean"></a>
-
-### errSingletonValidation.shouldNotBeBoolean(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Boolean.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeDate"></a>
-
-### errSingletonValidation.shouldBeDate(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not of type Date.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeDate"></a>
-
-### errSingletonValidation.shouldNotBeDate(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is of type Date.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeRegExp"></a>
-
-### errSingletonValidation.shouldBeRegExp(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not a Regular Expression.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeRegExp"></a>
-
-### errSingletonValidation.shouldNotBeRegExp(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is a Regular Expression.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeFalsey"></a>
-
-### errSingletonValidation.shouldBeFalsey(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is not falsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeFalsey"></a>
-
-### errSingletonValidation.shouldNotBeFalsey(val, [message], [template]) ⇒ <code>this</code>
-Throws an error if 'val' is falsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeFalsy"></a>
-
-### errSingletonValidation.shouldBeFalsy(val, [message], [template]) ⇒ <code>this</code>
-Synonym for shouldBeFalsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeFalsy"></a>
-
-### errSingletonValidation.shouldNotBeFalsy(val, [message], [template]) ⇒ <code>this</code>
-Synonym for shouldNotBeFalsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldBeTruthy"></a>
-
-### errSingletonValidation.shouldBeTruthy(val, [message], [template]) ⇒ <code>this</code>
-Synonym for shouldNotBeFalsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.shouldNotBeTruthy"></a>
-
-### errSingletonValidation.shouldNotBeTruthy(val, [message], [template]) ⇒ <code>this</code>
-Synonym for shouldBeFalsey.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.checkArgument"></a>
-
-### errSingletonValidation.checkArgument(expression, [message], [template]) ⇒ <code>this</code>
-Ensures the truth of an expression involving one or more parameters to the calling method.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| expression | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.checkState"></a>
-
-### errSingletonValidation.checkState(expression, [message], [template]) ⇒ <code>this</code>
-Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| expression | <code>String</code> | The value to validate. |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.checkElementIndex"></a>
-
-### errSingletonValidation.checkElementIndex(index, size, [message], [template]) ⇒ <code>this</code>
-Ensures that index specifies a valid element in an array, list or string of size size.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| index | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.checkPositionIndex"></a>
-
-### errSingletonValidation.checkPositionIndex(index, size, [message], [template]) ⇒ <code>this</code>
-Ensures that index specifies a valid position in an array, list or string of size size.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| index | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |
-
-<a name="errSingletonValidation.checkPositionIndexes"></a>
-
-### errSingletonValidation.checkPositionIndexes(start, end, size, [message], [template]) ⇒ <code>this</code>
-Ensures that start and end specify a valid positions in an array, list or string of size size, and are in order.
-
-**Kind**: static method of <code>[errSingletonValidation](#errSingletonValidation)</code>  
-**Returns**: <code>this</code> - - Returns itself to allow chainable validations.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | <code>Number</code> |  |
-| end | <code>Number</code> |  |
-| size | <code>Number</code> |  |
-| [message] | <code>String</code> | The error message or the error template string to use if the validation fails. |
-| [template] | <code>Array</code> | Template params.  If provided, the error message will be generated using util.format(message, template). |

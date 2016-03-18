@@ -15,7 +15,12 @@
     "uap": "env perf=true test=true maddox ./spec/unit",
     "coverage": "./bin/maddox-cov.js",
     "lint": "./node_modules/eslint/bin/eslint.js ./spec/ ./lib",
-    "docs": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/**/*.js\" > api.md"
+    "docs": "npm run preconditions && npm run instance && npm run singleton && npm run decorator && npm run validation",
+    "preconditions": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/preconditions.js\" > api/preconditions.md",
+    "instance": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/err/instance-validator.js\" > api/instance.md",
+    "singleton": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/err/singleton-validator.js\" > api/singleton.md",
+    "decorator": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/errr/decorator.js\" > api/decorator.md",
+    "validation": "./node_modules/jsdoc-to-markdown/bin/cli.js \"./lib/errr/validator.js\" > api/validation.md"
   },
   "keywords": [
     "preconditions",
