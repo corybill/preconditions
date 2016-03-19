@@ -1,6 +1,6 @@
 "use strict";
 
-const Preconditions = require("../../lib/preconditions"),
+const preconditions = require("../../lib/preconditions"),
   constants = require("./../../lib/constants");
 
 const Maddox = require("maddox"),
@@ -36,7 +36,7 @@ describe("preconditions - when using an instance", function () {
         }
       };
       errorContext.customErrorMessage = "There was an error.";
-      errorContext.sut = Preconditions.instance(this.out);
+      errorContext.sut = preconditions.instance(this.out);
 
       errorContext.entryPointObject = this.sut;
     };
@@ -1392,23 +1392,23 @@ describe("preconditions - when using an instance", function () {
     });
   });
 
-  describe("when extending Preconditions", function () {
+  describe("when extending preconditions", function () {
     beforeEach(function () {
       errorContext.setupInheritance = function () {
-
-        let PreconditionsConstructor = Preconditions.constructor();
-
         errorContext.ShouldBeTrue = "ShouldBeTrue";
 
-        function ChildClass(someObjectToTest) {
-          PreconditionsConstructor.call(this, someObjectToTest);
-        }
-        ChildClass.prototype = Object.create(PreconditionsConstructor.prototype);
-        ChildClass.prototype.shouldBeTrue = function (value, message) {
-          let msg = message || errorContext.ShouldBeTrue;
+        let Constructor = preconditions.constructor();
+        let ChildClass = class extends Constructor {
+          constructor(out) {
+            super(out);
+          }
 
-          if (value !== true) {
-            throw new Error(msg);
+          shouldBeFoo(value, message) {
+            let msg = message || defaultMessage;
+
+            if (value !== "FOO") {
+              throw new Error(msg);
+            }
           }
         };
 
@@ -1437,7 +1437,7 @@ describe("preconditions - when using an instance", function () {
       errorContext.setupInputParams();
 
       new Scenario()
-        .withEntryPoint(errorContext.entryPointObject, "shouldBeTrue")
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFoo")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
           expect(err).to.be.undefined; // eslint-disable-line
@@ -1457,7 +1457,7 @@ describe("preconditions - when using an instance", function () {
       errorContext.setupInputParams();
 
       new Scenario()
-        .withEntryPoint(errorContext.entryPointObject, "shouldBeTrue")
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeFoo")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
           expect(err.message).eql(errorContext.expectedErrorMessage);
