@@ -75,10 +75,6 @@ Should not be used in production code!
     
     preconditions.shouldBeDefined("foo.deep.stringValue", "Custom error message.")
       .checkArguments("FOO" === "FOO");
-      .shouldBeDefined("foo.deep.emptyArray")
-      .shouldBeUndefined("foo.deep.someValue", "Custom error message.")
-      .checkPositionIndex(5, 10, "Custom error message.")
-      .shouldBeFunction("foo.deep.functionValue");
   </code>
 </pre>
 
