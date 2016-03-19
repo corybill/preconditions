@@ -1404,9 +1404,9 @@ describe("preconditions - when using an instance", function () {
           }
 
           shouldBeFoo(value, message) {
-            let msg = message || defaultMessage;
+            let msg = message || errorContext.ShouldBeTrue;
 
-            if (value !== "FOO") {
+            if (value !== true) {
               throw new Error(msg);
             }
           }
