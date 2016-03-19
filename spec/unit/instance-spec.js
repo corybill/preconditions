@@ -1406,7 +1406,7 @@ describe("preconditions - when using an instance", function () {
           shouldBeFoo(value, message) {
             let msg = message || errorContext.ShouldBeTrue;
 
-            if (value !== true) {
+            if (value !== "FOO") {
               throw new Error(msg);
             }
           }
@@ -1429,7 +1429,7 @@ describe("preconditions - when using an instance", function () {
 
     it("it should chain and pass successfully", function () {
       errorContext.setupInputParams = function () {
-        errorContext.inputParams = [true];
+        errorContext.inputParams = ["FOO"];
       };
 
       errorContext.setupTest();
@@ -1448,7 +1448,7 @@ describe("preconditions - when using an instance", function () {
         errorContext.expectedErrorMessage = errorContext.ShouldBeTrue;
       };
       errorContext.setupInputParams = function () {
-        errorContext.inputParams = [false];
+        errorContext.inputParams = ["NOT FOO"];
       };
 
       errorContext.setupTest();
