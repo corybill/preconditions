@@ -124,19 +124,17 @@ Please reach out to me (Cory Parrish) if you would like a new precondition added
 2. If you are using windows and are seeing npm install issues due to the '^' in the package.json, please update node to >= (v0.10.28).
 
 ### Releases
-* 2.0.0
-  ** Adds errr interface which decorates errr node module
-  ** Allows templating in singleton interface.
-  ** Notes the poor performance in instance interface.  Should not be used in production code.
-  ** Redesign of code.
-  ** Now uses maddox for unit testing.
-  ** Moves to Node 5 paradigms.
-* 1.0.8 - Removed 'underscore' and added 'lodash'.
-  ** Added a .jshintrc file and a more extensive linting process
-  ** Separated dependencies and dev-dependencies to reduce installation load.
-    ** A big thanks to Esteban Ordano (eordano) for doing this work.
-
-1.0.7 - First official public release.
+  * 2.0.0
+    * Adds errr interface which decorates errr node module
+    * Allows templating in singleton interface.
+    * Notes the poor performance in instance interface.  Should not be used in production code.
+    * Redesign of code.
+    * Now uses maddox for unit testing.
+    * Moves to Node 5 paradigms.
+  * 1.0.8 - Removed 'underscore' and added 'lodash'.
+    * Added a .jshintrc file and a more extensive linting process
+    * Separated dependencies and dev-dependencies to reduce installation load (A big thanks to Esteban Ordano (eordano) for doing this work).
+  * 1.0.7 - First official public release.
 
 ## API
 
