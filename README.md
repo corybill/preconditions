@@ -52,6 +52,31 @@ You can use a static instance to verify one value at a time while using the errr
   </code>
 </pre>
 
+### Examples Using In Promise Chain
+
+Best practice for achieving fail fast concept when function must return promise;
+<pre>
+  <code>
+    var preconditions = require("preconditions").errr();
+
+    new BlueBirdProm(function (resolve, reject {
+
+      // THIS WILL THROW AND BE CAUGHT AT THE NEXT LEVEL OF THE CHAIN
+      // NOTICE YOU DO NOT HAVE TO CALL REJECT BECAUSE WE ARE THROWING WITHIN A PROMISE.
+      preconditions.shouldBeDefined(someObj.valueTwo, "Error (%s:%s): Error Message.", [errType, errCode]);
+            .debug({param1: "someDebugParam"})
+            .appendTo(someErrorObj)
+            .test();
+              
+      return someAsynchFunc().then(function (result) {
+        resolve(result);
+      }).catch(function (err) {
+        reject(err);
+      });
+    });
+  </code>
+</pre>
+
 ### Examples Using the Singleton Interface (.singleton())
 
 You can use a static instance to verify one value at a time.
