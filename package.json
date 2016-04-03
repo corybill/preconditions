@@ -2,7 +2,7 @@
   "name": "preconditions",
   "author": "Cory Parrish",
   "main": "./lib/preconditions.js",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Support for Guava like Precondition error checking in Node.js",
   "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
@@ -54,7 +54,7 @@
     "maddox": "0.0.8"
   },
   "dependencies": {
-    "errr": "1.0.7",
+    "errr": "^2.0.2",
     "lodash": "3.0.0"
   }
 }
