@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/corybill/preconditions.svg?branch=master)](https://travis-ci.org/corybill/Preconditions)
 [![Gitter](https://badges.gitter.im/corybill/preconditions.svg)](https://gitter.im/corybill/preconditions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-#### Support for Guava like Precondition error checking in Node.js
+#### Support for Precondition error checking in Node.js
 
 <p>Ensuring a fail fast development environment can help developers find bugs quicker and easier.
 Ensuring all invariants are true at an initial point of contact will help you ensure this fail fast environment.
@@ -23,7 +23,7 @@ This version also updates the module to Node 5 paradigms.</p>
 3. Add debug params to stack traces to assist with bug resolution.
 
 ### Install
-<pre><code>npm install guava-optional</code></pre>
+<pre><code>npm install preconditions</code></pre>
 
 ### Preconditions Interface
 There are four functions that are exposed from the library.
