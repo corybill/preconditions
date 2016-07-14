@@ -2,7 +2,7 @@
   "name": "preconditions",
   "author": "Cory Parrish",
   "main": "./lib/preconditions.js",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Support for Precondition error checking in Node.js",
   "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
