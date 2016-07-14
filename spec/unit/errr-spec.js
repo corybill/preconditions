@@ -4,11 +4,9 @@ const Preconditions = require("../../lib/preconditions"),
   constants = require("../../lib/constants"),
   random = require("../random");
 
-const Maddox = require("maddox"),
-  chai = require("chai");
+const Maddox = require("maddox");
 
-const expect = chai.expect,
-  Scenario = Maddox.functional.FromSynchronousScenario;
+const Scenario = Maddox.functional.FromSynchronousScenario;
 
 describe("preconditions - when using the errr builder", function () {
   let context;
@@ -60,7 +58,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -80,7 +78,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -100,7 +98,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -123,7 +121,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -139,7 +137,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -160,7 +158,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -176,7 +174,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -198,7 +196,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -214,7 +212,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -235,7 +233,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -251,7 +249,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -273,7 +271,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -289,7 +287,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -310,7 +308,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -326,7 +324,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -348,7 +346,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -364,7 +362,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -385,7 +383,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -401,7 +399,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -423,7 +421,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -439,7 +437,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -460,7 +458,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -476,7 +474,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -498,7 +496,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -514,7 +512,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -535,7 +533,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -551,7 +549,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -573,7 +571,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -589,7 +587,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -610,7 +608,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -626,7 +624,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -648,7 +646,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -664,7 +662,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -685,7 +683,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -701,7 +699,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -723,7 +721,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -739,7 +737,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -760,7 +758,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -776,7 +774,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -798,7 +796,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -814,7 +812,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -835,7 +833,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -851,7 +849,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -873,7 +871,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -889,7 +887,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -910,7 +908,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -926,7 +924,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -948,7 +946,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -964,7 +962,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is Nan", function () {
@@ -979,7 +977,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is null", function () {
@@ -994,7 +992,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1015,7 +1013,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1031,7 +1029,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is Nan", function () {
@@ -1046,7 +1044,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is null", function () {
@@ -1061,7 +1059,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1083,7 +1081,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is Nan", function () {
@@ -1102,7 +1100,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is null", function () {
@@ -1121,7 +1119,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1137,7 +1135,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1158,7 +1156,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is Nan", function () {
@@ -1177,7 +1175,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is null", function () {
@@ -1196,7 +1194,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1212,7 +1210,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1234,7 +1232,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is Nan", function () {
@@ -1253,7 +1251,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when value is null", function () {
@@ -1272,7 +1270,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1288,7 +1286,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1309,7 +1307,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1325,7 +1323,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is Nan", function () {
@@ -1340,7 +1338,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is null", function () {
@@ -1355,7 +1353,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1377,7 +1375,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1393,7 +1391,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1415,7 +1413,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1431,7 +1429,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1453,7 +1451,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when index is greater than size", function () {
@@ -1472,7 +1470,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when index is equal to size", function () {
@@ -1491,7 +1489,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1507,7 +1505,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is equal to zero", function () {
@@ -1522,7 +1520,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1544,7 +1542,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when index is greater than size", function () {
@@ -1563,7 +1561,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1579,7 +1577,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is equal to zero", function () {
@@ -1594,7 +1592,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
     it("it should pass when value is equal to size", function () {
@@ -1609,7 +1607,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
   });
@@ -1631,7 +1629,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when end is less than start", function () {
@@ -1650,7 +1648,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
     it("it should fail when end is greater than size", function () {
@@ -1669,7 +1667,7 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1686,7 +1684,7 @@ describe("preconditions - when using the errr builder", function () {
           .withEntryPoint(context.entryPointObject, "test")
           .withInputParams(context.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            Maddox.compare.shouldEqual({ expected: err, actual: undefined });
           });
       });
       it("it should pass when end is equal to size and greater than start", function () {
@@ -1701,7 +1699,7 @@ describe("preconditions - when using the errr builder", function () {
           .withEntryPoint(context.entryPointObject, "test")
           .withInputParams(context.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            Maddox.compare.shouldEqual({ expected: err, actual: undefined });
           });
       });
     });
@@ -1718,7 +1716,7 @@ describe("preconditions - when using the errr builder", function () {
           .withEntryPoint(context.entryPointObject, "test")
           .withInputParams(context.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            Maddox.compare.shouldEqual({ expected: err, actual: undefined });
           });
       });
       it("it should pass when end is equal to size and greater than start", function () {
@@ -1733,7 +1731,7 @@ describe("preconditions - when using the errr builder", function () {
           .withEntryPoint(context.entryPointObject, "test")
           .withInputParams(context.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            Maddox.compare.shouldEqual({ expected: err, actual: undefined });
           });
       });
     });
@@ -1745,7 +1743,7 @@ describe("preconditions - when using the errr builder", function () {
         context.customErrorMessage = "(%s): Error ID %s";
         context.uniqueId1 = random.uniqueId();
         context.uniqueId2 = random.uniqueId();
-        context.debugParams = {myDebugParam: random.uniqueId()};
+        context.debugParams = { myDebugParam: random.uniqueId() };
         context.entryPointObject = context.sut.shouldBeDefined(context.out.foo.undefinedValue, context.customErrorMessage, [context.uniqueId1, context.uniqueId2])
           .debug(context.debugParams);
       };
@@ -1761,8 +1759,8 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.stack.split(context.debugParams.myDebugParam).length).eql(2);
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ value: err.stack.split(context.debugParams.myDebugParam).length === 2 });
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1772,7 +1770,7 @@ describe("preconditions - when using the errr builder", function () {
         context.customErrorMessage = "(%s): Error ID %s";
         context.uniqueId1 = random.uniqueId();
         context.uniqueId2 = random.uniqueId();
-        context.debugParams = {myDebugParam: random.uniqueId()};
+        context.debugParams = { myDebugParam: random.uniqueId() };
         context.entryPointObject = context.sut.shouldBeDefined(context.out.foo.undefinedValue, context.customErrorMessage, [context.uniqueId1, context.uniqueId2])
           .debug(context.debugParams)
           .appendTo(context.appendToError);
@@ -1789,9 +1787,9 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.stack.split(context.debugParams.myDebugParam).length).eql(2);
-          expect(err.stack.split(context.appendToError.message).length).eql(2);
-          expect(err.message).eql(context.expectedErrorMessage);
+          Maddox.compare.shouldEqual({ value: err.stack.split(context.debugParams.myDebugParam).length === 2 });
+          Maddox.compare.shouldEqual({ value: err.stack.split(context.appendToError.message).length === 2 });
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
         });
     });
 
@@ -1800,7 +1798,7 @@ describe("preconditions - when using the errr builder", function () {
         context.customErrorMessage = "(%s): Error ID %s";
         context.uniqueId1 = random.uniqueId();
         context.uniqueId2 = random.uniqueId();
-        context.debugParams = {myDebugParam: random.uniqueId()};
+        context.debugParams = { myDebugParam: random.uniqueId() };
         context.setValue1 = random.uniqueId();
         context.setValue2 = random.uniqueId();
 
@@ -1821,10 +1819,9 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.stack.split(context.debugParams.myDebugParam).length).eql(2);
-          expect(err.message).eql(context.expectedErrorMessage);
-          expect(err.setKey1).eql(context.setValue1);
-          expect(err.setKey2).eql(context.setValue2);
+          Maddox.compare.shouldBeTruthy({ value: err.stack.split(context.debugParams.myDebugParam).length === 2 });
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
+          Maddox.compare.shouldEqual({ expected: err.setKey2, actual: context.setValue2 });
         });
     });
 
@@ -1833,13 +1830,13 @@ describe("preconditions - when using the errr builder", function () {
         context.customErrorMessage = "(%s): Error ID %s";
         context.uniqueId1 = random.uniqueId();
         context.uniqueId2 = random.uniqueId();
-        context.debugParams = {myDebugParam: random.uniqueId()};
+        context.debugParams = { myDebugParam: random.uniqueId() };
         context.setValue1 = random.uniqueId();
         context.setValue2 = random.uniqueId();
 
         context.entryPointObject = context.sut.shouldBeDefined(context.out.foo.undefinedValue, context.customErrorMessage, [context.uniqueId1, context.uniqueId2])
           .debug(context.debugParams)
-          .setAll({setKey1: context.setValue1, setKey2: context.setValue2});
+          .setAll({ setKey1: context.setValue1, setKey2: context.setValue2 });
       };
       context.setupErrorMessages = function () {
         context.expectedErrorMessage = `(${context.uniqueId1}): Error ID ${context.uniqueId2}`;
@@ -1853,10 +1850,10 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.stack.split(context.debugParams.myDebugParam).length).eql(2);
-          expect(err.message).eql(context.expectedErrorMessage);
-          expect(err.setKey1).eql(context.setValue1);
-          expect(err.setKey2).eql(context.setValue2);
+          Maddox.compare.shouldEqual({ value: err.stack.split(context.debugParams.myDebugParam).length === 2 });
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
+          Maddox.compare.shouldEqual({ expected: err.setKey1, actual: context.setValue1 });
+          Maddox.compare.shouldEqual({ expected: err.setKey2, actual: context.setValue2 });
         });
     });
 
@@ -1865,7 +1862,7 @@ describe("preconditions - when using the errr builder", function () {
         context.customErrorMessage = "(%s): Error ID %s";
         context.uniqueId1 = random.uniqueId();
         context.uniqueId2 = random.uniqueId();
-        context.debugParams = {myDebugParam: random.uniqueId()};
+        context.debugParams = { myDebugParam: random.uniqueId() };
         context.setValue1 = random.uniqueId();
         context.setValue2 = random.uniqueId();
         context.setValue3 = random.uniqueId();
@@ -1876,7 +1873,7 @@ describe("preconditions - when using the errr builder", function () {
           [context.uniqueId1, context.uniqueId2])
           .debug(context.debugParams)
           .set("setKey1", context.setValue1)
-          .setAll({setKey1: context.setValue3, setKey2: context.setValue4})
+          .setAll({ setKey1: context.setValue3, setKey2: context.setValue4 })
           .set("setKey2", context.setValue2);
       };
       context.setupErrorMessages = function () {
@@ -1891,10 +1888,10 @@ describe("preconditions - when using the errr builder", function () {
         .withEntryPoint(context.entryPointObject, "test")
         .withInputParams(context.inputParams)
         .test(function (err) {
-          expect(err.stack.split(context.debugParams.myDebugParam).length).eql(2);
-          expect(err.message).eql(context.expectedErrorMessage);
-          expect(err.setKey1).eql(context.setValue1);
-          expect(err.setKey2).eql(context.setValue4);
+          Maddox.compare.shouldEqual({ value: err.stack.split(context.debugParams.myDebugParam).length === 2 });
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
+          Maddox.compare.shouldEqual({ expected: err.setKey1, actual: context.setValue1 });
+          Maddox.compare.shouldEqual({ expected: err.setKey2, actual: context.setValue4 });
         });
     });
   });
