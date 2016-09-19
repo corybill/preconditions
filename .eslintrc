@@ -119,7 +119,7 @@
     "no-trailing-spaces": [2, { "skipBlankLines": true }], // disallow trailing whitespace at the end of lines
     "no-underscore-dangle": [0], // disallow dangling underscores in identifiers
     "no-unneeded-ternary": [2], // disallow the use of Boolean literals in conditional expressions
-    "object-curly-spacing": [2, "never"], // require or disallow padding inside curly braces
+    "object-curly-spacing": [2, "always"], // require or disallow padding inside curly braces
     "one-var": [0], // require or disallow one variable declaration per function
     "operator-assignment": [0], // require assignment operator shorthand where possible or prohibit it entirely
     "operator-linebreak": [2, "after"], // enforce operators to be placed before or after line breaks

@@ -2,7 +2,7 @@
   "name": "preconditions",
   "author": "Cory Parrish",
   "main": "./lib/preconditions.js",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Support for Precondition error checking in Node.js",
   "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "npm run ut && npm run lint",
-    "ut": "./node_modules/maddox/bin/maddox.js ./spec/unit",
+    "ut": "./node_modules/mocha/bin/_mocha ./spec/unit",
     "perf": "env perf=true env test=false maddox ./spec/unit",
     "uap": "env perf=true test=true maddox ./spec/unit",
     "coverage": "./bin/maddox-cov.js",
@@ -51,10 +51,11 @@
     "chance": "1.0.1",
     "eslint": "2.4.0",
     "jsdoc-to-markdown": "1.3.3",
-    "maddox": "0.0.8"
+    "maddox": "0.2.4",
+    "mocha": "^2.5.3"
   },
   "dependencies": {
-    "errr": "2.1.2",
-    "lodash": "3.0.0"
+    "errr": "2.2.1",
+    "lodash": "4.13.1"
   }
 }
