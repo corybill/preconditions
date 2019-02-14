@@ -47,15 +47,16 @@
     "url": "https://github.com/corybill/preconditions.git"
   },
   "devDependencies": {
-    "chai": "3.5.0",
-    "chance": "1.0.1",
-    "eslint": "2.4.0",
-    "jsdoc-to-markdown": "1.3.3",
-    "maddox": "0.2.4",
-    "mocha": "^2.5.3"
+    "chai": "3.x",
+    "chance": "1.x",
+    "eslint": "5.x",
+    "jsdoc-to-markdown": "4.x",
+    "maddox": "2.x",
+    "mocha": "5.x"
   },
   "dependencies": {
-    "errr": "2.2.1",
-    "lodash": "4.13.1"
+    "errr": "2.x",
+    "lodash": "4.x",
+    "npm": "6.x"
   }
 }
