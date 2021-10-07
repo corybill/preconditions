@@ -4,8 +4,9 @@ os:
 dist: xenial
 node_js:
   - lts/*
+  - 16.0
+  - 14.0
   - 12.0
-  - 10.0
 notifications:
   webhooks:
     urls:
