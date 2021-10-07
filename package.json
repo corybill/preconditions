@@ -3,7 +3,7 @@
   "author": "Cory Parrish",
   "main": "./lib/preconditions.js",
   "version": "3.0.0",
-  "description": "Support for Precondition error checking in Node.js",
+  "description": "Support for Precondition error checking in Node.js.",
   "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
     "url": "https://github.com/corybill/preconditions/issues"
