@@ -8,6 +8,8 @@ const Maddox = require("maddox");
 
 const Scenario = Maddox.functional.FromSynchronousScenario;
 
+class ImAClass {}
+
 describe("preconditions - when using the errr builder", function () {
   let context;
 
@@ -365,11 +367,47 @@ describe("preconditions - when using the errr builder", function () {
           Maddox.compare.shouldEqual({ expected: err, actual: undefined });
         });
     });
+
+    it("it should pass when value is a Class", function () {
+      context.setupEntryPoint = function () {
+        context.entryPointObject = context.sut.shouldBeObject(ImAClass);
+      };
+
+      context.setupTest();
+      context.setupEntryPoint();
+
+      new Scenario()
+        .withEntryPoint(context.entryPointObject, "test")
+        .withInputParams(context.inputParams)
+        .test(function (err) {
+          Maddox.compare.shouldEqual({ expected: err, actual: undefined });
+        });
+    });
   });
   describe("shouldNotBeObject", function () {
     it("it should fail when value is an Object", function () {
       context.setupEntryPoint = function () {
         context.entryPointObject = context.sut.shouldNotBeObject(context.out.foo.deep);
+      };
+      context.setupErrorMessages = function () {
+        context.expectedErrorMessage = constants.ShouldNotBeObject;
+      };
+
+      context.setupTest();
+      context.setupEntryPoint();
+      context.setupErrorMessages();
+
+      new Scenario()
+        .withEntryPoint(context.entryPointObject, "test")
+        .withInputParams(context.inputParams)
+        .test(function (err) {
+          Maddox.compare.shouldEqual({ expected: err.message, actual: context.expectedErrorMessage });
+        });
+    });
+
+    it("it should fail when value is a Class", function () {
+      context.setupEntryPoint = function () {
+        context.entryPointObject = context.sut.shouldNotBeObject(ImAClass);
       };
       context.setupErrorMessages = function () {
         context.expectedErrorMessage = constants.ShouldNotBeObject;

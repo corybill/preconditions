@@ -9,6 +9,8 @@ const Maddox = require("maddox"),
 const expect = chai.expect,
   Scenario = Maddox.functional.FromSynchronousScenario;
 
+class ImAClass {}
+
 describe("preconditions - when using an instance", function () {
   let errorContext;
 
@@ -399,6 +401,22 @@ describe("preconditions - when using an instance", function () {
           expect(err).to.be.undefined; // eslint-disable-line
         });
     });
+
+    it("it should pass when value is a Class", function () {
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [ImAClass];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldBeObject")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err).to.be.undefined; // eslint-disable-line
+        });
+    });
   });
   describe("shouldNotBeObject", function () {
     it("it should fail when value is an Object", function () {
@@ -407,6 +425,26 @@ describe("preconditions - when using an instance", function () {
       };
       errorContext.setupInputParams = function () {
         errorContext.inputParams = ["foo.deep"];
+      };
+
+      errorContext.setupTest();
+      errorContext.setupErrorMessages();
+      errorContext.setupInputParams();
+
+      new Scenario()
+        .withEntryPoint(errorContext.entryPointObject, "shouldNotBeObject")
+        .withInputParams(errorContext.inputParams)
+        .test(function (err) {
+          expect(err.message).eql(errorContext.expectedErrorMessage);
+        });
+    });
+
+    it("it should fail when value is a Class", function () {
+      errorContext.setupErrorMessages = function () {
+        errorContext.expectedErrorMessage = new Error(constants.ShouldNotBeObject).message;
+      };
+      errorContext.setupInputParams = function () {
+        errorContext.inputParams = [ImAClass];
       };
 
       errorContext.setupTest();
