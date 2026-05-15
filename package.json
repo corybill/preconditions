@@ -17,7 +17,7 @@
     "url": "https://github.com/corybill/preconditions/issues"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "test": "npm run ut && npm run lint",

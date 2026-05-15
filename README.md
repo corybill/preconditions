@@ -2,7 +2,7 @@
 
 [![view on npm](http://img.shields.io/npm/v/preconditions.svg)](https://www.npmjs.org/package/preconditions)
 [![npm module downloads](http://img.shields.io/npm/dt/preconditions.svg)](https://www.npmjs.org/package/preconditions)
-[![Build Status](https://travis-ci.org/corybill/preconditions.svg?branch=master)](https://travis-ci.org/corybill/Preconditions)
+[![CI](https://github.com/corybill/preconditions/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/corybill/preconditions/actions/workflows/ci.yml)
 [![Gitter](https://badges.gitter.im/corybill/preconditions.svg)](https://gitter.im/corybill/preconditions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 #### Support for Precondition error checking in Node.js
