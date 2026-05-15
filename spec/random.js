@@ -1,29 +1,27 @@
-"use strict";
+import Chance from "chance";
 
-const Chance = require("chance");
+const chance = new Chance();
 
-let chance = new Chance();
-
-module.exports = {
-  uniqueId: function () {
+export default {
+  uniqueId() {
     return chance.hash({ length: 24 });
   },
-  zip: function () {
+  zip() {
     return chance.zip();
   },
-  firstName: function () {
+  firstName() {
     return chance.first();
   },
-  lastName: function () {
+  lastName() {
     return chance.last();
   },
-  word: function (len) {
+  word(len) {
     return chance.word({ length: len || 5 });
   },
-  sentence: function (len) {
+  sentence(len) {
     return chance.sentence({ words: len || 5 });
   },
-  date: function () {
+  date() {
     return chance.date();
   }
 };

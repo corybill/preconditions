@@ -1,14 +1,10 @@
-"use strict";
+import Preconditions from "../../lib/preconditions.js";
+import * as constants from "../../lib/constants.js";
+import random from "../random.js";
+import Maddox from "../maddox.js";
+import { expect } from "chai";
 
-const Preconditions = require("./../../lib/preconditions"),
-  constants = require("./../../lib/constants"),
-  random = require("../random");
-
-const Maddox = require("maddox"),
-  chai = require("chai");
-
-const expect = chai.expect,
-  Scenario = Maddox.functional.FromSynchronousScenario;
+const Scenario = Maddox.functional.FromSynchronousScenario;
 
 class ImAClass {}
 
@@ -142,7 +138,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeDefined")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -179,7 +175,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeUndefined")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -217,7 +213,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeArray")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -254,7 +250,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeArray")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -292,7 +288,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeEmpty")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -329,7 +325,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeEmpty")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -367,7 +363,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeObject")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
 
@@ -383,7 +379,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeObject")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -440,7 +436,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeObject")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -478,7 +474,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFunction")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -515,7 +511,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFunction")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -553,7 +549,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeString")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -590,7 +586,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeString")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -628,7 +624,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeNumber")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -665,7 +661,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeNumber")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -703,7 +699,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFinite")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -740,7 +736,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeInfinite")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -778,7 +774,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeBoolean")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -815,7 +811,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeBoolean")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -853,7 +849,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeDate")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -890,7 +886,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeDate")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -928,7 +924,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeRegExp")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -965,7 +961,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeRegExp")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1003,7 +999,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsey")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is Nan", function () {
@@ -1018,7 +1014,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsey")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is null", function () {
@@ -1033,7 +1029,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsey")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1108,7 +1104,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsey")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1146,7 +1142,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is Nan", function () {
@@ -1161,7 +1157,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is null", function () {
@@ -1176,7 +1172,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeFalsy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1251,7 +1247,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeFalsy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1327,7 +1323,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeTruthy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1364,7 +1360,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is Nan", function () {
@@ -1379,7 +1375,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is null", function () {
@@ -1394,7 +1390,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldNotBeTruthy")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1432,7 +1428,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkArgument")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1470,7 +1466,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkState")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1546,7 +1542,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkElementIndex")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is equal to zero", function () {
@@ -1561,7 +1557,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkElementIndex")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1618,7 +1614,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkPositionIndex")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is equal to zero", function () {
@@ -1633,7 +1629,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkPositionIndex")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
     it("it should pass when value is equal to size", function () {
@@ -1648,7 +1644,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "checkPositionIndex")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
   });
@@ -1725,7 +1721,7 @@ describe("preconditions - when using singleton instance", function () {
           .withEntryPoint(errorContext.entryPointObject, "checkPositionIndexes")
           .withInputParams(errorContext.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            expect(err).to.be.undefined;  
           });
       });
       it("it should pass when end is equal to size and greater than start", function () {
@@ -1740,7 +1736,7 @@ describe("preconditions - when using singleton instance", function () {
           .withEntryPoint(errorContext.entryPointObject, "checkPositionIndexes")
           .withInputParams(errorContext.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            expect(err).to.be.undefined;  
           });
       });
     });
@@ -1757,7 +1753,7 @@ describe("preconditions - when using singleton instance", function () {
           .withEntryPoint(errorContext.entryPointObject, "checkPositionIndexes")
           .withInputParams(errorContext.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            expect(err).to.be.undefined;  
           });
       });
       it("it should pass when end is equal to size and greater than start", function () {
@@ -1772,7 +1768,7 @@ describe("preconditions - when using singleton instance", function () {
           .withEntryPoint(errorContext.entryPointObject, "checkPositionIndexes")
           .withInputParams(errorContext.inputParams)
           .test(function (err) {
-            expect(err).to.be.undefined; // eslint-disable-line
+            expect(err).to.be.undefined;  
           });
       });
     });
@@ -1782,8 +1778,8 @@ describe("preconditions - when using singleton instance", function () {
 
     it("it should work using chaining commands for success", function () {
       errorContext.setupChain = function () {
-        let stringValue = errorContext.out.foo.deep.stringValue;
-        let numberValue = errorContext.out.foo.deep.numberValue;
+        const stringValue = errorContext.out.foo.deep.stringValue;
+        const numberValue = errorContext.out.foo.deep.numberValue;
 
         errorContext.entryPointObject = errorContext.sut.shouldNotBeFalsey(stringValue)
           .shouldBeDefined(stringValue)
@@ -1804,7 +1800,7 @@ describe("preconditions - when using singleton instance", function () {
         .withEntryPoint(errorContext.entryPointObject, "shouldBeNumber")
         .withInputParams(errorContext.inputParams)
         .test(function (err) {
-          expect(err).to.be.undefined; // eslint-disable-line
+          expect(err).to.be.undefined;  
         });
     });
 
@@ -1813,8 +1809,8 @@ describe("preconditions - when using singleton instance", function () {
         errorContext.expectedErrorMessage = new Error(constants.ShouldBeNumber).message;
       };
       errorContext.setupChain = function () {
-        let stringValue = errorContext.out.foo.deep.stringValue;
-        let numberValue = errorContext.out.foo.deep.numberValue;
+        const stringValue = errorContext.out.foo.deep.stringValue;
+        const numberValue = errorContext.out.foo.deep.numberValue;
 
         errorContext.entryPointObject = errorContext.sut.shouldNotBeFalsey(stringValue)
           .shouldBeDefined(stringValue)

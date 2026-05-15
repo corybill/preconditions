@@ -1,10 +1,7 @@
-"use strict";
-
-const Preconditions = require("../../lib/preconditions"),
-  constants = require("../../lib/constants"),
-  random = require("../random");
-
-const Maddox = require("maddox");
+import Preconditions from "../../lib/preconditions.js";
+import * as constants from "../../lib/constants.js";
+import random from "../random.js";
+import Maddox from "../maddox.js";
 
 const Scenario = Maddox.functional.FromSynchronousScenario;
 
