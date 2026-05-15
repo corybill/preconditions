@@ -10,7 +10,7 @@
       "default": "./lib/preconditions.js"
     }
   },
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "Support for Precondition error checking in Node.js.",
   "homepage": "https://github.com/corybill/preconditions",
   "bugs": {
@@ -38,7 +38,7 @@
     "url": "https://github.com/corybill/preconditions.git"
   },
   "dependencies": {
-    "errr": "^5.0.0"
+    "errr": "^5.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
