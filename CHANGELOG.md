@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.3] - 2026-05-15
+
+### Changed
+
+- **`engines.node`** set to **`>=20.0.0`** (broader support while staying aligned with **errr** 5.x).
+
 ## [4.0.2] - 2026-05-15
 
 ### Changed
@@ -47,10 +53,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking
 
-- **Node &lt; 24** is not supported.
+- **4.0.0** initially required **Node 24+** in `package.json` **`engines`**; **4.0.3** widens support to **Node 20+** (`>=20.0.0`).
 - **`errr` 5.x** is required as a runtime dependency; upgrade errr in consuming apps if they pin it tightly.
 - **`core-util-is`** is no longer a transitive dependency.
 
+[4.0.3]: https://github.com/corybill/preconditions/compare/v4.0.2...v4.0.3
 [4.0.2]: https://github.com/corybill/preconditions/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/corybill/preconditions/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/corybill/preconditions/compare/v3.0.2...v4.0.0
