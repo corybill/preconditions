@@ -31,7 +31,7 @@ There are four functions that are exposed from the library.
 1. errr() - Verify a one value at a time while building an 'errr' object.  You can append errors together and add debug params to the stack trace. 
 2. singleton() - Verify one value at a time with a chainable preconditions interface.
 3. instance() - Create a testing suite passing in a single object.  Run a single, or multiple tests on the passed in object. Shouldn't be used in production code.
-4. constructor() - Get the constructor function so you can extend the Preconditions library (see below for example). Shouldn't be used in production code.
+4. getConstructor() - Get the constructor function so you can extend the Preconditions library (see below for example). Shouldn't be used in production code.
 
 ### Examples Using the Errr Interface (.errr())
 
@@ -104,13 +104,13 @@ Should not be used in production code!
   </code>
 </pre>
 
-### Examples Using The Constructor (.constructor())
+### Examples Using The Constructor (.getConstructor())
 Should not be used in production code!
 
 The Preconditions object itself is exposed so that you can extend the Preconditions class.
 <pre>
   <code>
-    let Constructor = preconditions.constructor();
+    let Constructor = preconditions.getConstructor();
     let ChildClass = class extends Constructor {
       constructor(out) {
         super(out);
@@ -1830,7 +1830,7 @@ Preconditions entry point interface.
     * [.errr()](#Preconditions.errr) ⇒
     * [.singleton()](#Preconditions.singleton) ⇒
     * [.instance(objectUnderTest)](#Preconditions.instance) ⇒
-    * [.constructor()](#Preconditions.constructor) ⇒
+    * [.getConstructor()](#Preconditions.getConstructor) ⇒
 
 <a name="Preconditions.errr"></a>
 
@@ -1859,9 +1859,9 @@ Validate values of a given JSON object with the preconditions object.
 | --- | --- |
 | objectUnderTest | Object Under Test |
 
-<a name="Preconditions.constructor"></a>
+<a name="Preconditions.getConstructor"></a>
 
-### Preconditions.constructor() ⇒
+### Preconditions.getConstructor() ⇒
 Gives ability to extend and add other preconditions to the Error Validation constructor.
 
 **Kind**: static method of <code>[Preconditions](#Preconditions)</code>  

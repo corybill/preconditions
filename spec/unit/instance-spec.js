@@ -1431,7 +1431,7 @@ describe("preconditions - when using an instance", function () {
       errorContext.setupInheritance = function () {
         errorContext.ShouldBeTrue = "ShouldBeTrue";
 
-        const Constructor = preconditions.constructor();
+        const Constructor = preconditions.getConstructor();
         const ChildClass = class extends Constructor {
           constructor(out) {
             super(out);
